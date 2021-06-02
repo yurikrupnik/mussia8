@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+    lerna:
+        image: gcr.io/mussia8/lerna
+        build:
+            context: .
+        container_name: lerna
+        deploy:
+            replicas: 0

@@ -1,0 +1,117 @@
+# openapi2-run.yaml
+swagger: "2.0"
+info:
+    title: aris-api optional-string
+    description: Sample API on API Gateway with a Cloud Run backend
+    version: 1.0.0
+host: aris-8jo9nv6l.ew.gateway.dev
+schemes:
+    - https
+produces:
+    - application/json
+paths:
+    /billing:
+        get:
+            parameters:
+                - in: path
+                  name: asset
+                  type: string
+                  required: true
+                  description: Name of the asset.
+            summary: Assets
+            operationId: getAsset
+            x-google-backend:
+                address: https://billing-iinq65tiba-ew.a.run.app/
+            responses:
+                "200":
+                    description: A successful response
+                    schema:
+                        type: string
+    /billing/dam:
+        get:
+            summary: Assets
+            operationId: billingDam
+            x-google-backend:
+                address: https://billing-iinq65tiba-ew.a.run.app/dam
+            responses:
+                "200":
+                    description: A successful response
+                    schema:
+                        type: string
+    /billing/doc:
+        get:
+            summary: Assets
+            operationId: billingDoc
+            x-google-backend:
+                address: https://billing-iinq65tiba-ew.a.run.app/doc
+            responses:
+                "200":
+                    description: A successful response
+                    schema:
+                        type: string
+    /billing/swagger:
+        get:
+            summary: Assets
+            operationId: billingSwagger
+            x-google-backend:
+                address: https://billing-iinq65tiba-ew.a.run.app/swagger
+            responses:
+                "200":
+                    description: A successful response
+                    schema:
+                        type: string
+    /hello:
+        get:
+            summary: Cloud Run hello world
+            operationId: hello
+            x-google-backend:
+                address: https://batman-iinq65tiba-ew.a.run.app/api/hello
+            responses:
+                "200":
+                    description: A successful response
+                    schema:
+                        type: string
+    /func1/doc:
+        get:
+            summary: Cloud function func1 doc
+            operationId: func1-doc
+            tags:
+                - Func1
+            x-google-backend:
+                address: https://europe-west1-mussia8.cloudfunctions.net/func1/doc
+            responses:
+                "200":
+                    description: A successful response
+                    schema:
+                        type: string
+
+    /func1/swagger:
+        get:
+            summary: Cloud function func1 swagger
+            operationId: func1-swagger
+            tags:
+                - Func1
+            x-google-backend:
+                address: https://europe-west1-mussia8.cloudfunctions.net/func1/swagger
+            responses:
+                "200":
+                    description: A successful response
+                    schema:
+                        type: string
+    /ji:
+        get:
+            summary: Cloud ji sercoce
+            operationId: ji
+            x-google-backend:
+                address: https://ji-iinq65tiba-ez.a.run.app
+            responses:
+                "200":
+                    description: A successful response
+                    schema:
+                        type: string
+#securityDefinitions:
+#  google_id_token:
+#    flow: "implicit"
+#    type: "oauth2"
+#    x-google-issuer: "https://accounts.google.com"
+#    authorizationUrl: "ars"

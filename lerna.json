@@ -1,0 +1,4 @@
+{
+  "packages": ["packages/*", "packages/ui/*", "packages/services/*", "packages/webclients/*", "packages/functions/*", "packages/models/*"],
+  "version": "independent"
+}

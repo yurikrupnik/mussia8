@@ -1,0 +1,72 @@
+version: "3"
+services:
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+
+  batman:
+    image: batman-dev
+    build:
+      context: packages/webclients/batman
+      dockerfile: Dockerfile.dev
+    container_name: batman-dev
+    restart: always
+    volumes:
+      - ./packages/webclients/batman/pages:/usr/src/pages
+    #        todo finish adding all needed files for refresh or add dynamic blob
+    ports:
+      - 4000:4000
+      - 6060:6060
+    depends_on:
+      - db
+    command: npm run dev
+#
+  alfred:
+    image: alfred-dev
+    build:
+      context: packages/webclients/alfred
+      dockerfile: Dockerfile.dev
+    container_name: alfred-dev
+    restart: always
+    volumes:
+      - ./packages/webclients/alfred/pages:/usr/src/pages
+    #        todo finish adding all needed files for refresh or add dynamic blob
+    ports:
+      - 3000:3000
+      - 6060:6060
+    depends_on:
+      - db
+    command: npm run dev
+
+  billing:
+    image: billing-dev
+    build:
+      context: packages/services/billing
+      dockerfile: Dockerfile.dev
+      args:
+        - modulePath=/packages/services/billing
+    container_name: billing-dev
+    volumes:
+        - ./packages/services/billing/src:/app/packages/services/billing/src
+    environment:
+      - NODE_ENV_DOCKER=true
+      #            - PORT=5000
+      - DB_USER=admin
+      - MONGODB_URI=mongodb://0.0.0.0/jarvis
+      - DB_PASSWORD=elmtmVSesRtpz3de
+      - DATABASE_URL=@cluster0.xliif.gcp.mongodb.net/
+    ports:
+      - 5000:8080
+    command: npm run dev
+
+  functions:
+    image: functions
+    build:
+      context: packages/functions
+    #      root: packages/functions
+    container_name: func1
+    ports:
+      - 3334:3334
+      - 3333:3333
+    command: npm run fucntion

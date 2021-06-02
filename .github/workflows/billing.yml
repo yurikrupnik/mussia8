@@ -1,0 +1,44 @@
+name: Billing
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - "packages/**"
+
+jobs:
+    billing-check:
+        runs-on:
+            ubuntu-latest
+
+            #    strategy:
+            #      matrix:
+            #        node-version: [12.x, 14.x, 16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases
+        env:
+            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+            #      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  fetch-depth: "0"
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v2
+              with:
+                  #          always-auth: true
+                  node-version: "14.x"
+                  registry-url: https://registry.npmjs.org/
+
+            - name: Cache node modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-node-modules
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-build-${{ env.cache-name }}-
+                      ${{ runner.os }}-build-
+                      ${{ runner.os }}-

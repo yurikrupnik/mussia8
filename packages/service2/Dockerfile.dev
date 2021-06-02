@@ -1,0 +1,14 @@
+FROM gcr.io/mussia8/lerna
+ARG port=8080
+ENV PORT=$port
+
+ARG distFolder=dist
+ARG modulePath=.
+ENV MODULE_PATH=$modulePath
+
+COPY . .$MODULE_PATH
+RUN npm i
+
+EXPOSE ${PORT}
+
+CMD ["npm", "run", "dev"]
