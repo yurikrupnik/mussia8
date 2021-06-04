@@ -23,24 +23,24 @@ services:
         depends_on:
             - db
     #    #
-    #    batman:
-    #        image: gcr.io/mussia6/batman
-    #        build:
-    #            context: packages/webclients/batman
-    #            dockerfile: Dockerfile
-    #        container_name: batman
-    #        environment:
-    #            - NODE_ENV_DOCKER=true
-    #            - DB_USER=admin
-    #              # dev db
-    #            - MONGODB_URI=mongodb://0.0.0.0/jarvis
-    #            - DB_PASSWORD=elmtmVSesRtpz3de
-    #            - DATABASE_URL=@cluster0.xliif.gcp.mongodb.net/
-    #        #            - DATABASE_URL=@cluster0.xliif.gcp.mongodb.net/
-    #        #            - DATABASE_URL=mongodb://db/rt-react
-    #        ports:
-    #            - 4000:3000
-    #        command: npm run start
+    batman:
+        image: gcr.io/mussia8/batman
+        build:
+            context: packages/ui/clients/batman
+            dockerfile: Dockerfile
+        container_name: batman
+        environment:
+            - NODE_ENV_DOCKER=true
+            - DB_USER=admin
+              # dev db
+            - MONGODB_URI=mongodb://0.0.0.0/jarvis
+            - DB_PASSWORD=elmtmVSesRtpz3de
+            - DATABASE_URL=@cluster0.xliif.gcp.mongodb.net/
+        #            - DATABASE_URL=@cluster0.xliif.gcp.mongodb.net/
+            - DATABASE_URL=mongodb://db/mussia8
+        ports:
+            - 3001:3000
+        command: npm run start
     #    envoy:
     #        image: envoyproxy/envoy-dev
     #        container_name: envoy
