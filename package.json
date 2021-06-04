@@ -58,7 +58,7 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "generate-json-webpack-plugin": "2.0.0",
     "identity-obj-proxy": "3.0.0",
-    "jest": "27.0.3",
+    "jest": "27.0.4",
     "lerna": "4.0.0",
     "node-sass": "6.0.0",
     "nodemon-webpack-plugin": "4.5.2",
