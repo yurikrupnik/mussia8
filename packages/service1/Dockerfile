@@ -12,7 +12,7 @@ RUN npm i
 RUN ls -a
 RUN npm run build
 #
-FROM node:14-alpine
+FROM node:16-alpine
 
 ARG port=8080
 ENV PORT=$port
