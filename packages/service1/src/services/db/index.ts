@@ -15,7 +15,7 @@ import MongoStore from "connect-mongo";
 // createDbMock();
 
 export default (url: string) => {
-    console.log('url', url)
+    console.log("url", url); // eslint-disable-line no-console
     mongoose.connect(url, {
         useNewUrlParser: true
     });
