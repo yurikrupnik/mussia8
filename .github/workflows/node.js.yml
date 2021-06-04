@@ -67,11 +67,11 @@ jobs:
       - uses: nelonoel/branch-name@v1.0.1
       - run: git status
 #      - run: npx lerna changed
-#      - name: NPN Publish
-#        run: npm run npm-publish
-#        env:
-#          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-#          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - name: NPN Publish
+        run: npm run npm-publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 #  npm-publish:
 #    runs-on: ubuntu-latesdt
 #    steps:
