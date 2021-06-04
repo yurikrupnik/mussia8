@@ -67,7 +67,7 @@
     "process": "0.11.10",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-styleguidist": "11.1.6",
+    "react-styleguidist": "11.1.7",
     "rollup": "2.50.6",
     "rollup-plugin-copy": "3.4.0",
     "rollup-plugin-esbuild": "4.2.3",
