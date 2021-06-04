@@ -1,20 +1,21 @@
 import mongoose from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import UserModel, { mock } from "../../api/model";
+// import UserModel, { mock } from "../../api/model";
 // import Promotions, { mock as promotionsMock } from "../../api/promotions/model";
 
-function createDbMock() {
-    UserModel.find().then((res) => {
-        if (!res.length) {
-            UserModel.insertMany(mock);
-        }
-    });
-}
-
-createDbMock();
+// function createDbMock() {
+//     UserModel.find().then((res) => {
+//         if (!res.length) {
+//             UserModel.insertMany(mock);
+//         }
+//     });
+// }
+//
+// createDbMock();
 
 export default (url: string) => {
+    console.log('url', url)
     mongoose.connect(url, {
         useNewUrlParser: true
     });

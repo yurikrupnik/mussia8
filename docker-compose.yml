@@ -4,24 +4,24 @@ services:
         image: mongo
         ports:
             - 27017:27017
-    #    alfred:
-    #        image: gcr.io/mussia6/alfred
-    #        build:
-    #            context: packages/webclients/alfred
-    #            dockerfile: Dockerfile
-    #        container_name: alfred
-    #        environment:
-    #            - NODE_ENV_DOCKER=true
-    #            - DB_USER=admin
-    #            # dev db
-    #            - MONGODB_URI=mongodb://0.0.0.0/jarvis
-    #            - DB_PASSWORD=elmtmVSesRtpz3de
-    #            - DATABASE_URL=@cluster0.xliif.gcp.mongodb.net/
-    #        ports:
-    #            - 3000:3000
-    #        command: npm run start
-    #        depends_on:
-    #            - db
+    alfred:
+        image: gcr.io/mussia8/alfred
+        build:
+            context: packages/ui/clients/alfred
+            dockerfile: Dockerfile
+        container_name: alfred
+        environment:
+            - NODE_ENV_DOCKER=true
+            - DB_USER=admin
+            # dev db
+            - MONGODB_URI=mongodb://0.0.0.0/jarvis
+            - DB_PASSWORD=elmtmVSesRtpz3de
+            - DATABASE_URL=@cluster0.xliif.gcp.mongodb.net/
+        ports:
+            - 3000:3000
+        command: npm run start
+        depends_on:
+            - db
     #    #
     #    batman:
     #        image: gcr.io/mussia6/batman
@@ -63,7 +63,7 @@ services:
     #            - 5000:5000
     #        command: npm run start
     service1:
-        image: gcr.io/mussia7/service1
+        image: gcr.io/mussia8/service1
         build:
             context: packages/service1
             dockerfile: Dockerfile
@@ -81,7 +81,7 @@ services:
             - 5000:5000
         command: npm run start
     service2:
-        image: gcr.io/mussia7/service2
+        image: gcr.io/mussia8/service2
         build:
             context: packages/service2
             dockerfile: Dockerfile

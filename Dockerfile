@@ -1,5 +1,5 @@
 # scratch
-FROM node:16-alpine
+FROM node:14-alpine
 WORKDIR /app
 #RUN cat ~/.npmrc > ~/.npmrc
 COPY package-lock.json package.json ./

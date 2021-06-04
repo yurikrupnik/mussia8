@@ -1,0 +1,7 @@
+node_modules
+dist
+coverage
+.circleci
+.env
+.next
+.waypoint

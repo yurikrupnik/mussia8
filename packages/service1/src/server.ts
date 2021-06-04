@@ -13,7 +13,7 @@ function handleDatabaseUrl() {
     // console.log("process.env.DB_USER", process.env.DB_USER);
     const url = process.env.DB_URL;
     if (!url) {
-        return "mongodb://localhost/mussia7";
+        return "mongodb://localhost/mussia8";
         // return "mongodb://db/mussia4";
     }
 
