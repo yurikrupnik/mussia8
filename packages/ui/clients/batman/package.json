@@ -1,6 +1,6 @@
 {
   "name": "batman",
-  "version": "1.0.1-rb-button.0",
+  "version": "1.0.2-renovate/formik-2.x.0",
   "description": "Main applicatons for clients base on auth0",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/batman#readme",
