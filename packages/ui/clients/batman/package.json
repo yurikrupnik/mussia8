@@ -39,7 +39,7 @@
     "bcrypt": "5.0.1",
     "cookie-parser": "1.4.5",
     "firebase": "8.6.2",
-    "formik": "2.2.8",
+    "formik": "2.2.9",
     "helmet": "4.6.0",
     "lodash": "4.17.21",
     "mongoose": "5.12.11",
