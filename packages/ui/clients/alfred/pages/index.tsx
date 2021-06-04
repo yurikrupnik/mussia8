@@ -1,8 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-// import noop from "lodash/noop";
-// import Button from "@perimeter81/test-button";
+import Button from "@creativearis/button";
+import noop from "lodash/noop";
 import styles from "../styles/Home.module.css";
 
 const Home: React.FC = () => (
@@ -20,7 +20,7 @@ const Home: React.FC = () => (
                 Get started by editing
                 <code className={styles.code}>pages/index.js</code>
             </p>
-            {/*<Button onClick={noop}>Aris</Button>*/}
+            <Button onClick={noop}>Aris</Button>
         </main>
 
         <footer className={styles.footer}>
