@@ -65,7 +65,7 @@ app.use((req, res, next) => {
 });
 app.use(
     swaggerUI(
-        "service1-5g7d5fmura-lm.a.run.app" ||
+        "https://service1-5g7d5fmura-lm.a.run.app" ||
             process.env.HOST ||
             "http://localhost:5000"
     )
