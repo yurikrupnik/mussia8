@@ -63,13 +63,7 @@ app.use((req, res, next) => {
     next();
     // next(swaggerUI(req.hostname));
 });
-app.use(
-    swaggerUI(
-        "https://service1-5g7d5fmura-lm.a.run.app" ||
-            process.env.HOST ||
-            "http://localhost:5000"
-    )
-);
+app.use(swaggerUI(process.env.HOST || "http://localhost:5000"));
 app.use(db(databaseUrl));
 app.use(
     express.json(),
