@@ -28,7 +28,7 @@ function handleDatabaseUrl() {
 const databaseUrl = handleDatabaseUrl();
 console.log("databaseUrl", databaseUrl); // eslint-disable-line
 
-let host = "http://localhost:5000";
+// let host = "http://localhost:5000";
 
 function swaggerUI(url: string) {
     // todo module
@@ -55,7 +55,7 @@ function swaggerUI(url: string) {
 // app.use(swaggerUI(`${host}:${port}`));
 app.use((req, res, next) => {
     // console.log("req.url", req.url);
-    host = req.hostname;
+    // host = req.hostname;
     console.log("req.hostname", req.hostname); // eslint-disable-line
     console.log("os.hostname()", os.hostname()); // eslint-disable-line
     console.log("os.platform()", os.platform()); // eslint-disable-line
@@ -63,7 +63,13 @@ app.use((req, res, next) => {
     next();
     // next(swaggerUI(req.hostname));
 });
-app.use(swaggerUI(host || process.env.HOST || "http://localhost:5000"));
+app.use(
+    swaggerUI(
+        "service1-5g7d5fmura-lm.a.run.app" ||
+            process.env.HOST ||
+            "http://localhost:5000"
+    )
+);
 app.use(db(databaseUrl));
 app.use(
     express.json(),
