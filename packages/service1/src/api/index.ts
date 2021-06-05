@@ -17,22 +17,40 @@ const route = Router();
  *       - application/json
  *     produces:
  *       - application/json
+ *     parameters:
+ *       - in: query
+ *         name: projection
+ *         type: string
+ *         required: false
+ *         description: Array or string with spaces projection keys to fetch
+ *       - in: query
+ *         name: email
+ *         type: string
+ *         description: Search by email
+ *         style: form
+ *         explode: false
+ *         examples:
+ *            oneEmail:
+ *              summary: Example of a singe email
+ *              value: 12
  *     responses:
  *       200:
  *         description: A single project object
- *         content:
- *            application/json:
- *              schema:
- *                type: array
- *                items:
- *                  $ref: '#/definitions/User'
+ *         schema:
+ *            type: array
+ *            items:
+ *              $ref: '#/definitions/User'
  *       401:
  *         description: No auth token
  *       500:
  *         description: Error happened
  */
 route.get("/", (req, res) => {
-    Model.find({}, req.query.projection)
+    const { projection } = req.query;
+    // console.log("req.query before", req.query);
+    delete req.query.projection;
+    // console.log("req.query after", req.query);
+    Model.find(req.query, projection)
         .then((response) => {
             res.status(200).json(response);
         })
@@ -58,10 +76,9 @@ route.get("/", (req, res) => {
  *     parameters:
  *       - in: path
  *         name: id
+ *         required: true
  *         schema:
  *           type: string
- *         required:
- *           - id
  *     responses:
  *       200:
  *         description: A single user object
@@ -82,6 +99,9 @@ route.get("/:id", (req, res) => {
         });
 });
 
+/**         schema:
+ *           $ref: '#/definitions/User'*/
+
 /**
  * @swagger
  * /:
@@ -89,7 +109,7 @@ route.get("/:id", (req, res) => {
  *     tags:
  *       - Service1
  *     name: Find service1 by id
- *     summary: Finds billing information
+ *     summary: Creates service1 information
  *     security:
  *       - bearerAuth: []
  *     consumes:
@@ -100,11 +120,11 @@ route.get("/:id", (req, res) => {
  *       - in: body
  *         name: body
  *         description: Pet object that needs to be added to the store
- *         schema:
- *           $ref: '#/definitions/User'
  *         required:
  *           - email
  *           - password
+ *         schema:
+ *            $ref: '#/definitions/User'
  *     responses:
  *       200:
  *         description: A single project object
@@ -114,6 +134,8 @@ route.get("/:id", (req, res) => {
  *         description: No auth token
  */
 route.post("/", (req, res) => {
+    // console.log('req', req.body);
+    // res.status(200).send('on')
     Model.create(req.body)
         .then((entity) => {
             res.status(200).json(entity);

@@ -72,11 +72,10 @@ services:
         container_name: service1
         environment:
             - PORT=5000
-            - NODE_ENV_DOCKER=true
-            - DB_USER=admin
-            - DB_PASSWORD=elmtmVSesRtpz3de
-            #            - DB_URL=mongodb://db/mussia7
-            - DB_URL=@cluster0.xliif.gcp.mongodb.net/
+            - DB_USER=yurikrupnik
+            - DB_PASSWORD=T4eXKj1RBI4VnszC
+            - DB_URL=@cluster0.rdmew.mongodb.net/some-branch
+#            - HOST=http://service1
         ports:
             - 5000:5000
         command: npm run start

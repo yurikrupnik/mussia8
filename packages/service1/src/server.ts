@@ -28,9 +28,10 @@ function handleDatabaseUrl() {
 const databaseUrl = handleDatabaseUrl();
 console.log("databaseUrl", databaseUrl); // eslint-disable-line
 
+let host = "http://localhost:5000";
+
 function swaggerUI(url: string) {
     // todo module
-    console.log("os.hostname()", os.hostname()); // eslint-disable-line
     const r = Router();
     r.get("/swagger", (req, res) => {
         res.header("Content-Type", "application/json");
@@ -52,14 +53,17 @@ function swaggerUI(url: string) {
 }
 
 // app.use(swaggerUI(`${host}:${port}`));
-// app.use((req, res, next) => {
-//     console.log("req.url", req.url);
-//     console.log("req.hostname", req.hostname);
-//     // app.use(swaggerUI("http://localhost:5001"));
-//     next();
-//     // next(swaggerUI(req.hostname));
-// });
-app.use(swaggerUI("http://localhost:5000"));
+app.use((req, res, next) => {
+    // console.log("req.url", req.url);
+    host = req.hostname;
+    console.log("req.hostname", req.hostname); // eslint-disable-line
+    console.log("os.hostname()", os.hostname()); // eslint-disable-line
+    console.log("os.platform()", os.platform()); // eslint-disable-line
+    // app.use(swaggerUI("http://localhost:5001"));
+    next();
+    // next(swaggerUI(req.hostname));
+});
+app.use(swaggerUI(host || process.env.HOST || "http://localhost:5000"));
 app.use(db(databaseUrl));
 app.use(
     express.json(),

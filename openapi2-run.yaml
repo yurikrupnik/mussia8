@@ -63,7 +63,23 @@ paths:
 #                    description: A successful response
 #                    schema:
 #                        type: string
-    /service1/(id):
+    /service1/{id}:
+        get:
+            parameters:
+                - in: path
+                  name: id
+                  type: string
+                  required: true
+                  description: Name of the asset.
+            summary: Assets
+            operationId: getItem
+            x-google-backend:
+              address: https://service1-5g7d5fmura-lm.a.run.app/
+            responses:
+              "200":
+                description: A successful response
+                schema:
+                  type: string
         delete:
             parameters:
                 - in: path

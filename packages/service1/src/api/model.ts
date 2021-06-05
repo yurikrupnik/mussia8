@@ -8,6 +8,9 @@ import mongoose, {
 import { validateEmail } from "../utils/validation";
 import { generateHashSync } from "../utils/crypt";
 
+type roles = "editor" | "finance" | "admin" | "crm";
+type providers = "local" | "google";
+
 const usersRoles = ["editor", "finance", "admin", "crm"];
 
 const dbModel = "user";
@@ -15,47 +18,64 @@ const dbModel = "user";
 /**
  * @swagger
  * definitions:
+ *      Provider:
+ *          type: string
+ *          default: local
+ *          enum:
+ *             - local
+ *             - google
+ *      Role:
+ *          type: string
+ *          enum: [editor, finance, admin, crm]
+ *          default: admin
+ *
  *      User:
  *        properties:
  *          _id:
  *              type: string
- *              required: true
- *          id:
- *              type: string
- *              required: true
+ *          isActive:
+ *              type: boolean
+ *              default: true
  *          email:
  *              type: string
  *              required: true
- *          name:
+ *          firstName:
+ *              type: string
+ *          lastName:
+ *              type: string
+ *          password:
  *              type: string
  *              required: true
- *          hashPassword:
- *              type: string
  *          creditCardNumber:
  *              type: string
+ *              default: ''
  *          provider:
  *              type: string
+ *              schema:
+ *                  $ref: '#/definitions/Provider'
  *          token:
  *              type: string
  *          role:
  *              type: string
+ *              schema:
+ *                  $ref: '#/definitions/Role'
  */
 
 type UserGroupFront = {
     email: string;
     password: string;
-    token: string;
-    role: string;
+    // token: string;
+    role: roles;
     image: string;
 
     firstName: string;
-    id?: string;
+    // id?: string;
     lastName?: string;
     // fullName?: string;
 
     isActive?: boolean;
     creditCardNumber?: string;
-    provider: "local" | "google";
+    provider: providers;
     // aris?: string;
 };
 
@@ -89,12 +109,12 @@ const userGroupSchemaObj: Record<keyof UserGroup, SchemaTypeOptions<any>> = {
         enum: ["local", "google"],
         default: "local"
     },
-    id: {
-        type: String,
-        required() {
-            return this.provider !== "local";
-        }
-    },
+    // id: {
+    //     type: String,
+    //     required() {
+    //         return this.provider !== "local";
+    //     }
+    // },
     email: {
         type: String,
         trim: true,
@@ -105,10 +125,10 @@ const userGroupSchemaObj: Record<keyof UserGroup, SchemaTypeOptions<any>> = {
         // match: emailReg,
         index: true
     },
-    token: {
-        type: String,
-        default: ""
-    },
+    // token: {
+    //     type: String,
+    //     default: ""
+    // },
     password: {
         type: String,
         required() {
