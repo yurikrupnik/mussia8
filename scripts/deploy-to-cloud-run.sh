@@ -18,5 +18,5 @@ gcloud run deploy $npm_package_name \
   --image $gc_image \
   --platform managed \
   --allow-unauthenticated \
-  --region europe-west1 \
+  --region europe-central2 \
   --port $npm_package_config_port

@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Form, Formik } from "formik";
+import axios from "axios";
+// import useSwr from "swr";
 // import { useToggle } from "react-use";
 // import { signOut, signin } from "next-auth/client";
 import Button from "@material-ui/core/Button";
@@ -86,6 +88,20 @@ const Login = () => {
             });
         return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
     }, []);
+
+    useEffect(() => {
+        if (isSignedIn) {
+            axios
+                .get("/gateway/service1")
+                .then((r) => {
+                    console.log({ r });
+                })
+                .catch((err) => {
+                    console.log({ err });
+                });
+        }
+    }, [isSignedIn]);
+
     // const user = useUser();
     console.log("user", user); // eslint-disable-line
     console.log("isSignedIn", isSignedIn); // eslint-disable-line

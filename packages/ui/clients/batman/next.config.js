@@ -40,7 +40,8 @@ module.exports = (phase) => {
             return [
                 {
                     source: "/gateway/:path*",
-                    destination: "https://aris-8jo9nv6l.ew.gateway.dev/:path*"
+                    destination:
+                        "https://backed-api-j0dquon.ew.gateway.dev/:path*"
                 }
             ];
         },

@@ -1,5 +1,5 @@
 import { AppProps } from "next/app";
-import React, { useEffect } from "react";
+import React from "react";
 // import { Provider } from "next-auth/client";
 import Head from "next/head";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -8,7 +8,7 @@ import { UserProvider } from "@auth0/nextjs-auth0";
 // import { Integrations } from "@sentry/tracing";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import axios from "axios";
+// import axios from "axios";
 import "../styles/globals.css";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
@@ -39,43 +39,45 @@ const createClasses = makeStyles((theme) => ({
     }
 }));
 
-function getBilling() {
-    // return axios.get("https://aris-8jo9nv6l.ew.gateway.dev/hello");
-    return axios.get("/gateway/billing");
-    // .then((resp) => {
-    //     res.statusCode = 200;
-    //     res.json(resp);
-    // })
-    // .catch((err) => {
-    //     res.statusCode = 500;
-    //     res.json(err.message);
-    // });
-}
+// function getBilling() {
+//     // return axios.get("https://aris-8jo9nv6l.ew.gateway.dev/hello");
+//     return axios.get("/gateway/billing");
+//     // .then((resp) => {
+//     //     res.statusCode = 200;
+//     //     res.json(resp);
+//     // })
+//     // .catch((err) => {
+//     //     res.statusCode = 500;
+//     //     res.json(err.message);
+//     // });
+// }
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
     const classes = createClasses();
 
     const { user } = pageProps;
-    console.log("useruser", user); // eslint-disable-line
-
-    useEffect(() => {
-        getBilling()
-            .then((r) => {
-                console.log("r", r.data);
-            })
-            .catch((err) => {
-                console.log("err", err.message);
-            });
-    }, []);
+    console.log("user in myApp", user); // eslint-disable-line
+    //
+    // useEffect(() => {
+    //     console.log("useruser", user); // eslint-disable-line
+    //     // getBilling()
+    //     //     .then((r) => {
+    //     //         console.log("r", r.data);
+    //     //     })
+    //     //     .catch((err) => {
+    //     //         console.log("err", err.message);
+    //     //     });
+    // }, []);
     return (
         <>
             <Head>
-                <title>My pagess</title>
+                <title>My pages</title>
                 <meta
                     name="viewport"
                     content="minimum-scale=1, initial-scale=1, width=device-width"
                 />
             </Head>
+            {/* breaking build todo */}
             <UserProvider user={user}>
                 <ThemeProvider>
                     <>
