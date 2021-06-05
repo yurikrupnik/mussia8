@@ -97,20 +97,30 @@ route.get("/:id", (req, res) => {
  *     produces:
  *       - application/json
  *     parameters:
- *       - in: path
- *         name: id
+ *       - in: body
+ *         name: body
+ *         description: Pet object that needs to be added to the store
  *         schema:
- *           type: string
+ *           $ref: '#/definitions/User'
  *         required:
- *           - id
+ *           - email
+ *           - password
  *     responses:
  *       200:
  *         description: A single project object
+ *         schema:
+ *              $ref: '#/definitions/User'
  *       401:
  *         description: No auth token
  */
 route.post("/", (req, res) => {
-    res.status(200).send(`ok from post ${req.body}`);
+    Model.create(req.body)
+        .then((entity) => {
+            res.status(200).json(entity);
+        })
+        .catch((err) => {
+            res.status(500).send(err.message);
+        });
 });
 
 /**

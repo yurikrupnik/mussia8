@@ -30,23 +30,22 @@ paths:
                     description: A successful response
                     schema:
                         type: string
-
-#        post:
-#            parameters:
-#                - in: path
-#                  name: asset
-#                  type: string
-#                  required: true
-#                  description: Name of the asset.
-#            summary: Assets
-#            operationId: postService1
-#            x-google-backend:
-#                address: https://service1-5g7d5fmura-lm.a.run.app/
-#            responses:
-#                "200":
-#                    description: A successful response
-#                    schema:
-#                        type: string
+        post:
+            parameters:
+                - in: path
+                  name: asset
+                  type: string
+                  required: true
+                  description: Name of the asset.
+            summary: Assets
+            operationId: postService1
+            x-google-backend:
+                address: https://service1-5g7d5fmura-lm.a.run.app/
+            responses:
+                "200":
+                    description: A successful response
+                    schema:
+                        type: string
 #
 #        put:
 #            parameters:
@@ -64,23 +63,23 @@ paths:
 #                    description: A successful response
 #                    schema:
 #                        type: string
-#    /service1/:{id}:
-#        delete:
-#            parameters:
-#                - in: path
-#                  name: asset
-#                  type: string
-#                  required: true
-#                  description: Name of the asset.
-#            summary: Assets
-#            operationId: deleteService1
-#            x-google-backend:
-#                address: https://service1-5g7d5fmura-lm.a.run.app/
-#            responses:
-#                "200":
-#                    description: A successful response
-#                    schema:
-#                        type: string
+    /service1/(id):
+        delete:
+            parameters:
+                - in: path
+                  name: asset
+                  type: string
+                  required: true
+                  description: Name of the asset.
+            summary: Assets
+            operationId: deleteService1
+            x-google-backend:
+                address: https://service1-5g7d5fmura-lm.a.run.app/
+            responses:
+                "200":
+                    description: A successful response
+                    schema:
+                        type: string
 #    /service2:
 #        get:
 #            security:

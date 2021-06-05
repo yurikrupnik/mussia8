@@ -1,6 +1,7 @@
 import express, { Router } from "express";
 import os from "os";
 import path from "path";
+import bodyParser from "body-parser";
 import swaggerUi from "swagger-ui-express";
 import api from "./api";
 import db from "./services/db";
@@ -60,6 +61,12 @@ function swaggerUI(url: string) {
 // });
 app.use(swaggerUI("http://localhost:5000"));
 app.use(db(databaseUrl));
+app.use(
+    express.json(),
+    bodyParser.urlencoded({
+        extended: false
+    })
+);
 app.use(api);
 
 export default app;
