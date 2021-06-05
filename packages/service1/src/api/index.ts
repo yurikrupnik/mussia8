@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Model from "./model";
+import { removeOne } from "../utils/methods";
 
 const route = Router();
 /**
@@ -19,13 +20,25 @@ const route = Router();
  *     responses:
  *       200:
  *         description: A single project object
+ *         content:
+ *            application/json:
+ *              schema:
+ *                type: array
+ *                items:
+ *                  $ref: '#/definitions/User'
  *       401:
  *         description: No auth token
+ *       500:
+ *         description: Error happened
  */
 route.get("/", (req, res) => {
-    Model.find({}).then((response) => {
-        res.status(200).json(response);
-    });
+    Model.find({}, req.query.projection)
+        .then((response) => {
+            res.status(200).json(response);
+        })
+        .catch((err) => {
+            res.status(500).json(err.message);
+        });
 });
 
 /**
@@ -35,7 +48,7 @@ route.get("/", (req, res) => {
  *     tags:
  *       - Service1
  *     name: Find service1 by id
- *     summary: Finds billing information
+ *     summary: Finds users information
  *     security:
  *       - bearerAuth: []
  *     consumes:
@@ -51,12 +64,22 @@ route.get("/", (req, res) => {
  *           - id
  *     responses:
  *       200:
- *         description: A single project object
+ *         description: A single user object
+ *         schema:
+ *              $ref: '#/definitions/User'
  *       401:
  *         description: No auth token
+ *       500:
+ *         description: No item found
  */
 route.get("/:id", (req, res) => {
-    res.status(200).send(`ok from get ${req.params.id}`);
+    Model.findById(req.params.id, req.query.projection)
+        .then((response) => {
+            res.status(200).json(response);
+        })
+        .catch((err) => {
+            res.status(500).json(err.message);
+        });
 });
 
 /**
@@ -90,8 +113,38 @@ route.post("/", (req, res) => {
     res.status(200).send(`ok from post ${req.body}`);
 });
 
-route.delete("/:id", (req, res) => {
-    res.status(200).send(`ok from delete ${req.params.id}`);
-});
+/**
+ * @swagger
+ * /{id}:
+ *   delete:
+ *     tags:
+ *       - Service1
+ *     name: Delete user by id
+ *     summary: Delete user information
+ *     security:
+ *       - bearerAuth: []
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required:
+ *           - id
+ *     responses:
+ *       200:
+ *         description: A single project object
+ *       401:
+ *         description: No auth token
+ */
+route.delete("/:id", removeOne(Model));
+// route.delete("/", (req, res) => {
+//     res.status(200).json({
+//         message: "removed many"
+//     });
+// }); // remove many
 
 export default route;

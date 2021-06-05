@@ -2,14 +2,14 @@ import { Request, Response } from "express";
 import mongoose, { Document } from "mongoose";
 
 const responseId = (req: Request, res: Response) => {
-    const { id } = req.query;
+    const { id } = req.params;
     const statusCode = 202;
     return () => res.status(statusCode).json(id);
 };
 
 const handleError = (res: Response) => {
     const statusCode = 500;
-    return (err: Error) => res.status(statusCode).send(err);
+    return (err: Error) => res.status(statusCode).send(err.message);
 };
 
 function respondWithResult<T>(res: Response) {
@@ -38,11 +38,10 @@ const find =
             .catch(handleError(res));
     };
 
-const removeOne =
-    (Model: mongoose.Model<Document>) => (req: Request, res: Response) =>
-        Model.findByIdAndDelete(req.query.id)
-            .then(responseId(req, res))
-            .catch(handleError(res));
+const removeOne = (Model: any) => (req: Request, res: Response) =>
+    Model.findByIdAndDelete(req.params.id)
+        .then(responseId(req, res))
+        .catch(handleError(res));
 
 const create =
     (Model: mongoose.Model<Document>) => (req: Request, res: Response) =>
@@ -66,6 +65,7 @@ const update =
             .catch(handleError(res));
 
 export {
+    responseId,
     list,
     find,
     update,

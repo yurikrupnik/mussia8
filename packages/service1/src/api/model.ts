@@ -12,6 +12,35 @@ const usersRoles = ["editor", "finance", "admin", "crm"];
 
 const dbModel = "user";
 
+/**
+ * @swagger
+ * definitions:
+ *      User:
+ *        properties:
+ *          _id:
+ *              type: string
+ *              required: true
+ *          id:
+ *              type: string
+ *              required: true
+ *          email:
+ *              type: string
+ *              required: true
+ *          name:
+ *              type: string
+ *              required: true
+ *          hashPassword:
+ *              type: string
+ *          creditCardNumber:
+ *              type: string
+ *          provider:
+ *              type: string
+ *          token:
+ *              type: string
+ *          role:
+ *              type: string
+ */
+
 type UserGroupFront = {
     email: string;
     password: string;

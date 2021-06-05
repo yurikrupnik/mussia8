@@ -1,9 +1,9 @@
 import { AppProps } from "next/app";
-import React, { useEffect } from "react";
+import React from "react";
 // import { Provider } from "next-auth/client";
 import Head from "next/head";
 import CssBaseline from "@material-ui/core/CssBaseline";
-// import { UserProvider } from "@auth0/nextjs-auth0";
+import { UserProvider } from "@auth0/nextjs-auth0";
 // import * as Sentry from "@sentry/react";
 // import { Integrations } from "@sentry/tracing";
 import { makeStyles } from "@material-ui/core/styles";
@@ -56,17 +56,18 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
     const classes = createClasses();
 
     const { user } = pageProps;
-
-    useEffect(() => {
-        console.log("useruser", user); // eslint-disable-line
-        // getBilling()
-        //     .then((r) => {
-        //         console.log("r", r.data);
-        //     })
-        //     .catch((err) => {
-        //         console.log("err", err.message);
-        //     });
-    }, []);
+    console.log("user in myApp", user); // eslint-disable-line
+    //
+    // useEffect(() => {
+    //     console.log("useruser", user); // eslint-disable-line
+    //     // getBilling()
+    //     //     .then((r) => {
+    //     //         console.log("r", r.data);
+    //     //     })
+    //     //     .catch((err) => {
+    //     //         console.log("err", err.message);
+    //     //     });
+    // }, []);
     return (
         <>
             <Head>
@@ -76,23 +77,30 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
                     content="minimum-scale=1, initial-scale=1, width=device-width"
                 />
             </Head>
-            <ThemeProvider>
-                <>
-                    <CssBaseline />
-                    <Grid container className={classes.container}>
-                        <Sidebar />
-                        <Grid container direction="column" item xs>
-                            <Grid item>
-                                <Header />
-                            </Grid>
-                            <Grid item xs className={classes.contentContainer}>
-                                {/* eslint-disable-next-line */}
-                                <Component {...pageProps} />
+            {/* breaking build todo */}
+            <UserProvider user={user}>
+                <ThemeProvider>
+                    <>
+                        <CssBaseline />
+                        <Grid container className={classes.container}>
+                            <Sidebar />
+                            <Grid container direction="column" item xs>
+                                <Grid item>
+                                    <Header />
+                                </Grid>
+                                <Grid
+                                    item
+                                    xs
+                                    className={classes.contentContainer}
+                                >
+                                    {/* eslint-disable-next-line */}
+                                    <Component {...pageProps} />
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
-                </>
-            </ThemeProvider>
+                    </>
+                </ThemeProvider>
+            </UserProvider>
         </>
     );
 };
