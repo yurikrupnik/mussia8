@@ -82,7 +82,7 @@ const userGroupSchemaObj: Record<keyof UserGroup, SchemaTypeOptions<any>> = {
     },
     // aris: {
     //     type: String,
-    //     default: "aris",
+    //     default: "d",
     // },
     provider: {
         type: String,
