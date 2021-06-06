@@ -1,53 +1,132 @@
 # openapi2-run.yaml
 swagger: "2.0"
 info:
-    title: backed-api optional-string
-    description: Sample API on API Gateway with a Cloud Run backend
-    version: 1.0.0
-host: backed-api.apigateway.mussia8.cloud.goog
+  title: backed-api optional-string
+  description: Sample API on API Gateway with a Cloud Run backend
+  version: 1.0.0
+#host: localhost:5000
+host: news-new-j0dquon.ew.gateway.dev
+#host: ds-j0dquon.ew.gateway.dev
+#host: backed-api.apigateway.mussia8.cloud.goog
 #host: aris-8jo9nv6l.ew.gateway.dev
 #host: backed-api.apigateway.mussia8.cloud.goog
 schemes:
-    - https
+  - http
+  - https
 produces:
-    - application/json
+  - application/json
+
+
+definitions:
+  Provider:
+    type: string
+    default: local
+    enum:
+      - local
+      - google
+
+  Role:
+    type: string
+    enum: [editor, finance, admin, crm]
+    default: admin
+
+  User:
+    required:
+      - email
+    properties:
+      _id:
+        type: string
+      isActive:
+        type: boolean
+      email:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      password:
+        type: string
+      creditCardNumber:
+        type: string
+      provider:
+        type: string
+        $ref: '#/definitions/Provider'
+      role:
+        type: string
+        $ref: '#/definitions/Role'
 paths:
-    /service1:
-        get:
-            parameters:
-                - in: path
-                  name: asset
-                  type: string
-                  required: true
-                  description: Name of the asset.
-            summary: Assets
-            operationId: getService1
-            x-google-backend:
-                address: https://service1-5g7d5fmura-lm.a.run.app/
-#                address: https://service1-5g7d5fmura-lm.a.run.app/
-            responses:
-                "200":
-                    description: A successful response
-                    schema:
-                        type: string
-        post:
-            parameters:
-                - in: path
-                  name: asset
-                  type: string
-                  required: true
-                  description: Name of the asset.
-            summary: Assets
-            operationId: postService1
-            x-google-backend:
-                address: https://service1-5g7d5fmura-lm.a.run.app/
-            responses:
-                "200":
-                    description: A successful response
-                    schema:
-                        type: string
-#
-#        put:
+  /service1:
+    get:
+      parameters:
+        - in: query
+          name: projection
+          type: string
+          required: false
+          description: Array or string with spaces projection keys to fetch
+          default: ''
+
+      summary: Assets
+      operationId: getService1
+      x-google-backend:
+        address: https://service1-5g7d5fmura-lm.a.run.app/
+      #                address: https://service1-5g7d5fmura-lm.a.run.app/
+      responses:
+        "200":
+          description: A successful response
+#          schema:
+#            items:
+#              $ref: './packages/service1/dist/swagger.json#/definitions/User'
+          schema:
+            type: array
+            $ref: '#/definitions/User'
+
+    post:
+      summary: Assets
+      operationId: postService1
+      x-google-backend:
+        address: https://service1-5g7d5fmura-lm.a.run.app/
+      responses:
+        "200":
+          description: A successful response
+          schema:
+            $ref: 'packages/service1/dist/swagger.json#/definitions/User'
+  #
+  #        put:
+  #            parameters:
+  #                - in: path
+  #                  name: asset
+  #                  type: string
+  #                  required: true
+  #                  description: Name of the asset.
+  #            summary: Assets
+  #            operationId: putService1
+  #            x-google-backend:
+  #                address: https://service1-5g7d5fmura-lm.a.run.app/
+  #            responses:
+  #                "200":
+  #                    description: A successful response
+  #                    schema:
+  #                        type: string
+  /service1/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          default: ''
+          description: Id of the asset.
+      summary: Assets
+      operationId: getItem
+      x-google-backend:
+        address: https://service1-5g7d5fmura-lm.a.run.app
+      responses:
+        "200":
+          description: A successful response
+          schema:
+            $ref: '#/definitions/User'
+#            $ref: 'https://service1-5g7d5fmura-lm.a.run.app/swagger#/definitions/User'
+#        delete:
 #            parameters:
 #                - in: path
 #                  name: asset
@@ -55,47 +134,12 @@ paths:
 #                  required: true
 #                  description: Name of the asset.
 #            summary: Assets
-#            operationId: putService1
+#            operationId: deleteService1
 #            x-google-backend:
 #                address: https://service1-5g7d5fmura-lm.a.run.app/
 #            responses:
 #                "200":
 #                    description: A successful response
-#                    schema:
-#                        type: string
-    /service1/{id}:
-        get:
-            parameters:
-                - in: path
-                  name: id
-                  type: string
-                  required: true
-                  description: Name of the asset.
-            summary: Assets
-            operationId: getItem
-            x-google-backend:
-              address: https://service1-5g7d5fmura-lm.a.run.app/
-            responses:
-              "200":
-                description: A successful response
-                schema:
-                  type: string
-        delete:
-            parameters:
-                - in: path
-                  name: asset
-                  type: string
-                  required: true
-                  description: Name of the asset.
-            summary: Assets
-            operationId: deleteService1
-            x-google-backend:
-                address: https://service1-5g7d5fmura-lm.a.run.app/
-            responses:
-                "200":
-                    description: A successful response
-                    schema:
-                        type: string
 #    /service2:
 #        get:
 #            security:

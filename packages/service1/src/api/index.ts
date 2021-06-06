@@ -37,7 +37,6 @@ const route = Router();
  *       200:
  *         description: A single project object
  *         schema:
- *            type: array
  *            items:
  *              $ref: '#/definitions/User'
  *       401:

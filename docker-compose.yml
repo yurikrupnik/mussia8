@@ -75,7 +75,7 @@ services:
             - DB_USER=yurikrupnik
             - DB_PASSWORD=T4eXKj1RBI4VnszC
             - DB_URL=@cluster0.rdmew.mongodb.net/
-            - HOST=https://service1-5g7d5fmura-lm.a.run.app
+#            - HOST=https://service1-5g7d5fmura-lm.a.run.app
         ports:
             - 5000:5000
         command: npm run start
