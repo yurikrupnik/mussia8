@@ -73,7 +73,7 @@
     "rollup-plugin-esbuild": "4.2.3",
     "rollup-plugin-postcss": "4.0.0",
     "rollup-plugin-swagger-jsdoc": "1.0.1",
-    "sass-loader": "12.0.0",
+    "sass-loader": "12.1.0",
     "style-loader": "2.0.0",
     "stylelint": "13.13.1",
     "stylelint-config-standard": "22.0.0",
