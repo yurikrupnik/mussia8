@@ -5,7 +5,7 @@ info:
   description: Sample API on API Gateway with a Cloud Run backend
   version: 1.0.0
 #host: localhost:5000
-host: news-new-j0dquon.ew.gateway.dev
+host: pi-j0dquon.ew.gateway.dev
 #host: ds-j0dquon.ew.gateway.dev
 #host: backed-api.apigateway.mussia8.cloud.goog
 #host: aris-8jo9nv6l.ew.gateway.dev
@@ -64,8 +64,22 @@ paths:
           required: false
           description: Array or string with spaces projection keys to fetch
           default: ''
-
-      summary: Assets
+        - in: query
+          name: email
+          type: string
+          description: Search by email
+        - in: query
+          name: role
+          type: string
+          description: Search by role
+          enum:
+            $ref: '#/definitions/Role'
+#          schema:
+#            type: enum
+#            $ref: '#/definitions/Role'
+      tags:
+        - Service1
+      summary: Get service1 data
       operationId: getService1
       x-google-backend:
         address: https://service1-5g7d5fmura-lm.a.run.app/
@@ -73,23 +87,34 @@ paths:
       responses:
         "200":
           description: A successful response
+          schema:
+            items:
+              $ref: '#/definitions/User'
 #          schema:
 #            items:
 #              $ref: './packages/service1/dist/swagger.json#/definitions/User'
-          schema:
-            type: array
-            $ref: '#/definitions/User'
+#          schema:
+#            items:
 
     post:
-      summary: Assets
+      summary: Create service1 data
       operationId: postService1
+      parameters:
+        - in: body
+          name: body
+          description: Service1 object thats needs to be added to the db
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - Service1
       x-google-backend:
         address: https://service1-5g7d5fmura-lm.a.run.app/
       responses:
         "200":
           description: A successful response
           schema:
-            $ref: 'packages/service1/dist/swagger.json#/definitions/User'
+            $ref: '#/definitions/User'
+#            $ref: 'https://service1-5g7d5fmura-lm.a.run.app/swagger.json#/definitions/User'
   #
   #        put:
   #            parameters:
@@ -114,18 +139,20 @@ paths:
           name: id
           type: string
           required: true
-          default: ''
           description: Id of the asset.
-      summary: Assets
+      tags:
+        - Service1
+      summary: Service1 get data
       operationId: getItem
       x-google-backend:
-        address: https://service1-5g7d5fmura-lm.a.run.app
+        address: https://service1-5g7d5fmura-lm.a.run.app/
+        path_translation: APPEND_PATH_TO_ADDRESS
       responses:
         "200":
           description: A successful response
           schema:
             $ref: '#/definitions/User'
-#            $ref: 'https://service1-5g7d5fmura-lm.a.run.app/swagger#/definitions/User'
+#            $ref: 'https://service1-5g7d5fmura-lm.a.run.app/swagger.json#/definitions/User'
 #        delete:
 #            parameters:
 #                - in: path

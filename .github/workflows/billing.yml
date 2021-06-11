@@ -5,6 +5,8 @@ on:
             - main
         paths:
             - "packages/**"
+            - "packages/ui/clients/**"
+            - "packages/ui/components/**"
 
 jobs:
     billing-check:
@@ -42,3 +44,4 @@ jobs:
                       ${{ runner.os }}-build-${{ env.cache-name }}-
                       ${{ runner.os }}-build-
                       ${{ runner.os }}-
+            - run: ls -a

@@ -27,12 +27,6 @@ const route = Router();
  *         name: email
  *         type: string
  *         description: Search by email
- *         style: form
- *         explode: false
- *         examples:
- *            oneEmail:
- *              summary: Example of a singe email
- *              value: 12
  *     responses:
  *       200:
  *         description: A single project object
