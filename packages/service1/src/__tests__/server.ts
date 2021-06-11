@@ -8,9 +8,18 @@ test("Tes", () => {
 // describe("GET /user", () => {
 //     it("responds with json", (done) => {
 //         request(app)
-//             .get("/")
+//             .get("/swagger.json")
 //             .set("Accept", "application/json")
-//             .expect("Content-Type", /json/)
+//             // .expect("Content-Type", /json/)
+//             // .then(done);
 //             .expect(200, done);
 //     });
+//     // it("responds with html", (done) => {
+//     //     request(app)
+//     //         .get("/doc")
+//     //         // .set("Accept", "text/html")
+//     //         .expect("Content-Type", /html/)
+//     //         .then(done);
+//     //     // .expect(200, done);
+//     // });
 // });

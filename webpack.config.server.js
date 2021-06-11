@@ -69,7 +69,7 @@ module.exports = (env, argv) => {
                     swagger: "2.0",
                     info: {
                         title: "Title",
-                        version: "1.0.0",
+                        version: json.version,
                         description: "Description"
                     }
                 },

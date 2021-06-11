@@ -1,6 +1,6 @@
 name: Monorepo PR Repo Labeler
 
-on: release
+on: page_build
 
 jobs:
   labelPR:

@@ -2,6 +2,7 @@ import express, { Router } from "express";
 import path from "path";
 import bodyParser from "body-parser";
 import swaggerUi from "swagger-ui-express";
+// import swaggerUI from '@creativearis/swagger' // fails
 import api from "./api";
 import db from "./services/db";
 
