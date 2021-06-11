@@ -1,0 +1,11 @@
+name: Monorepo PR Repo Labeler
+
+on: release
+
+jobs:
+  labelPR:
+    name: Label PR With Repo(s)
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Release has happened
+      - run: ls -a
