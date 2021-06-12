@@ -4,7 +4,7 @@ on: page_build
 
 jobs:
   labelPR:
-    name: Label PR With Repo(s)
+    name: With tags
     runs-on: ubuntu-latest
     steps:
       - run: echo Release has happened
