@@ -23,7 +23,6 @@ const databaseUrl = handleDatabaseUrl();
 console.log("databaseUrl", databaseUrl); // eslint-disable-line
 
 function swaggerUI(url: string) {
-    // todo module
     const r = Router();
     r.get("/swagger.json", (req, res) => {
         res.header("Content-Type", "application/json");

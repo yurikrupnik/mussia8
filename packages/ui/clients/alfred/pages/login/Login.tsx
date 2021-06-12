@@ -359,12 +359,13 @@ const Login = () => {
     );
 };
 
-export async function getServerSideProps() {
-    console.log("process.env.VERCEL_URL", process.env.VERCEL_URL); // eslint-disable-line
-
-    return {
-        props: {}
-    };
-}
+// todo does not work with next export
+// export async function getServerSideProps() {
+//     console.log("process.env.VERCEL_URL", process.env.VERCEL_URL); // eslint-disable-line
+//
+//     return {
+//         props: {}
+//     };
+// }
 
 export default Login;

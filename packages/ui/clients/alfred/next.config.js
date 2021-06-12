@@ -3,6 +3,7 @@ const {
     PHASE_PRODUCTION_BUILD
     // eslint-disable-next-line @typescript-eslint/no-var-requires
 } = require("next/constants");
+const nodeExternals = require("webpack-node-externals");
 
 // This uses phases as outlined here: https://nextjs.org/docs/#custom-configuration
 module.exports = (phase) => {
@@ -36,6 +37,17 @@ module.exports = (phase) => {
 
     // next.config.js object
     return {
+        webpack: (
+            config,
+            { buildId, dev, isServer, defaultLoaders, webpack }
+        ) => {
+            // Important: return the modified config
+            // console.log("webpack", webpack);
+            // console.log("config", config);
+            console.log("buildId", buildId);
+            // config.externals.push(nodeExternals());
+            return config;
+        },
         async rewrites() {
             return [
                 {
