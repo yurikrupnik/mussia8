@@ -7,15 +7,19 @@ on:
   workflow_dispatch:
     inputs:
       type:
-        description: 'NPM version type update '
+        description: 'NPM version type patch minor major '
         required: true
         default: 'patch'
-      tags:
-        description: 'Test scenario tags'
+#      tags:
+#        description: 'Test scenario tags'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -23,7 +27,17 @@ jobs:
           node-version: 14
       - uses: nelonoel/branch-name@v1.0.1
       - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - run: npm run build
+      - run: git config --global user.email krupnik.yuri@gmail.com && git config --global user.name yurikrupnik
+      - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+      - name: NPN Publish
+        run: npm run npm-publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          TYPE: ${{ github.event.inputs.type }}
 #      - name: NPN Publish
 #        run: npm run npm-publish
 #        env:

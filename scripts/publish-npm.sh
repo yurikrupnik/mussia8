@@ -2,6 +2,9 @@
 
 set -eo pipefail
 
+
+echo $TYPE
+
 if [[ "$BRANCH_NAME" = "main" ]];
 then
   npx lerna publish patch --yes --no-push --conventional-commits
