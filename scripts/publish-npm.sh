@@ -7,7 +7,7 @@ echo $TYPE
 
 if [[ "$BRANCH_NAME" = "main" ]];
 then
-  npx lerna publish patch --yes --no-push --conventional-commits
+  npx lerna publish $TYPE --yes --no-push --conventional-commits
 else
   npx lerna publish prepatch --pre-dist-tag=${GITHUB_REF##*/} --yes --conventional-commits --preid $BRANCH_NAME
 fi
