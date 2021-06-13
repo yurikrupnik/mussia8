@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.11](https://github.com/yurikrupnik/mussia8/compare/@creativearis/button@1.3.10...@creativearis/button@1.3.11) (2021-06-13)
+
+**Note:** Version bump only for package @creativearis/button
+
+
+
+
+
 ## 1.3.10 (2021-06-13)
 
 **Note:** Version bump only for package @creativearis/button
