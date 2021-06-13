@@ -4,7 +4,14 @@
 name: Node.js Package
 
 on:
-  release
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'NPM version type update '
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
 
 jobs:
   build:
@@ -14,8 +21,14 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
+      - uses: nelonoel/branch-name@v1.0.1
       - run: npm ci
-      - run: npm test
+      - run: npm build
+#      - name: NPN Publish
+#        run: npm run npm-publish
+#        env:
+#          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+#          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
 #   publish-npm:
 #     needs: build

@@ -68,7 +68,6 @@ jobs:
       - run: git status
 #      - run: npx lerna changed
       - name: NPN Publish
-        if:
         run: npm run npm-publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
