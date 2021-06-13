@@ -4,6 +4,7 @@ set -eo pipefail
 
 
 echo $TYPE
+echo stam
 
 if [[ "$BRANCH_NAME" = "main" ]];
 then
