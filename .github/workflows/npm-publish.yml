@@ -9,7 +9,7 @@ on:
       type:
         description: 'NPM version type update '
         required: true
-        default: 'warning'
+        default: 'patch'
       tags:
         description: 'Test scenario tags'
 
@@ -23,7 +23,7 @@ jobs:
           node-version: 14
       - uses: nelonoel/branch-name@v1.0.1
       - run: npm ci
-      - run: npm build
+      - run: npm run build
 #      - name: NPN Publish
 #        run: npm run npm-publish
 #        env:
