@@ -1,8 +1,6 @@
 name: Billing
 on:
     push:
-        branches:
-            - main
         paths:
             - "packages/**"
             - "packages/ui/clients/**"
