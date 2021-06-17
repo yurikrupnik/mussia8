@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.8-testing-again.0 (2021-06-17)
+
+**Note:** Version bump only for package service2
+
+
+
+
+
 ## [1.0.7](https://github.com/yurikrupnik/mussia8/compare/service2@1.0.6...service2@1.0.7) (2021-06-13)
 
 **Note:** Version bump only for package service2
