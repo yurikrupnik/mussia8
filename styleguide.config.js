@@ -7,10 +7,10 @@ module.exports = {
     // serverPort: Number(process.env.npm_package_config_port),
     pagePerSection: true,
     sections: [
-        {
-            name: "Introduction",
-            content: "docs/introduction.md"
-        },
+        // {
+        //     name: "Introduction",
+        //     content: "docs/introduction.md"
+        // },
         // {
         //     name: "Documentation",
         //     sections: [
@@ -34,7 +34,7 @@ module.exports = {
             pagePerSection: true,
             name: "NPM packages",
             // content: "packages/**/README.md",
-            components: "packages/ui/**/src/*.tsx",
+            components: "packages/ui/components/**/src/*.tsx",
             exampleMode: "expand", // 'hide' | 'collapse' | 'expand'
             usageMode: "expand", // 'hide' | 'collapse' | 'expand'
             ignore: ["**/__tests__/*.tsx"]
@@ -42,27 +42,27 @@ module.exports = {
         {
             name: "Jarvis",
             // content: "docs/ui.md",
-            components: "packages/webclients/alfred/components/**/*.tsx",
+            components: "packages/ui/alfred/components/**/*.tsx",
             exampleMode: "expand", // 'hide' | 'collapse' | 'expand'
             usageMode: "expand", // 'hide' | 'collapse' | 'expand'
             ignore: ["**/__tests__/*.tsx"]
         },
-        {
-            name: "Webclient",
-            // content: "docs/ui.md",
-            components: "packages/webclients/alfred/components/**/*.tsx",
-            exampleMode: "expand", // 'hide' | 'collapse' | 'expand'
-            usageMode: "expand", // 'hide' | 'collapse' | 'expand'
-            ignore: ["**/__tests__/*.tsx"]
-        },
-        {
-            name: "Typedoc", // todo fix for github pages url when prod/dev
-            href: "http://localhost:63342/mussia7/docs/typedoc/index.html"
-        },
-        {
-            name: "Swagger",
-            href: "https://app.swaggerhub.com/organizations/mussia"
-        }
+        // {
+        //     name: "Webclient",
+        //     // content: "docs/ui.md",
+        //     components: "packages/webclients/alfred/components/**/*.tsx",
+        //     exampleMode: "expand", // 'hide' | 'collapse' | 'expand'
+        //     usageMode: "expand", // 'hide' | 'collapse' | 'expand'
+        //     ignore: ["**/__tests__/*.tsx"]
+        // },
+        // {
+        //     name: "Typedoc", // todo fix for github pages url when prod/dev
+        //     href: "http://localhost:63342/mussia7/docs/typedoc/index.html"
+        // },
+        // {
+        //     name: "Swagger",
+        //     href: "https://app.swaggerhub.com/organizations/mussia"
+        // }
         // {
         //     pagePerSection: true,
         //     sections: [

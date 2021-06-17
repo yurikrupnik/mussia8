@@ -14,7 +14,7 @@ on:
 #        description: 'Test scenario tags'
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

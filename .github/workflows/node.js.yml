@@ -73,11 +73,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
           TYPE: patch
-#  npm-publish:
-#    runs-on: ubuntu-latesdt
-#    steps:
-#      -
-      # todo seperate the load of tasks into seperate github actions apps.
 
 #  build-billing:
 #    runs-on: ubuntu-latest

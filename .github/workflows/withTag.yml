@@ -1,6 +1,13 @@
 name: Monorepo PR Repo Labeler
 
-on: page_build
+on:
+  page_build
+  deployment_status
+  deployment
+  create
+  pull_request_review:
+    types:
+      - submitted
 
 jobs:
   labelPR:
