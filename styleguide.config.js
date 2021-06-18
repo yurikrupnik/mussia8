@@ -40,13 +40,21 @@ module.exports = {
             ignore: ["**/__tests__/*.tsx"]
         },
         {
-            name: "Jarvis",
+            name: "Alfred",
             // content: "docs/ui.md",
-            components: "packages/ui/alfred/components/**/*.tsx",
+            components: "packages/ui/clients/alfred/components/**/*.tsx",
             exampleMode: "expand", // 'hide' | 'collapse' | 'expand'
             usageMode: "expand", // 'hide' | 'collapse' | 'expand'
             ignore: ["**/__tests__/*.tsx"]
         },
+        {
+            name: "Batman",
+            // content: "docs/ui.md",
+            components: "packages/ui/clients/batman/components/**/*.tsx",
+            exampleMode: "expand", // 'hide' | 'collapse' | 'expand'
+            usageMode: "expand", // 'hide' | 'collapse' | 'expand'
+            ignore: ["**/__tests__/*.tsx"]
+        }
         // {
         //     name: "Webclient",
         //     // content: "docs/ui.md",

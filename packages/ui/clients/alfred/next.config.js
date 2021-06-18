@@ -52,8 +52,10 @@ module.exports = (phase) => {
             return [
                 {
                     source: "/gateway/:path*",
+                    basePath: false,
+                    // description: "http://0.0.0.0:5000/:path*"
                     destination:
-                        "https://backed-api-j0dquon.ew.gateway.dev/:path*"
+                        "https://aris-ars-j0dquon.uk.gateway.dev/:path*"
                 }
             ];
         },
