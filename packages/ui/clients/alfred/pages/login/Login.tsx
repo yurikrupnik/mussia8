@@ -42,8 +42,8 @@ import TextField from "../../components/FormField";
 // import { Context as Currencies } from "../../api/currencies/context";
 
 const config = {
-    apiKey: "AIzaSyDzJ-RGcbiYmOawppW-Sopc7oN5jyTBF1I",
-    authDomain: "mussia6.firebaseapp.com"
+    apiKey: "AIzaSyDkNplLycBH0qUxIjhTLjcGznie_CyVrOA",
+    authDomain: "mussia8.firebaseapp.com"
 };
 if (!firebase.apps.length) {
     firebase.initializeApp(config);
