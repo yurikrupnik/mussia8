@@ -13,7 +13,7 @@ import useRouter from "../hooks/useRouter";
 function fetcher(url: string) {
     return fetch(url).then((r) => r.json());
 }
-const dashbaord = () => {
+const Dashbaord = () => {
     const router = useRouter();
     const { data } = useSwr(
         "https://aris-8jo9nv6l.ew.gateway.dev/billing",
@@ -297,4 +297,4 @@ const dashbaord = () => {
     );
 };
 
-export default dashbaord;
+export default Dashbaord;

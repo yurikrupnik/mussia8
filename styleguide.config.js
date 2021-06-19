@@ -7,10 +7,10 @@ module.exports = {
     // serverPort: Number(process.env.npm_package_config_port),
     pagePerSection: true,
     sections: [
-        // {
-        //     name: "Introduction",
-        //     content: "docs/introduction.md"
-        // },
+        {
+            name: "Introduction",
+            content: "docs/introduction.md"
+        },
         // {
         //     name: "Documentation",
         //     sections: [

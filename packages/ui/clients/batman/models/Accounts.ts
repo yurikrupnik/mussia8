@@ -6,7 +6,7 @@ import mongoose, {
     SchemaTypeOptions
 } from "mongoose";
 // import { dbModel } from "./config";
-import UserModel from "./User";
+import User from "./User";
 // import { validateEmail } from "../utils/validation";
 // import { generateHashSync } from "../utils/crypt";
 
@@ -44,7 +44,7 @@ const AccountsSchemaObj: Record<
     },
     userId: {
         type: String,
-        ref: UserModel
+        ref: User
     },
     providerId: {
         type: String,

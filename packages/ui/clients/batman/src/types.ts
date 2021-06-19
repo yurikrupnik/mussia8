@@ -1,6 +1,22 @@
 import { SvgIconTypeMap } from "@material-ui/core/SvgIcon";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
-import { applicationStatuses, companyStatusCodes } from "../utils/consts";
+// import { applicationStatuses, companyStatusCodes } from "../utils/consts";
+
+export const companyStatusCodes = [
+    "Active",
+    "Cancelled",
+    "No status",
+    "Non Renewing"
+] as const;
+
+export const applicationStatuses = [
+    "https",
+    "http",
+    "ssh",
+    "vnc",
+    "sdp",
+    "rdp"
+] as const;
 
 export type DropDownOptions = {
     _id: string;
