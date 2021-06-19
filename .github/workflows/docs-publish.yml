@@ -2,9 +2,10 @@
 
 name: Docs publish page_build
 
-on: page_build
-#    branches:
-#      - "**"
+on:
+  push:
+    branches:
+      - "main"
 #  pull_request:
 #    branches: [main]
 
@@ -22,40 +23,23 @@ jobs:
       NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          fetch-depth: "0"
-      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          #          always-auth: true
-          node-version: '14.x'
-          registry-url: https://registry.npmjs.org/
-      #          scope: '@perimeter81'
-
-      #      - name: Cache node modules
-      #        uses: actions/cache@v2
-      #        env:
-      #          cache-name: cache-node-modules
-      #        with:
-      #          # npm cache files are stored in `~/.npm` on Linux/macOS
-      #          path: ~/.npm
-      #          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-      #          restore-keys: |
-      #            ${{ runner.os }}-build-${{ env.cache-name }}-
-      #            ${{ runner.os }}-build-
-      #            ${{ runner.os }}-
-
+          node-version: 14
+      - uses: nelonoel/branch-name@v1.0.1
+      - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - run: git config --global user.email krupnik.yuri@gmail.com && git config --global user.name yurikrupnik
       - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
 
-      - name: Install dependencies
-        run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+#      - name: Install dependencies
+#        run: npm ci
+#        env:
+#          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
-#      - name: Docs push
-#        run: npm run build-pages
+      - name: Docs push
+        run: npm run build-pages
 
 #      - name: Lint
 #        run: npm run lint -- --since
