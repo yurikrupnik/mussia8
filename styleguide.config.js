@@ -56,24 +56,15 @@ module.exports = {
             ignore: ["**/__tests__/*.tsx"]
         },
         {
-            name: "Typedoc", // todo fix for github pages url when prod/dev
-            // href: "http://localhost:63342/mussia8/docs/typedoc/index.html"
-            href: "/typedoc/index.html"
+            name: "Typedoc",
+            href: process.env.LOCAL
+                ? "/docs/typedoc/index.html"
+                : "/mussia8/typedoc/index.html"
         },
         {
-            name: "Swagger", // todo fix for github pages url when prod/dev
-            // href: "http://localhost:63342/mussia8/docs/typedoc/index.html"
-            href: "/docs/typedoc/index.html"
-        },
-        {
-            name: "Swagger", // todo fix for github pages url when prod/dev
-            // href: "http://localhost:63342/mussia8/docs/typedoc/index.html"
-            href: "/mussia8/typedoc/index.html"
+            name: "Swagger",
+            href: "https://app.swaggerhub.com/organizations/mussia"
         }
-        // {
-        //     name: "Swagger",
-        //     href: "https://app.swaggerhub.com/organizations/mussia"
-        // }
         // {
         //     pagePerSection: true,
         //     sections: [

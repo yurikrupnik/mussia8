@@ -18,7 +18,7 @@
     "styleguidist:dev": "npx styleguidist server --open",
     "styleguidist:build": "npx styleguidist build",
     "typedoc": "typedoc --tsconfig tsconfig.json",
-    "docs:dev": "run-p styleguidist:dev 'typedoc -- --watch'",
+    "docs:dev": "LOCAL=true run-p styleguidist:dev 'typedoc -- --watch'",
     "docs:build": "run-p styleguidist:build typedoc",
     "docs:dev:server": "npx http-server docs/styleguide",
     "start": "run-p docs:dev docs:dev:server",
