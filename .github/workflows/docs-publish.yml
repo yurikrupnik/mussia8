@@ -37,11 +37,16 @@ jobs:
 #        run: npm ci
 #        env:
 #          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
+#      - name: Deploy
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: ./docs
       - name: Docs push
         run: npm run build-pages
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
 #      - name: Lint
 #        run: npm run lint -- --since
