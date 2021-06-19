@@ -4,8 +4,8 @@ on:
   - page_build
 #  - deployment_status
 #  - deployment
-  - create
-  - pull_request_review
+#  - create
+#  - pull_request_review
 
 jobs:
   labelPR:

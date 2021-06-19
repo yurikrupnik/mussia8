@@ -54,8 +54,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
-      - name: Docs push
-        run: npm run build-pages
+#      - name: Docs push
+#        run: npm run build-pages
 
 #      - name: Lint
 #        run: npm run lint -- --since
