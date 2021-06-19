@@ -1,12 +1,12 @@
-name: Billing
+name: Service1
 on:
     push:
         branches:
             - main
         paths:
-            - "packages/**"
-            - "packages/ui/clients/**"
-            - "packages/ui/components/**"
+            - "packages/service1/"
+#            - "packages/ui/clients/**"
+#            - "packages/ui/components/**"
 
 jobs:
     billing-check:
