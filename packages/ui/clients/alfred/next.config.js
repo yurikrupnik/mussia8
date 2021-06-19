@@ -35,6 +35,25 @@ module.exports = (phase) => {
     //     // })(),
     // };
 
+    const microServiceRoutesMapping = [
+        {
+            source: "/gateway/service1",
+            // basePath: false,
+            // description: "http://0.0.0.0:5000/:path*"
+            destination: isDev
+                ? "http://localhost:5000"
+                : "https://aris-ars-j0dquon.uk.gateway.dev/service1"
+        },
+        {
+            source: "/gateway/service2",
+            // basePath: false,
+            // description: "http://0.0.0.0:5000/:path*"
+            destination: isDev
+                ? "http://localhost:5001"
+                : "https://aris-ars-j0dquon.uk.gateway.dev/service2"
+        }
+    ];
+
     // next.config.js object
     return {
         // webpack: (
@@ -54,15 +73,7 @@ module.exports = (phase) => {
             ignoreDuringBuilds: true
         },
         async rewrites() {
-            return [
-                {
-                    source: "/gateway/:path*",
-                    basePath: false,
-                    // description: "http://0.0.0.0:5000/:path*"
-                    destination:
-                        "https://aris-ars-j0dquon.uk.gateway.dev/:path*"
-                }
-            ];
+            return microServiceRoutesMapping;
         },
         env: {
             RESTURL_SPEAKERS: (() => {

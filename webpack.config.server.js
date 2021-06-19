@@ -68,9 +68,9 @@ module.exports = (env, argv) => {
                 swaggerDefinition: {
                     swagger: "2.0",
                     info: {
-                        title: "Title",
+                        title: json.name,
                         version: json.version,
-                        description: "Description"
+                        description: json.description
                     }
                 },
                 apis: ["./src/api/*.ts"]

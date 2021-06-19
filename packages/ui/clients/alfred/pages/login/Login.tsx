@@ -56,8 +56,7 @@ const uiConfig = {
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
     ],
     callbacks: {
         // Avoid redirects after sign-in.
@@ -93,8 +92,16 @@ const Login = () => {
         if (isSignedIn) {
             axios
                 .get("/gateway/service1")
-                .then((r) => {
-                    console.log({ r });
+                .then((service1) => {
+                    console.log({ service1 });
+                })
+                .catch((err) => {
+                    console.log({ err });
+                });
+            axios
+                .get("/gateway/service2")
+                .then((service2) => {
+                    console.log({ service2 });
                 })
                 .catch((err) => {
                     console.log({ err });
