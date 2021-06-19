@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Mussia8 base project monorepo poc for api gateway",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "postinstall": "lerna exec --parallel -- npm i",
     "bootstrap": "lerna bootstrap",
@@ -23,7 +24,9 @@
     "docs:dev:server": "npx http-server docs/styleguide",
     "start": "run-p docs:dev docs:dev:server",
     "dev:all": "run-p dev start",
-    "deploy": "lerna run --parallel deploy"
+    "deploy": "lerna run --parallel deploy",
+    "prebuild-pages": "npm run docs:build",
+    "build-pages": "gh-pages -d docs"
   },
   "repository": {
     "type": "git",
@@ -47,7 +50,7 @@
     "autoprefixer": "10.2.6",
     "css-loader": "5.2.6",
     "esbuild-loader": "2.13.1",
-    "eslint": "7.28.0",
+    "eslint": "7.29.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "8.3.0",
     "eslint-import-resolver-typescript": "2.4.0",
@@ -79,6 +82,7 @@
     "stylelint": "13.13.1",
     "stylelint-config-standard": "22.0.0",
     "swagger-jsdoc-webpack-plugin": "1.0.0",
+    "typedoc": "^0.21.0",
     "typescript": "4.3.4",
     "webpack": "5.39.1",
     "webpack-cli": "4.7.2",
