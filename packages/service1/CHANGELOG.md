@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.31](https://github.com/yurikrupnik/mussia8/compare/service1@1.0.30...service1@1.0.31) (2021-06-19)
+
+**Note:** Version bump only for package service1
+
+
+
+
+
 ## [1.0.30](https://github.com/yurikrupnik/mussia8/compare/service1@1.0.29...service1@1.0.30) (2021-06-19)
 
 **Note:** Version bump only for package service1
