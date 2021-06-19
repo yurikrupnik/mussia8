@@ -1,4 +1,4 @@
-name: Monorepo PR Repo Labeler
+name: Tags and shit
 
 on:
   - page_build
