@@ -54,19 +54,12 @@ module.exports = {
             exampleMode: "expand", // 'hide' | 'collapse' | 'expand'
             usageMode: "expand", // 'hide' | 'collapse' | 'expand'
             ignore: ["**/__tests__/*.tsx"]
+        },
+        {
+            name: "Typedoc", // todo fix for github pages url when prod/dev
+            // href: "http://localhost:63342/mussia8/docs/typedoc/index.html"
+            href: "/docs/typedoc/index.html"
         }
-        // {
-        //     name: "Webclient",
-        //     // content: "docs/ui.md",
-        //     components: "packages/webclients/alfred/components/**/*.tsx",
-        //     exampleMode: "expand", // 'hide' | 'collapse' | 'expand'
-        //     usageMode: "expand", // 'hide' | 'collapse' | 'expand'
-        //     ignore: ["**/__tests__/*.tsx"]
-        // },
-        // {
-        //     name: "Typedoc", // todo fix for github pages url when prod/dev
-        //     href: "http://localhost:63342/mussia7/docs/typedoc/index.html"
-        // },
         // {
         //     name: "Swagger",
         //     href: "https://app.swaggerhub.com/organizations/mussia"

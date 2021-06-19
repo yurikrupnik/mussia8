@@ -68,7 +68,18 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "typedocOptions": {
-    "entryPoints": ["packages/ui/button/src", "packages/webclients/alfred/src", "packages/webclients/alfred/middlewares", "packages/webclients/alfred/hooks", "packages/webclients/batman/src"],
+    "entryPoints": [
+      "packages/ui/components/button/src",
+      "packages/ui/clients/alfred/hooks",
+      "packages/ui/clients/alfred/middlewares",
+      "packages/ui/clients/alfred/src",
+      "packages/ui/clients/batman/hooks",
+      "packages/ui/clients/batman/middlewares",
+      "packages/ui/clients/batman/src",
+      "packages/swagger/src",
+      "packages/service1/src",
+      "packages/service2/src"
+    ],
     "out": "docs/typedoc",
     "exclude": "**/**/__tests__/*",
 //    "exclude": "**/*+(index|.spec|.e2e).tsx"
