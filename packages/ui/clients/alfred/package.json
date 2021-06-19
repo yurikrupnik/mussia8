@@ -1,6 +1,6 @@
 {
   "name": "alfred",
-  "version": "1.0.24",
+  "version": "1.0.25-lint-fixed.0",
   "description": "Generic application for inner user base on firebase auth",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/alfred#readme",
