@@ -2,7 +2,7 @@ import React from "react";
 import { cleanup, render } from "@testing-library/react";
 import ThemeProvider from "../../../providers/ThemeProvider";
 import ApplicationStatus from "../ApplicationStatus";
-import { applicationStatuses, companyStatusCodes } from "../../../utils/consts";
+import { applicationStatuses, companyStatusCodes } from "../../../src/types";
 
 afterEach(cleanup);
 

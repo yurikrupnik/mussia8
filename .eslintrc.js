@@ -57,6 +57,7 @@ module.exports = {
     extends: [
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
+        "next",
         "airbnb"
     ],
     overrides: [

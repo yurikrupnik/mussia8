@@ -72,7 +72,7 @@ interface UserFront {
 //     provider: "local" | "google";
 // };
 
-type User = Pick<SchemaTimestampsConfig, SchemaFilter> & UserFront;
+type TUser = Pick<SchemaTimestampsConfig, SchemaFilter> & UserFront;
 
 // interface User extends Pick<SchemaTimestampsConfig, SchemaFilter> {
 //     email: string;
@@ -91,14 +91,14 @@ type User = Pick<SchemaTimestampsConfig, SchemaFilter> & UserFront;
 //     provider: "local" | "google";
 // }
 
-type UserDocument = User & Document;
+type UserDocument = TUser & Document;
 // type UserDocument = User;
 // interface UserDocument extends User,Document
 
 delete mongoose.connection.models[dbModel];
 
 const userSchemaObj: Record<
-    keyof Omit<User, SchemaFilter | "fullName">,
+    keyof Omit<TUser, SchemaFilter | "fullName">,
     SchemaTypeOpts<any>
 > = {
     creditCardNumber: {
@@ -235,9 +235,9 @@ type UserModel = Mo<UserDocument>;
 // }
 // type UserModel = Mo<UserDocument>;
 
-const Model: UserModel = mongoose.model<UserDocument>(dbModel, UsersSchema);
+const User: UserModel = mongoose.model<UserDocument>(dbModel, UsersSchema);
 
-const mock: User[] = [
+const mock: TUser[] = [
     {
         isActive: true,
         email: "a@a.com",
@@ -271,13 +271,13 @@ const mock: User[] = [
     }
 ];
 
-Model.find({}).then((res) => {
-    // console.log("res.fullName", res.fullName);
-    // res.find;
-    if (!res.length) {
-        Model.insertMany(mock);
-    }
-});
+// Model.find({}).then((res) => {
+//     // console.log("res.fullName", res.fullName);
+//     // res.find;
+//     if (!res.length) {
+//         Model.insertMany(mock);
+//     }
+// });
 
 // Model.findMyCompany()
 // Model.create({}).then((r) => {
@@ -291,7 +291,7 @@ Model.find({}).then((res) => {
 //     r.provi
 // })
 
-export default Model;
+export default User;
 
-export type { User, UserDocument, UserModel, UserFront };
+export type { TUser, UserDocument, UserModel, UserFront };
 export { mock };

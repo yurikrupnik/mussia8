@@ -5,21 +5,21 @@ export const drawerWidthOpen = "240px";
 
 export const drawerWidthClose = "64px";
 
-export const companyStatusCodes = [
-    "Active",
-    "Cancelled",
-    "No status",
-    "Non Renewing"
-] as const;
-
-export const applicationStatuses = [
-    "https",
-    "http",
-    "ssh",
-    "vnc",
-    "sdp",
-    "rdp"
-] as const;
+// export const companyStatusCodes = [
+//     "Active",
+//     "Cancelled",
+//     "No status",
+//     "Non Renewing"
+// ] as const;
+//
+// export const applicationStatuses = [
+//     "https",
+//     "http",
+//     "ssh",
+//     "vnc",
+//     "sdp",
+//     "rdp"
+// ] as const;
 
 export const sidebarItemsMap: Record<string, MainNavItem> = {
     dashboard: {

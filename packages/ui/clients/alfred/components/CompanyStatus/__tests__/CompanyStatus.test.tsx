@@ -1,8 +1,7 @@
 import React from "react";
 import { cleanup, render } from "@testing-library/react";
 import CompanyStatus from "../CompanyStatus";
-import { companyStatusCodes } from "../../../utils/consts";
-import { POCStauses } from "../../../src/types";
+import { POCStauses, companyStatusCodes } from "../../../src/types";
 
 afterEach(cleanup);
 
