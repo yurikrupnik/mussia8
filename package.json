@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Mussia8 base project monorepo poc for api gateway",
   "main": "index.js",
-  "private": true,
   "scripts": {
     "postinstall": "lerna exec --parallel -- npm i",
     "bootstrap": "lerna bootstrap",
@@ -26,7 +25,7 @@
     "dev:all": "run-p dev start",
     "deploy": "lerna run --parallel deploy",
     "prebuild-pages": "npm run docs:build",
-    "build-pages": "gh-pages -d docs"
+    "build-pages": "gh-pages -d docs -a"
   },
   "repository": {
     "type": "git",
