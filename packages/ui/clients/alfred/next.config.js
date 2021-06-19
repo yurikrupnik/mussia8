@@ -48,6 +48,11 @@ module.exports = (phase) => {
         //     // config.externals.push(nodeExternals());
         //     return config;
         // },
+        eslint: {
+            // Warning: Dangerously allow production builds to successfully complete even if
+            // your project has ESLint errors.
+            ignoreDuringBuilds: true
+        },
         async rewrites() {
             return [
                 {
