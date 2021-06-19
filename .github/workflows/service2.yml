@@ -1,10 +1,10 @@
-name: Service1
+name: Service2
 on:
     push:
         branches:
             - main
         paths:
-            - "packages/service1/**"
+            - "packages/service2/**"
 #            - "packages/ui/clients/**"
 #            - "packages/ui/components/**"
 
