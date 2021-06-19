@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.20-lint-fixed.0](https://github.com/yurikrupnik/mussia8/compare/batman@1.0.19-lint-fixed.0...batman@1.0.20-lint-fixed.0) (2021-06-19)
+
+**Note:** Version bump only for package batman
+
+
+
+
+
 ## [1.0.19-lint-fixed.0](https://github.com/yurikrupnik/mussia8/compare/batman@1.0.18-lint-fixed.0...batman@1.0.19-lint-fixed.0) (2021-06-19)
 
 **Note:** Version bump only for package batman
