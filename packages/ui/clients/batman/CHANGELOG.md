@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.29-snyk-upgrade-9847bd6bf69ffa79f1442279c788d87b.0 (2021-06-21)
+
+
+### Bug Fixes
+
+* upgrade @sentry/tracing from 6.4.1 to 6.5.0 ([05f023a](https://github.com/yurikrupnik/mussia8/commit/05f023a9fde3f1c7a9e9d293f45e90027d879af2))
+
+
+
+
+
 ## [1.0.28](https://github.com/yurikrupnik/mussia8/compare/batman@1.0.27...batman@1.0.28) (2021-06-19)
 
 **Note:** Version bump only for package batman
