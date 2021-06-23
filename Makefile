@@ -81,3 +81,8 @@ deploy-languages:
 
 deploy-cloud-run:
 	echo pusssss
+
+create-swagger-1:
+	npx openapi-typescript "openapi2-run.yaml" --output schemas.ts
+create-swagger-2:
+	npx swagger-typescript-api -p openapi2-run.yaml

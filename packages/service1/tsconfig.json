@@ -1,13 +1,5 @@
 {
     "compilerOptions": {
-        //    "baseUrl": ".",
-        //    "paths": {
-        //      // remap rsg-components/anything to its version in react-styleguidist
-        ////      "rsg-components/*": [
-        ////        "node_modules/react-styleguidist/lib/client/rsg-components/*"
-        ////      ]
-        //    },
-//        "declarationDir": "dist",
         "noEmit": true,
         "resolveJsonModule": true,
         "declaration": false,
@@ -20,8 +12,6 @@
         "removeComments": false,
         "preserveConstEnums": true,
         "composite": false,
-//        "jsx": "react",
-//        "allowJs": true,
         "allowSyntheticDefaultImports": true,
         "lib": ["es6"],
         "noImplicitAny": true,

@@ -24,6 +24,7 @@ definitions:
     enum:
       - local
       - google
+      - github
 
   Role:
     type: string
@@ -33,6 +34,7 @@ definitions:
   User:
     required:
       - email
+      - firstName
     properties:
       _id:
         type: string

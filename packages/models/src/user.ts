@@ -1,19 +1,17 @@
-// import Models, { User, UsersSchema } from "@creativearis/models";
-import mongoose, {
+import {
     Document,
     Model as Mo,
+    Mongoose,
     Schema,
     SchemaTypeOptions
 } from "mongoose";
-// import { dbModel } from "./config";
-import { validateEmail } from "../utils/validation";
-import { generateHashSync } from "../utils/crypt";
+import { validateEmail } from "./utils/validation";
+import { generateHashSync } from "./utils/crypt";
 
 type roles = "editor" | "finance" | "admin" | "crm";
 type providers = "local" | "google";
 
 const usersRoles = ["editor", "finance", "admin", "crm"];
-
 const dbModel = "user";
 
 /**
@@ -65,19 +63,13 @@ const dbModel = "user";
 type UserGroupFront = {
     email: string;
     password: string;
-    // token: string;
     role: roles;
     image: string;
-
     firstName: string;
-    // id?: string;
     lastName?: string;
-    // fullName?: string;
-
     isActive?: boolean;
     creditCardNumber?: string;
     provider: providers;
-    // aris?: string;
 };
 
 type UserGroup = UserGroupFront;
@@ -166,42 +158,11 @@ const userGroupSchemaObj: Record<keyof UserGroup, SchemaTypeOptions<any>> = {
     }
 };
 
-// if (process.env.IS_OFFLINE) {
-// delete mongoose.connection.models[dbModel];
-// }
-
 const UsersSchema: Schema = new Schema(userGroupSchemaObj);
 
-type UserGroupModel = Mo<UserGroupDocument>;
+export default (m: Mongoose): Mo<UserGroupDocument> =>
+    m.model<UserGroupDocument>(dbModel, UsersSchema);
 
-const Model: UserGroupModel = mongoose.model<UserGroupDocument>(
-    dbModel,
-    UsersSchema
-);
-
-const mock: Partial<UserGroupFront>[] = [
-    {
-        email: "a@a.com",
-        password: "123456"
-    },
-    {
-        email: "b@b.com",
-        password: "123452"
-    }
-    // {
-    //     name: "Group 3"
-    // },
-    // {
-    //     name: "Group 4"
-    // },
-    // {
-    //     name: "Group 5"
-    // }
-];
-
-export default Model;
-
-export { mock };
+export { UsersSchema };
 
 export type { UserGroup, UserGroupDocument, UserGroupFront };
-// export { mock };

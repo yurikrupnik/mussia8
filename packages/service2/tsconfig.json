@@ -4,7 +4,7 @@
         //    "paths": {
         //      // remap rsg-components/anything to its version in react-styleguidist
         ////      "rsg-components/*": [
-        ////        "node_modules/react-styleguidist/lib/client/rsg-components/*"
+        ////        "node_modules/react-styleguidist/src/client/rsg-components/*"
         ////      ]
         //    },
 //        "declarationDir": "dist",

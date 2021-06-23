@@ -1,0 +1,48 @@
+{
+  "name": "@creativearis/models",
+  "version": "1.0.0",
+  "description": "db models",
+  "author": "yurikrupnik <krupnik.yuri@gmail.com>",
+  "homepage": "https://yurikrupnik.github.io/mussia8/tree/main/packages/models#readme",
+  "license": "ISC",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yurikrupnik/mussia8.git",
+    "directory": "packages/models"
+  },
+  "scripts": {
+    "dev": "rollup --config=../../rollup.config.ts -w",
+    "prebuild": "rimraf dist",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --color",
+    "test": "jest src --colors",
+    "build": "run-p build:code tsc",
+    "build:code": "rollup --config=../../rollup.config.ts",
+    "tsc": "tsc --emitDeclarationOnly"
+  },
+  "bugs": {
+    "url": "https://github.com/yurikrupnik/mussia8/issues"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.12",
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.14"
+  },
+  "peerDependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.14"
+  },
+  "dependencies": {}
+}

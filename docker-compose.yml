@@ -89,11 +89,10 @@ services:
         container_name: service2
         environment:
             - PORT=5001
-            - NODE_ENV_DOCKER=true
-            - DB_USER=admin
-            - DB_URL=mongodb://0.0.0.0/mussia7
-            - DB_PASSWORD=elmtmVSesRtpz3de
-            - DATABASE_URL=@cluster0.xliif.gcp.mongodb.net/
+            - DB_USER=yurikrupnik
+            - DB_PASSWORD=T4eXKj1RBI4VnszC
+            - DB_URL=@cluster0.rdmew.mongodb.net/
+            - DB_URL=mongodb://0.0.0.0/mussia8
         ports:
             - 5001:5001
         command: npm run start
