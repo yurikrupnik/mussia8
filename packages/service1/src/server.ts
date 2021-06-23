@@ -1,8 +1,6 @@
-import express, { Router } from "express";
-import path from "path";
+import express from "express";
 import bodyParser from "body-parser";
-import swaggerUi from "swagger-ui-express";
-// import swaggerUI from '@creativearis/swagger' // fails
+import swaggerUI from "@creativearis/swagger"; // fails
 import api from "./api";
 import db from "./services/db";
 
@@ -22,28 +20,8 @@ function handleDatabaseUrl() {
 const databaseUrl = handleDatabaseUrl();
 console.log("databaseUrl", databaseUrl); // eslint-disable-line
 
-function swaggerUI(url: string) {
-    const r = Router();
-    r.get("/swagger.json", (req, res) => {
-        res.header("Content-Type", "application/json");
-        res.sendFile(path.join(__dirname, "swagger.json"));
-    });
-    r.use("/doc", swaggerUi.serve);
-    r.get(
-        "/doc",
-        swaggerUi.setup(
-            {},
-            {
-                swaggerOptions: {
-                    url: `${url}/swagger.json`
-                }
-            }
-        )
-    );
-    return r;
-}
-
 app.use(swaggerUI(process.env.HOST || "http://localhost:5000"));
+// app.use(swaggerUI("ad"));
 app.use(db(databaseUrl));
 app.use(
     express.json(),

@@ -1,7 +1,7 @@
 import { Router } from "express";
 // import Model, { Project } from "@creativearis/models";
 import Model from "./model";
-// import { removeOne } from "../utils/methods";
+import { removeOne } from "../utils/methods";
 //
 const route = Router();
 /**
@@ -171,7 +171,7 @@ route.post("/", (req, res) => {
  *       401:
  *         description: No auth token
  */
-// route.delete("/:id", removeOne(Model));
+route.delete("/:id", removeOne(Model));
 // route.delete("/", (req, res) => {
 //     res.status(200).json({
 //         message: "removed many"
