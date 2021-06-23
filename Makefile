@@ -82,6 +82,9 @@ deploy-languages:
 deploy-cloud-run:
 	echo pusssss
 
+# Local tests
+full-build:
+	npm run lint && npm run test && npm run build
 create-swagger-1:
 	npx openapi-typescript "openapi2-run.yaml" --output schemas.ts
 create-swagger-2:
