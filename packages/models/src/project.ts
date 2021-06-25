@@ -1,12 +1,16 @@
 import mongoose, {
     Document,
     Model as Mo,
+    Mongoose,
     Schema,
     SchemaTypeOptions
 } from "mongoose";
+import User from "./user";
 // import { dbModel } from "./config";
 // import { validateEmail } from "../utils/validation";
 // import { generateHashSync } from "../utils/crypt";
+
+// import User from "./user";
 
 const dbModel = "project";
 
@@ -45,7 +49,7 @@ type ProjectDocument = Project & Document;
 const projectsGroupSchemaObj: Record<keyof Project, SchemaTypeOptions<any>> = {
     userId: {
         type: mongoose.Types.ObjectId,
-        ref: "Users"
+        ref: User(mongoose)
     },
     name: {
         type: String,
@@ -67,12 +71,15 @@ const projectsGroupSchemaObj: Record<keyof Project, SchemaTypeOptions<any>> = {
 
 const ProjectsSchema: Schema = new Schema(projectsGroupSchemaObj);
 
-type ProjectModel = Mo<ProjectDocument>;
+// type ProjectModel = Mo<ProjectDocument>;
+//
+// const Model: ProjectModel = mongoose.model<ProjectDocument>(
+//     dbModel,
+//     ProjectsSchema
+// );
 
-const Model: ProjectModel = mongoose.model<ProjectDocument>(
-    dbModel,
-    ProjectsSchema
-);
+export default (m: Mongoose): Mo<ProjectDocument> =>
+    m.model<ProjectDocument>(dbModel, ProjectsSchema);
 
 const mock: Partial<ProjectFront>[] = [
     {
@@ -96,7 +103,7 @@ const mock: Partial<ProjectFront>[] = [
     // }
 ];
 
-export default Model;
+// export default Model;
 
 // Model.find((res) => {
 //     if (!res) {

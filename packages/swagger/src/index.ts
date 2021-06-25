@@ -1,17 +1,15 @@
 import path from "path";
 import swaggerUi from "swagger-ui-express";
-import { Router } from "express";
+import { IRouter, Request, Response, Router } from "express";
 
-function swaggerUI(url: string) {
-    // todo module
-    const r = Router();
-    r.get("/swagger.json", (req, res) => {
+function swaggerUI(url: string, dest = "dist"): IRouter {
+    const route = Router();
+    route.get("/swagger.json", (req: Request, res: Response) => {
         res.header("Content-Type", "application/json");
-        res.sendFile(path.join(__dirname, "swagger.json"));
-        // res.sendFile("swagger.json");
+        res.sendFile(path.join(process.cwd(), dest, "swagger.json"));
     });
-    r.use("/doc", swaggerUi.serve);
-    r.get(
+    route.use("/doc", swaggerUi.serve);
+    route.get(
         "/doc",
         swaggerUi.setup(
             {},
@@ -22,7 +20,7 @@ function swaggerUI(url: string) {
             }
         )
     );
-    return r;
+    return route;
 }
 
 export default swaggerUI;

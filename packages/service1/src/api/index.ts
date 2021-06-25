@@ -1,7 +1,8 @@
 import { Router } from "express";
+// import Model, { Project } from "@creativearis/models";
 import Model from "./model";
 import { removeOne } from "../utils/methods";
-
+//
 const route = Router();
 /**
  * @swagger
@@ -40,8 +41,13 @@ const route = Router();
  */
 route.get("/", (req, res) => {
     const { projection } = req.query;
-    // console.log("req.query before", req.query);
+    console.log("req.query before", req.query);
     delete req.query.projection;
+    // console.log("DS", DS);
+    // console.log("S", Project);
+    // console.log("Models", Models);
+    console.log("Model", Model);
+    // res.status(200).json({ ok: true });
     // console.log("req.query after", req.query);
     Model.find(req.query, projection)
         .then((response) => {

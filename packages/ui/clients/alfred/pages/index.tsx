@@ -2,8 +2,11 @@ import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Button from "@creativearis/button";
+// import type { Props } from "@creativearis/button";
 import noop from "lodash/noop";
 import styles from "../styles/Home.module.css";
+
+// type D = Props;
 
 const Home: React.FC = () => (
     <div className={styles.container}>
