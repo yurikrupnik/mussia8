@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2-snyk-upgrade-6ea804a3d87c7495df4be6805705fd60.0](https://github.com/yurikrupnik/mussia8/compare/batman@1.1.1...batman@1.1.2-snyk-upgrade-6ea804a3d87c7495df4be6805705fd60.0) (2021-06-25)
+
+
+### Bug Fixes
+
+* upgrade firebase from 8.6.4 to 8.6.5 ([e1ed159](https://github.com/yurikrupnik/mussia8/commit/e1ed15984159cd8082cd0106d63cbf627e4c902e))
+
+
+
+
+
 ## [1.1.1](https://github.com/yurikrupnik/mussia8/compare/batman@1.1.0...batman@1.1.1) (2021-06-25)
 
 **Note:** Version bump only for package batman
