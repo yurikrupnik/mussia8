@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2-snyk-upgrade-fcb74c87d956839929481ba60acf3232.0](https://github.com/yurikrupnik/mussia8/compare/batman@1.1.1...batman@1.1.2-snyk-upgrade-fcb74c87d956839929481ba60acf3232.0) (2021-06-25)
+
+
+### Bug Fixes
+
+* upgrade formik from 2.2.8 to 2.2.9 ([6cf800f](https://github.com/yurikrupnik/mussia8/commit/6cf800fa2ebb6f76d534179a9f684116a568407a))
+
+
+
+
+
 ## [1.1.1](https://github.com/yurikrupnik/mussia8/compare/batman@1.1.0...batman@1.1.1) (2021-06-25)
 
 **Note:** Version bump only for package batman
