@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.37-backed-model.0](https://github.com/yurikrupnik/mussia8/compare/alfred@1.0.36...alfred@1.0.37-backed-model.0) (2021-06-25)
+
+**Note:** Version bump only for package alfred
+
+
+
+
+
 ## [1.0.36](https://github.com/yurikrupnik/mussia8/compare/alfred@1.0.35...alfred@1.0.36) (2021-06-19)
 
 **Note:** Version bump only for package alfred
