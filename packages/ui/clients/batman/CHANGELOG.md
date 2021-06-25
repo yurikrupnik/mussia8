@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2-snyk-upgrade-fb7120e600c15f4868cab01b2056af5c.0](https://github.com/yurikrupnik/mussia8/compare/batman@1.1.1...batman@1.1.2-snyk-upgrade-fb7120e600c15f4868cab01b2056af5c.0) (2021-06-25)
+
+
+### Bug Fixes
+
+* upgrade @auth0/nextjs-auth0 from 1.3.1 to 1.4.0 ([b0c0cfa](https://github.com/yurikrupnik/mussia8/commit/b0c0cfa2c72a792f08132e598a0217c86ab1bfad))
+
+
+
+
+
 ## [1.1.1](https://github.com/yurikrupnik/mussia8/compare/batman@1.1.0...batman@1.1.1) (2021-06-25)
 
 **Note:** Version bump only for package batman
