@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2-snyk-upgrade-55245cfde0f6c187b2743cf6e9986b7f.0](https://github.com/yurikrupnik/mussia8/compare/service2@1.1.1...service2@1.1.2-snyk-upgrade-55245cfde0f6c187b2743cf6e9986b7f.0) (2021-06-25)
+
+**Note:** Version bump only for package service2
+
+
+
+
+
 ## [1.1.1](https://github.com/yurikrupnik/mussia8/compare/service2@1.1.0...service2@1.1.1) (2021-06-25)
 
 **Note:** Version bump only for package service2

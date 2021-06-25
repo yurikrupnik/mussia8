@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2-snyk-upgrade-55245cfde0f6c187b2743cf6e9986b7f.0](https://github.com/yurikrupnik/mussia8/compare/service1@1.1.1...service1@1.1.2-snyk-upgrade-55245cfde0f6c187b2743cf6e9986b7f.0) (2021-06-25)
+
+
+### Bug Fixes
+
+* upgrade mongoose from 5.12.12 to 5.12.13 ([395b0c0](https://github.com/yurikrupnik/mussia8/commit/395b0c0a9974dc2b29b3f16dc465e1a91894d63d))
+
+
+
+
+
 ## [1.1.1](https://github.com/yurikrupnik/mussia8/compare/service1@1.1.0...service1@1.1.1) (2021-06-25)
 
 **Note:** Version bump only for package service1
