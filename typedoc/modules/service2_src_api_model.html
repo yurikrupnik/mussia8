@@ -95,7 +95,7 @@
 					<div class="tsd-signature tsd-kind-icon">Project<span class="tsd-signature-symbol">:</span> <a href="service2_src_api_model.html#projectfront" class="tsd-signature-type" data-tsd-kind="Type alias">ProjectFront</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/cec81cc/packages/service2/src/api/model.ts#L67">service2/src/api/model.ts:67</a></li>
+							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/295b8cf/packages/service2/src/api/model.ts#L41">service2/src/api/model.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -105,7 +105,7 @@
 					<div class="tsd-signature tsd-kind-icon">Project<wbr>Document<span class="tsd-signature-symbol">:</span> <a href="service2_src_api_model.html#project" class="tsd-signature-type" data-tsd-kind="Type alias">Project</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Document</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/cec81cc/packages/service2/src/api/model.ts#L69">service2/src/api/model.ts:69</a></li>
+							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/295b8cf/packages/service2/src/api/model.ts#L43">service2/src/api/model.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -115,54 +115,28 @@
 					<div class="tsd-signature tsd-kind-icon">Project<wbr>Front<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>isActive<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>userId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/cec81cc/packages/service2/src/api/model.ts#L59">service2/src/api/model.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/295b8cf/packages/service2/src/api/model.ts#L33">service2/src/api/model.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>swagger</dt>
 							<dd><p>definitions:
-									Provider:
+									Project:
+									properties:
+									_id:
 									type: string
-									default: local
-									enum:
-									- local
-									- google
-									Role:
+									isActive:
+									type: boolean
+									default: true
+									name:
 									type: string
-									enum: [editor, finance, admin, crm]
-								default: admin</p>
-								<pre><code><span style="color: #000000"> User:</span>
-<span style="color: #000000">   properties:</span>
-<span style="color: #000000">     _id:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">     isActive:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">boolean</span>
-<span style="color: #000000">         </span><span style="color: #AF00DB">default</span><span style="color: #000000">: </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">     email:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         required: </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">     firstName:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">     lastName:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">     password:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         required: </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">     creditCardNumber:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         </span><span style="color: #AF00DB">default</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;&#039;</span>
-<span style="color: #000000">     provider:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         schema:</span>
-<span style="color: #000000">             $ref: </span><span style="color: #A31515">&#039;#/definitions/Provider&#039;</span>
-<span style="color: #000000">     token:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">     role:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         schema:</span>
-<span style="color: #000000">             $ref: </span><span style="color: #A31515">&#039;#/definitions/Role&#039;</span>
-</code></pre>
+									required: true
+									description:
+									type: string
+									userId:
+									type: string
+								required: true</p>
 							</dd>
 						</dl>
 					</div>
@@ -193,7 +167,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ProjectModel</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/cec81cc/packages/service2/src/api/model.ts#L98">service2/src/api/model.ts:98</a></li>
+							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/295b8cf/packages/service2/src/api/model.ts#L72">service2/src/api/model.ts:72</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -203,7 +177,7 @@
 					<div class="tsd-signature tsd-kind-icon">mock<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="service2_src_api_model.html#projectfront" class="tsd-signature-type" data-tsd-kind="Type alias">ProjectFront</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/cec81cc/packages/service2/src/api/model.ts#L103">service2/src/api/model.ts:103</a></li>
+							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/295b8cf/packages/service2/src/api/model.ts#L77">service2/src/api/model.ts:77</a></li>
 						</ul>
 					</aside>
 				</section>
