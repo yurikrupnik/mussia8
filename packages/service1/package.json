@@ -1,6 +1,6 @@
 {
   "name": "service1",
-  "version": "1.0.33-backed-model.0",
+  "version": "1.1.0",
   "description": "> TODO: description",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/service1#readme",
@@ -32,8 +32,8 @@
     "url": "https://github.com/yurikrupnik/mussia8/issues"
   },
   "dependencies": {
-    "@creativearis/models": "^1.0.1-backed-model.0",
-    "@creativearis/swagger": "^1.0.8-backed-model.0",
+    "@creativearis/models": "^1.1.0",
+    "@creativearis/swagger": "^1.1.0",
     "bcrypt": "5.0.1",
     "body-parser": "1.19.0",
     "connect-mongo": "4.4.1",
