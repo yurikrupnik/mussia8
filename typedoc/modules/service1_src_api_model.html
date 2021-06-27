@@ -70,13 +70,6 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Type aliases</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="service1_src_api_model.html#usergroupdocument" class="tsd-kind-icon">User<wbr>Group<wbr>Document</a></li>
-								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-external"><a href="service1_src_api_model.html#usergroupfront" class="tsd-kind-icon">User<wbr>Group<wbr>Front</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-module"><a href="service1_src_api_model.html#default" class="tsd-kind-icon">default</a></li>
@@ -88,109 +81,6 @@
 								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="service1_src_api_model.html#mock" class="tsd-kind-icon">mock</a></li>
 							</ul>
 						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Type aliases</h2>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
-					<a name="usergroupdocument" class="tsd-anchor"></a>
-					<h3>User<wbr>Group<wbr>Document</h3>
-					<div class="tsd-signature tsd-kind-icon">User<wbr>Group<wbr>Document<span class="tsd-signature-symbol">:</span> <a href="service1_src_api_model.html#usergroupfront" class="tsd-signature-type" data-tsd-kind="Type alias">UserGroupFront</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Document</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/10092c5/packages/service1/src/api/model.ts#L4">service1/src/api/model.ts:4</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-external">
-					<a name="usergroupfront" class="tsd-anchor"></a>
-					<h3>User<wbr>Group<wbr>Front</h3>
-					<div class="tsd-signature tsd-kind-icon">User<wbr>Group<wbr>Front<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>creditCardNumber<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>firstName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>image<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>isActive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>lastName<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>provider<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">providers</span><span class="tsd-signature-symbol">; </span>role<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">roles</span><span class="tsd-signature-symbol"> }</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in service1/node_modules/@creativearis/models/dist/user.d.ts:49</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>swagger</dt>
-							<dd><p>definitions:
-									Provider:
-									type: string
-									default: local
-									enum:
-									- local
-									- google
-									Role:
-									type: string
-									enum: [editor, finance, admin, crm]
-								default: admin</p>
-								<pre><code><span style="color: #000000"> User:</span>
-<span style="color: #000000">   properties:</span>
-<span style="color: #000000">     _id:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">     isActive:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">boolean</span>
-<span style="color: #000000">         </span><span style="color: #AF00DB">default</span><span style="color: #000000">: </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">     email:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         required: </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">     firstName:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">     lastName:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">     password:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         required: </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">     creditCardNumber:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         </span><span style="color: #AF00DB">default</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;&#039;</span>
-<span style="color: #000000">     provider:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         schema:</span>
-<span style="color: #000000">             $ref: </span><span style="color: #A31515">&#039;#/definitions/Provider&#039;</span>
-<span style="color: #000000">     token:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">     role:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         schema:</span>
-<span style="color: #000000">             $ref: </span><span style="color: #A31515">&#039;#/definitions/Role&#039;</span>
-</code></pre>
-							</dd>
-						</dl>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> credit<wbr>Card<wbr>Number<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>first<wbr>Name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>image<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Active<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> last<wbr>Name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>provider<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">providers</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>role<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">roles</span></h5>
-							</li>
-						</ul>
 					</div>
 				</section>
 			</section>
@@ -209,10 +99,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
 					<a name="mock" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> mock</h3>
-					<div class="tsd-signature tsd-kind-icon">mock<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="service1_src_api_model.html#usergroupfront" class="tsd-signature-type" data-tsd-kind="Type alias">UserGroupFront</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = ...</span></div>
+					<div class="tsd-signature tsd-kind-icon">mock<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">User</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/10092c5/packages/service1/src/api/model.ts#L50">service1/src/api/model.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/5252fac/packages/service1/src/api/model.ts#L50">service1/src/api/model.ts:50</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -279,12 +169,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="service1_src_api_model.html#usergroupdocument" class="tsd-kind-icon">User<wbr>Group<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-external">
-						<a href="service1_src_api_model.html#usergroupfront" class="tsd-kind-icon">User<wbr>Group<wbr>Front</a>
-					</li>
 					<li class=" tsd-kind-property tsd-parent-kind-module">
 						<a href="service1_src_api_model.html#default" class="tsd-kind-icon">default</a>
 					</li>
