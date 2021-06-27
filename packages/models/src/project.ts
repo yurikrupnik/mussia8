@@ -1,4 +1,4 @@
-import mongoose, {
+import {
     Document,
     Model as Mo,
     Mongoose,
@@ -6,11 +6,6 @@ import mongoose, {
     SchemaTypeOptions
 } from "mongoose";
 import User from "./user";
-// import { dbModel } from "./config";
-// import { validateEmail } from "../utils/validation";
-// import { generateHashSync } from "../utils/crypt";
-
-// import User from "./user";
 
 const dbModel = "project";
 
@@ -34,7 +29,7 @@ const dbModel = "project";
  *              required: true
  */
 
-type ProjectFront = {
+type Project = {
     userId: string;
     name: string;
     description: string;
@@ -42,46 +37,36 @@ type ProjectFront = {
     // aris?: string;
 };
 
-type Project = ProjectFront;
-
 type ProjectDocument = Project & Document;
 
-const projectsGroupSchemaObj: Record<keyof Project, SchemaTypeOptions<any>> = {
-    userId: {
-        type: mongoose.Types.ObjectId,
-        ref: User(mongoose)
-    },
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        default: ""
-    },
-    isActive: {
-        type: Boolean,
-        default: true
-    }
+export default (m: Mongoose): Mo<ProjectDocument> => {
+    const projectsGroupSchemaObj: Record<
+        keyof Project,
+        SchemaTypeOptions<any>
+    > = {
+        userId: {
+            type: m.Types.ObjectId,
+            ref: User(m)
+        },
+        name: {
+            type: String,
+            required: true
+        },
+        description: {
+            type: String,
+            default: ""
+        },
+        isActive: {
+            type: Boolean,
+            default: true
+        }
+    };
+
+    const ProjectsSchema: Schema = new Schema(projectsGroupSchemaObj);
+    return m.model<ProjectDocument>(dbModel, ProjectsSchema);
 };
 
-// if (process.env.IS_OFFLINE) {
-// delete mongoose.connection.models[dbModel];
-// }
-
-const ProjectsSchema: Schema = new Schema(projectsGroupSchemaObj);
-
-// type ProjectModel = Mo<ProjectDocument>;
-//
-// const Model: ProjectModel = mongoose.model<ProjectDocument>(
-//     dbModel,
-//     ProjectsSchema
-// );
-
-export default (m: Mongoose): Mo<ProjectDocument> =>
-    m.model<ProjectDocument>(dbModel, ProjectsSchema);
-
-const mock: Partial<ProjectFront>[] = [
+const mock: Partial<Project>[] = [
     {
         name: "Aris1",
         description: "123456"
@@ -113,5 +98,5 @@ const mock: Partial<ProjectFront>[] = [
 
 export { mock };
 
-export type { Project, ProjectDocument, ProjectFront };
+export type { Project, ProjectDocument };
 // export { mock };

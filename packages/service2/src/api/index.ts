@@ -44,7 +44,7 @@ route.get("/", (req, res) => {
     delete req.query.projection;
     // console.log("req.query after", req.query);
     Model.find(req.query, projection)
-        .populate("userId")
+        // .populate("userId", "role _id")
         .then((response) => {
             res.status(200).json(response);
         })

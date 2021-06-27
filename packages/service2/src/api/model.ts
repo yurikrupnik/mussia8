@@ -1,15 +1,13 @@
-import mongoose, {
-    Document,
-    Model as Mo,
-    Schema,
-    SchemaTypeOptions
-} from "mongoose";
+import mongoose from "mongoose"; // SchemaTypeOptions // Schema, // Model as Mo, // Document,
+import { Project, ProjectDocument, project } from "@creativearis/models";
+
 // import { dbModel } from "./config";
 // import { validateEmail } from "../utils/validation";
 // import { generateHashSync } from "../utils/crypt";
 
-const dbModel = "project";
+// const dbModel = "project";
 
+// console.log("Projectds", Projectds);
 /**
  * @swagger
  * definitions:
@@ -30,51 +28,50 @@ const dbModel = "project";
  *              required: true
  */
 
-type ProjectFront = {
-    userId: string;
-    name: string;
-    description: string;
-    isActive: boolean;
-    // aris?: string;
-};
+// Users(mongoose);
 
-type Project = ProjectFront;
-
-type ProjectDocument = Project & Document;
-
-const projectsGroupSchemaObj: Record<keyof Project, SchemaTypeOptions<any>> = {
-    userId: {
-        type: mongoose.Types.ObjectId,
-        ref: "Users"
-    },
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        default: ""
-    },
-    isActive: {
-        type: Boolean,
-        default: true
-    }
-};
+// type ProjectFront = {
+//     userId: string;
+//     name: string;
+//     description: string;
+//     isActive: boolean;
+//     // aris?: string;
+// };
+//
+// type Project = ProjectFront;
+//
+// type ProjectDocument = Project & Document;
+//
+// const projectsGroupSchemaObj: Record<keyof Project, SchemaTypeOptions<any>> = {
+//     userId: {
+//         type: mongoose.Types.ObjectId,
+//         ref: Users(mongoose)
+//     },
+//     name: {
+//         type: String,
+//         required: true
+//     },
+//     description: {
+//         type: String,
+//         default: ""
+//     },
+//     isActive: {
+//         type: Boolean,
+//         default: true
+//     }
+// };
 
 // if (process.env.IS_OFFLINE) {
 // delete mongoose.connection.models[dbModel];
 // }
 
-const ProjectsSchema: Schema = new Schema(projectsGroupSchemaObj);
+// const ProjectsSchema: Schema = new Schema(projectsGroupSchemaObj);
+//
+// type ProjectModel = Mo<ProjectDocument>;
 
-type ProjectModel = Mo<ProjectDocument>;
+const Model = project(mongoose);
 
-const Model: ProjectModel = mongoose.model<ProjectDocument>(
-    dbModel,
-    ProjectsSchema
-);
-
-const mock: Partial<ProjectFront>[] = [
+const mock: Partial<Project>[] = [
     {
         name: "Aris1",
         description: "123456"
@@ -106,5 +103,5 @@ export default Model;
 
 export { mock };
 
-export type { Project, ProjectDocument, ProjectFront };
+export type { Project, ProjectDocument };
 // export { mock };

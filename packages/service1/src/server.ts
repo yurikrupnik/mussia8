@@ -19,8 +19,14 @@ function handleDatabaseUrl() {
 
 const databaseUrl = handleDatabaseUrl();
 console.log("databaseUrl", databaseUrl); // eslint-disable-line
+console.log("process.env.NODE_ENV", process.env.NODE_ENV); // eslint-disable-line
 
-app.use(swaggerUI(process.env.HOST || "http://localhost:5000"));
+app.use(
+    swaggerUI(
+        process.env.HOST || "http://localhost:5000",
+        process.env.NODE_ENV !== "production" ? "dist" : ""
+    )
+);
 // app.use(swaggerUI("ad"));
 app.use(db(databaseUrl));
 app.use(

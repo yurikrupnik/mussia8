@@ -20,7 +20,12 @@ function handleDatabaseUrl() {
 const databaseUrl = handleDatabaseUrl();
 console.log("databaseUrl", databaseUrl); // eslint-disable-line
 
-app.use(swaggerUI(process.env.HOST || "http://localhost:5001"));
+app.use(
+    swaggerUI(
+        process.env.HOST || "http://localhost:5001",
+        process.env.NODE_ENV !== "production" ? "dist" : ""
+    )
+);
 app.use(db(databaseUrl));
 app.use(
     express.json(),

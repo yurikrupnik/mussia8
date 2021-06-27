@@ -60,7 +60,7 @@ const dbModel = "user";
  *                  $ref: '#/definitions/Role'
  */
 
-type UserGroupFront = {
+type User = {
     email: string;
     password: string;
     role: roles;
@@ -72,11 +72,11 @@ type UserGroupFront = {
     provider: providers;
 };
 
-type UserGroup = UserGroupFront;
+// type UserGroup = UserGroupFront;
 
-type UserGroupDocument = UserGroup & Document;
+type UserGroupDocument = User & Document;
 
-const userGroupSchemaObj: Record<keyof UserGroup, SchemaTypeOptions<any>> = {
+const userGroupSchemaObj: Record<keyof User, SchemaTypeOptions<any>> = {
     creditCardNumber: {
         type: String,
         transform: (str: string) => {
@@ -165,4 +165,4 @@ export default (m: Mongoose): Mo<UserGroupDocument> =>
 
 export { UsersSchema };
 
-export type { UserGroup, UserGroupDocument, UserGroupFront };
+export type { User, UserGroupDocument };

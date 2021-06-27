@@ -1,7 +1,7 @@
-import Models, { UserGroupFront } from "@creativearis/models";
-import mongoose, { Document } from "mongoose";
+import { User, user } from "@creativearis/models";
+import mongoose from "mongoose";
 
-type UserGroupDocument = UserGroupFront & Document;
+// type UserGroupDocument = User & Document;
 /**
  * @swagger
  * definitions:
@@ -47,7 +47,7 @@ type UserGroupDocument = UserGroupFront & Document;
  *              schema:
  *                  $ref: '#/definitions/Role'
  */
-const mock: Partial<UserGroupFront>[] = [
+const mock: Partial<User>[] = [
     {
         email: "a@a.com",
         password: "123456"
@@ -58,9 +58,9 @@ const mock: Partial<UserGroupFront>[] = [
     }
 ];
 
-export default Models(mongoose);
+export default user(mongoose);
 
 export { mock };
 
-export type { UserGroupDocument, UserGroupFront };
+// export type { User };
 // export { mock };
