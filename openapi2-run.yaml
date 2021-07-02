@@ -1,64 +1,65 @@
 # openapi2-run.yaml
-swagger: "2.0"
+openapi: "3.0.1"
 info:
   title: backed-api optional-string
   description: Sample API on API Gateway with a Cloud Run backend
   version: 1.0.0
 #host: localhost:5000
-host: pi-j0dquon.ew.gateway.dev
+#host: pi-j0dquon.ew.gateway.dev
 #host: ds-j0dquon.ew.gateway.dev
 #host: backed-api.apigateway.mussia8.cloud.goog
 #host: aris-8jo9nv6l.ew.gateway.dev
 #host: backed-api.apigateway.mussia8.cloud.goog
-schemes:
-  - http
-  - https
-produces:
-  - application/json
+#schemes:
+#  - http
+#  - https
+#produces:
+#  - application/json
 
+components:
+  schemas:
+    Provider:
+      type: string
+      default: local
+      enum:
+        - local
+        - google
+        - github
 
-definitions:
-  Provider:
-    type: string
-    default: local
-    enum:
-      - local
-      - google
-      - github
+    Role:
+      type: string
+      enum: [editor, finance, admin, crm]
+      default: admin
 
-  Role:
-    type: string
-    enum: [editor, finance, admin, crm]
-    default: admin
-
-  User:
-    required:
-      - email
-      - firstName
-    properties:
-      _id:
-        type: string
-      isActive:
-        type: boolean
-      email:
-        type: string
-      firstName:
-        type: string
-      lastName:
-        type: string
-      password:
-        type: string
-      creditCardNumber:
-        type: string
-      provider:
-        type: string
-        $ref: '#/definitions/Provider'
-      role:
-        type: string
-        $ref: '#/definitions/Role'
+    User:
+#      required:
+#        - email
+#        - firstName
+      properties:
+        _id:
+          type: string
+        isActive:
+          type: boolean
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        password:
+          type: string
+        creditCardNumber:
+          type: string
+        provider:
+          type: string
+          $ref: '#/components/schemas/Provider'
+        role:
+          type: string
+          $ref: '#/components/schemas/Role'
 paths:
   /service1:
     get:
+#      $ref: './packages/service1/dist/swagger.json'
       parameters:
         - in: query
           name: projection
@@ -75,23 +76,24 @@ paths:
           type: string
           description: Search by role
           enum:
-            $ref: '#/definitions/Role'
-#          schema:
-#            type: enum
-#            $ref: '#/definitions/Role'
+            $ref: '#/components/schemas/User'
+          schema:
+            type: enum
+            $ref: '#/components/schemas/Role'
       tags:
         - Service1
       summary: Get service1 data
       operationId: getService1
       x-google-backend:
         address: https://service1-5g7d5fmura-lm.a.run.app/
-      #                address: https://service1-5g7d5fmura-lm.a.run.app/
       responses:
         "200":
           description: A successful response
-          schema:
-            items:
-              $ref: '#/definitions/User'
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
 #          schema:
 #            items:
 #              $ref: './packages/service1/dist/swagger.json#/definitions/User'
@@ -106,7 +108,7 @@ paths:
           name: body
           description: Service1 object thats needs to be added to the db
           schema:
-            $ref: '#/definitions/User'
+            $ref: '#/components/schemas/User'
       tags:
         - Service1
       x-google-backend:
@@ -115,7 +117,7 @@ paths:
         "200":
           description: A successful response
           schema:
-            $ref: '#/definitions/User'
+            $ref: '#/components/schemas/User'
 #            $ref: 'https://service1-5g7d5fmura-lm.a.run.app/swagger.json#/definitions/User'
   #
   #        put:
@@ -153,7 +155,7 @@ paths:
         "200":
           description: A successful response
           schema:
-            $ref: '#/definitions/User'
+            $ref: '#/components/schemas/User'
 #            $ref: 'https://service1-5g7d5fmura-lm.a.run.app/swagger.json#/definitions/User'
 #        delete:
 #            parameters:

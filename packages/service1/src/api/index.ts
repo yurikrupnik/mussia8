@@ -1,7 +1,7 @@
 import { Router } from "express";
 // import Model, { Project } from "@creativearis/models";
 import Model from "./model";
-import { removeOne } from "../utils/methods";
+import { removeOne, update } from "../utils/methods";
 //
 const route = Router();
 /**
@@ -24,6 +24,7 @@ const route = Router();
  *         type: string
  *         required: false
  *         description: Array or string with spaces projection keys to fetch
+ *         example: email role
  *       - in: query
  *         name: email
  *         type: string
@@ -31,9 +32,13 @@ const route = Router();
  *     responses:
  *       200:
  *         description: A single project object
- *         schema:
- *            items:
- *              $ref: '#/definitions/User'
+ *         content:
+ *             application/json:
+ *               type: array
+ *               schema:
+ *                 items:
+ *                   $ref: '#/components/schemas/User'
+ *
  *       401:
  *         description: No auth token
  *       500:
@@ -41,12 +46,9 @@ const route = Router();
  */
 route.get("/", (req, res) => {
     const { projection } = req.query;
-    console.log("req.query before", req.query);
+    // console.log("req.query before", req.query);
     delete req.query.projection;
-    // console.log("DS", DS);
-    // console.log("S", Project);
     // console.log("Models", Models);
-    console.log("Model", Model);
     // res.status(200).json({ ok: true });
     // console.log("req.query after", req.query);
     Model.find(req.query, projection)
@@ -65,7 +67,7 @@ route.get("/", (req, res) => {
  *     tags:
  *       - Service1
  *     name: Find service1 by id
- *     summary: Finds users information
+ *     summary: Finds by id
  *     security:
  *       - bearerAuth: []
  *     consumes:
@@ -78,11 +80,30 @@ route.get("/", (req, res) => {
  *         required: true
  *         schema:
  *           type: string
+ *       - in: query
+ *         name: projection
+ *         type: string
+ *         required: false
+ *         description: Array or string with spaces projection keys to fetch
  *     responses:
  *       200:
  *         description: A single user object
- *         schema:
- *              $ref: '#/definitions/User'
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *             example:
+ *                  {
+ *                      _id: "das",
+ *                      email: "ds@ds.com",
+ *                      isActive: true,
+ *                      firstName: Aris,
+ *                      lastName: "Krupnik",
+ *                      password: "123456",
+ *                      provider: local,
+ *                      token: "",
+ *                      role: admin
+ *                  }
  *       401:
  *         description: No auth token
  *       500:
@@ -98,9 +119,6 @@ route.get("/:id", (req, res) => {
         });
 });
 
-/**         schema:
- *           $ref: '#/definitions/User'*/
-
 /**
  * @swagger
  * /:
@@ -115,29 +133,52 @@ route.get("/:id", (req, res) => {
  *       - application/json
  *     produces:
  *       - application/json
- *     parameters:
- *       - in: body
- *         name: body
- *         description: Pet object that needs to be added to the store
- *         required:
- *           - email
- *           - password
- *         schema:
- *            $ref: '#/definitions/User'
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *           examples:
+ *              editor:
+ *                value:
+ *                  email: editor@a.com
+ *                  password: "123456"
+ *                  role: editor
+ *              finance:
+ *                value:
+ *                  email: finance@a.com
+ *                  password: "123456"
+ *                  role: finance
+ *              google:
+ *                value:
+ *                  email: finance@a.com
+ *                  password: "123456"
+ *                  provider: google
+ *              github:
+ *                value:
+ *                  email: finance@a.com
+ *                  password: "123456"
+ *                  provider: github
  *     responses:
- *       200:
+ *       201:
  *         description: A single project object
- *         schema:
- *              $ref: '#/definitions/User'
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
  *       401:
  *         description: No auth token
  */
 route.post("/", (req, res) => {
-    // console.log('req', req.body);
+    console.log("req", req.body); // eslint-disable-line
     // res.status(200).send('on')
-    Model.create(req.body)
+    const { projection } = req.body;
+    delete req.body.projection;
+    Model.create(req.body, projection)
         .then((entity) => {
-            res.status(200).json(entity);
+            res.status(201).json(entity);
         })
         .catch((err) => {
             res.status(500).send(err.message);
@@ -150,8 +191,8 @@ route.post("/", (req, res) => {
  *   delete:
  *     tags:
  *       - Service1
- *     name: Delete user by id
- *     summary: Delete user information
+ *     name: Delete service1 by id
+ *     summary: Delete service1 information
  *     security:
  *       - bearerAuth: []
  *     consumes:
@@ -166,12 +207,68 @@ route.post("/", (req, res) => {
  *         required:
  *           - id
  *     responses:
- *       200:
+ *       202:
  *         description: A single project object
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: string
  *       401:
  *         description: No auth token
  */
 route.delete("/:id", removeOne(Model));
+
+/**
+ * @swagger
+ * /:
+ *   put:
+ *     tags:
+ *       - Service1
+ *     name: Update
+ *     summary: Update service1 information
+ *     security:
+ *       - bearerAuth: []
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     requestBody:
+ *       description: Optional description in *Markdown*
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *           examples:
+ *              editor:
+ *                value:
+ *                  _id: ''
+ *                  role: editor
+ *              finance:
+ *                value:
+ *                  _id: ''
+ *                  role: finance
+ *              google:
+ *                value:
+ *                  email: finance@a.com
+ *                  password: "123456"
+ *                  provider: google
+ *              github:
+ *                value:
+ *                  email: finance@a.com
+ *                  password: "123456"
+ *                  provider: github
+ *     responses:
+ *       200:
+ *         description: A single project object
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       401:
+ *         description: No auth token
+ */
+route.put("/", update(Model));
 // route.delete("/", (req, res) => {
 //     res.status(200).json({
 //         message: "removed many"

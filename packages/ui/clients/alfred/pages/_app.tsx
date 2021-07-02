@@ -3,7 +3,7 @@ import React from "react";
 // import { Provider } from "next-auth/client";
 import Head from "next/head";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { UserProvider } from "@auth0/nextjs-auth0";
+// import { UserProvider } from "@auth0/nextjs-auth0";
 // import * as Sentry from "@sentry/react";
 // import { Integrations } from "@sentry/tracing";
 import { makeStyles } from "@material-ui/core/styles";
@@ -55,8 +55,8 @@ const createClasses = makeStyles((theme) => ({
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
     const classes = createClasses();
 
-    const { user } = pageProps;
-    console.log("user in myApp", user); // eslint-disable-line
+    // const { user } = pageProps;
+    // console.log("user in myApp", user); // eslint-disable-line
     //
     // useEffect(() => {
     //     console.log("useruser", user); // eslint-disable-line
@@ -78,29 +78,23 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
                 />
             </Head>
             {/* breaking build todo */}
-            <UserProvider user={user}>
-                <ThemeProvider>
-                    <>
-                        <CssBaseline />
-                        <Grid container className={classes.container}>
-                            <Sidebar />
-                            <Grid container direction="column" item xs>
-                                <Grid item>
-                                    <Header />
-                                </Grid>
-                                <Grid
-                                    item
-                                    xs
-                                    className={classes.contentContainer}
-                                >
-                                    {/* eslint-disable-next-line */}
-                                    <Component {...pageProps} />
-                                </Grid>
+            <ThemeProvider>
+                <>
+                    <CssBaseline />
+                    <Grid container className={classes.container}>
+                        <Sidebar />
+                        <Grid container direction="column" item xs>
+                            <Grid item>
+                                <Header />
+                            </Grid>
+                            <Grid item xs className={classes.contentContainer}>
+                                {/* eslint-disable-next-line */}
+                                <Component {...pageProps} />
                             </Grid>
                         </Grid>
-                    </>
-                </ThemeProvider>
-            </UserProvider>
+                    </Grid>
+                </>
+            </ThemeProvider>
         </>
     );
 };

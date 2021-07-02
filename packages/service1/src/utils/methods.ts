@@ -49,20 +49,19 @@ const create =
             .then(respondWithResult(res))
             .catch(handleError(res));
 
-const update =
-    (Model: mongoose.Model<Document>) => (req: Request, res: Response) =>
-        Model.findOneAndUpdate(
-            {
-                _id: req.body._id // eslint-disable-line no-underscore-dangle
-            },
-            req.body,
-            {
-                new: true,
-                useFindAndModify: false
-            }
-        )
-            .then(respondWithResult(res))
-            .catch(handleError(res));
+const update = (Model: any) => (req: Request, res: Response) =>
+    Model.findOneAndUpdate(
+        {
+            _id: req.body._id // eslint-disable-line no-underscore-dangle
+        },
+        req.body,
+        {
+            new: true,
+            useFindAndModify: false
+        }
+    )
+        .then(respondWithResult(res))
+        .catch(handleError(res));
 
 export {
     responseId,

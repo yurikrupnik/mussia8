@@ -8,9 +8,6 @@ const nodeExternals = require("webpack-node-externals");
 const GenerateJsonPlugin = require("generate-json-webpack-plugin");
 const NodemonPlugin = require("nodemon-webpack-plugin");
 const SwaggerJSDocWebpackPlugin = require("swagger-jsdoc-webpack-plugin");
-// const CopyPlugin = require("copy-webpack-plugin");
-// const LoadablePlugin = require("@loadable/webpack-plugin");
-// const { ESBuildPlugin } = require("esbuild-loader");
 
 const filename = "server.js";
 const cwd = process.cwd();
@@ -66,7 +63,7 @@ module.exports = (env, argv) => {
             }),
             new SwaggerJSDocWebpackPlugin({
                 swaggerDefinition: {
-                    swagger: "2.0",
+                    openapi: "3.0.1",
                     info: {
                         title: json.name,
                         version: json.version,
@@ -75,9 +72,6 @@ module.exports = (env, argv) => {
                 },
                 apis: ["./src/api/*.ts"]
             }),
-            // new CopyPlugin({
-            //     patterns: [{ from: path.join(cwd, "app.yml") }]
-            // }),
             isWatch
                 ? new NodemonPlugin({
                       script: path.resolve(cwd, "dist", filename),

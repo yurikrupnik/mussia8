@@ -74,15 +74,19 @@ const Login = () => {
     // const [session] = useSession();
     // console.log("session", session); // eslint-disable-line
     // console.log("loading", loading);
-    const [user] = useState(""); // Local signed-in state.
+    const [user, setUser] = useState({}); // Local signed-in state.
     const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
 
     // Listen to the Firebase Auth state and set the local state.
     useEffect(() => {
+        console.log("firebase", firebase.auth().tenantId);
         const unregisterAuthObserver = firebase
             .auth()
             .onAuthStateChanged((userr) => {
                 console.log("user", userr);
+                if (userr) {
+                    setUser(userr);
+                }
                 setIsSignedIn(!!userr);
             });
         return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
@@ -110,7 +114,7 @@ const Login = () => {
     }, [isSignedIn]);
 
     // const user = useUser();
-    console.log("user", user); // eslint-disable-line
+    console.log("user state", user); // eslint-disable-line
     console.log("isSignedIn", isSignedIn); // eslint-disable-line
     // const { data, mutate } = useSWR("/api/users", fetcher);
     // console.log("{ data, mutate }", { data, mutate }); // eslint-disable-line

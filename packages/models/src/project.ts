@@ -5,7 +5,8 @@ import {
     Schema,
     SchemaTypeOptions
 } from "mongoose";
-import User from "./user";
+
+import user from "./user";
 
 const dbModel = "project";
 
@@ -46,7 +47,7 @@ export default (m: Mongoose): Mo<ProjectDocument> => {
     > = {
         userId: {
             type: m.Types.ObjectId,
-            ref: User(m)
+            ref: user(m)
         },
         name: {
             type: String,

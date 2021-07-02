@@ -9,7 +9,7 @@ import { validateEmail } from "./utils/validation";
 import { generateHashSync } from "./utils/crypt";
 
 type roles = "editor" | "finance" | "admin" | "crm";
-type providers = "local" | "google";
+type providers = "local" | "google" | "github";
 
 const usersRoles = ["editor", "finance", "admin", "crm"];
 const dbModel = "user";
