@@ -102,53 +102,55 @@
 					<div class="tsd-signature tsd-kind-icon">mock<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">User</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/6fb008e/packages/service1/src/api/model.ts#L50">service1/src/api/model.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/yurikrupnik/mussia8/blob/52b4ee7/packages/service1/src/api/model.ts#L52">service1/src/api/model.ts:52</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>swagger</dt>
-							<dd><p>definitions:
+							<dd><p>components:
+									schemas:
 									Provider:
 									type: string
 									default: local
 									enum:
 									- local
 									- google
+									- github
 									Role:
 									type: string
 									enum: [editor, finance, admin, crm]
 								default: admin</p>
-								<pre><code><span style="color: #000000"> User:</span>
-<span style="color: #000000">   properties:</span>
-<span style="color: #000000">     _id:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">     isActive:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">boolean</span>
-<span style="color: #000000">         </span><span style="color: #AF00DB">default</span><span style="color: #000000">: </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">     email:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         required: </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">     firstName:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">     lastName:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">     password:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         required: </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">     creditCardNumber:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         </span><span style="color: #AF00DB">default</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;&#039;</span>
-<span style="color: #000000">     provider:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         schema:</span>
-<span style="color: #000000">             $ref: </span><span style="color: #A31515">&#039;#/definitions/Provider&#039;</span>
-<span style="color: #000000">     token:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">     role:</span>
-<span style="color: #000000">         type: </span><span style="color: #001080">string</span>
-<span style="color: #000000">         schema:</span>
-<span style="color: #000000">             $ref: </span><span style="color: #A31515">&#039;#/definitions/Role&#039;</span>
+								<pre><code><span style="color: #000000">  User:</span>
+<span style="color: #000000">    properties:</span>
+<span style="color: #000000">      _id:</span>
+<span style="color: #000000">          type: </span><span style="color: #001080">string</span>
+<span style="color: #000000">      isActive:</span>
+<span style="color: #000000">          type: </span><span style="color: #001080">boolean</span>
+<span style="color: #000000">          </span><span style="color: #AF00DB">default</span><span style="color: #000000">: </span><span style="color: #0000FF">true</span>
+<span style="color: #000000">      email:</span>
+<span style="color: #000000">          type: </span><span style="color: #001080">string</span>
+<span style="color: #000000">          example: </span><span style="color: #001080">ad</span><span style="color: #000000">@</span><span style="color: #001080">ad</span><span style="color: #000000">.</span><span style="color: #001080">com</span>
+<span style="color: #000000">      firstName:</span>
+<span style="color: #000000">          type: </span><span style="color: #001080">string</span>
+<span style="color: #000000">      lastName:</span>
+<span style="color: #000000">          type: </span><span style="color: #001080">string</span>
+<span style="color: #000000">      password:</span>
+<span style="color: #000000">          type: </span><span style="color: #001080">string</span>
+<span style="color: #000000">      creditCardNumber:</span>
+<span style="color: #000000">          type: </span><span style="color: #001080">string</span>
+<span style="color: #000000">          </span><span style="color: #AF00DB">default</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;&#039;</span>
+<span style="color: #000000">      provider:</span>
+<span style="color: #000000">          type: </span><span style="color: #001080">string</span>
+<span style="color: #000000">          example: </span><span style="color: #001080">local</span>
+<span style="color: #000000">          schema:</span>
+<span style="color: #000000">              $ref: </span><span style="color: #A31515">&#039;#/components/schemas/Provider&#039;</span>
+<span style="color: #000000">      token:</span>
+<span style="color: #000000">          type: </span><span style="color: #001080">string</span>
+<span style="color: #000000">      role:</span>
+<span style="color: #000000">          type: </span><span style="color: #001080">string</span>
+<span style="color: #000000">          schema:</span>
+<span style="color: #000000">              $ref: </span><span style="color: #A31515">&#039;#/components/schemas/Role&#039;</span>
 </code></pre>
 							</dd>
 						</dl>
