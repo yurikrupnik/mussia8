@@ -41,7 +41,7 @@ const logo = "";
 const logoBlack = "";
 const Login = () => {
     const [d] = useAuthState(firebase.auth());
-    console.log("d", d?.getIdToken());
+    console.log("d", d?.getIdToken()); // eslint-disable-line
     // const [session] = [{}];
     // const [session] = useSession();
     // console.log("session", session); // eslint-disable-line
