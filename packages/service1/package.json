@@ -1,6 +1,6 @@
 {
   "name": "service1",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "> TODO: description",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/service1#readme",
@@ -32,7 +32,7 @@
     "url": "https://github.com/yurikrupnik/mussia8/issues"
   },
   "dependencies": {
-    "@creativearis/models": "^1.1.2",
+    "@creativearis/models": "^1.1.3",
     "@creativearis/swagger": "^1.1.2",
     "bcrypt": "5.0.1",
     "body-parser": "1.19.0",
