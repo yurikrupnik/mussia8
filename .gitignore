@@ -104,3 +104,4 @@ dist
 .tern-port
 
 packages/ui/clients/**/.env.local
+packages/**/mussia8-firebase.json

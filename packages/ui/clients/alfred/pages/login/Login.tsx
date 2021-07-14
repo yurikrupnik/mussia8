@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Form, Formik } from "formik";
 import axios from "axios";
 // import useSwr from "swr";
@@ -11,6 +11,8 @@ import Typography from "@material-ui/core/Typography";
 // todo check
 // import { Context as Auth } from "../../api/auth/context";
 import Divider from "@material-ui/core/Divider";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollection } from "react-firebase-hooks/firestore";
 // import TextField from "@material-ui/core/TextField";
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
 // import InputAdornment from "@material-ui/core/InputAdornment";
@@ -29,61 +31,51 @@ import { useRouter } from "next/router";
 // import useSWR from "swr";
 // import { useUser } from "@auth0/nextjs-auth0";
 // import { NextPageContext } from "next";
-import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import firebase, { uiConfig } from "../../utils/firebase";
+// import auth from "firebase/auth";
+// import { useAuthUser } from "next-firebase-auth";
 import TextField from "../../components/FormField";
-// import fetcher from "../../src/fetch";
-// import { Context as Projects } from "../../api/projects/context";
-// import { validateEmail } from "../../utils/validation";
-// import loginStyles from "./LoginStyles";
-// import SpinnerPlatform from "../../components/uiComponents/SpinnerPlatform";
-// import { Context as Onboarding } from "../../api/onboarding/context";
-// import { Context as LanguagesTypes } from "../../api/languages/context";
-// import { Context as Currencies } from "../../api/currencies/context";
-
-const config = {
-    apiKey: "AIzaSyDkNplLycBH0qUxIjhTLjcGznie_CyVrOA",
-    authDomain: "mussia8.firebaseapp.com"
-};
-if (!firebase.apps.length) {
-    firebase.initializeApp(config);
-}
-// Configure FirebaseUI.
-const uiConfig = {
-    // Popup signin flow rather than redirect flow.
-    signInFlow: "popup",
-    // We will display Google and Facebook as auth providers.
-    signInOptions: [
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID
-    ],
-    callbacks: {
-        // Avoid redirects after sign-in.
-        signInSuccessWithAuthResult: (a: any) => {
-            console.log("-------------aAA", a);
-            return false;
-        }
-    }
-};
 
 const logo = "";
 const logoBlack = "";
 const Login = () => {
+    const [d] = useAuthState(firebase.auth());
+    console.log("d", d?.getIdToken());
     // const [session] = [{}];
     // const [session] = useSession();
     // console.log("session", session); // eslint-disable-line
     // console.log("loading", loading);
-    const [user, setUser] = useState({}); // Local signed-in state.
-    const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
+    // const [u, loading, error] = useAuthUser(firebase.auth());
 
+    const [user, setUser] = useState({}); // Local signed-in state.
+    // const [localToken, setToken] = useState(""); // Local signed-in state.
+    const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
+    const token = useMemo(() => {
+        if (user) {
+            return firebase.auth().currentUser?.getIdToken();
+        }
+        return "";
+    }, [user]);
+
+    const [pets] = useCollection(firebase.firestore().collection("pets"));
+    const readyPets = useMemo(() => {
+        if (!pets) {
+            return [];
+        }
+        return pets?.docs.map((f) => ({
+            ...f.data(),
+            id: f.id
+        }));
+    }, [pets]);
+    // console.log("votesError", votesError);
+    // console.log("votesLoading", votesLoading);
+    // console.log("readyPets", readyPets);
     // Listen to the Firebase Auth state and set the local state.
     useEffect(() => {
-        console.log("firebase", firebase.auth().tenantId);
         const unregisterAuthObserver = firebase
             .auth()
-            .onAuthStateChanged((userr) => {
-                console.log("user", userr);
+            .onAuthStateChanged(async (userr) => {
                 if (userr) {
                     setUser(userr);
                 }
@@ -92,10 +84,63 @@ const Login = () => {
         return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
     }, []);
 
+    // useEffect(() => {
+    //     const unregisterAuthObserver = firebase.auth().onIdTokenChanged((a) => {
+    //         console.log("onIdTokenChanged", a);
+    //     });
+    //     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
+    // }, [user]);
+
     useEffect(() => {
-        if (isSignedIn) {
+        if (isSignedIn && token) {
+            // console.log("user", user);
+            // console.log("token", token);
+            // console.log("localToken", localToken);
+            // firebase
+            //     .firestore()
+            //     .collection("pets")
+            //     .get()
+            //     .then((res) => {
+            //         // console.log(
+            //         //     "rees.docs",
+            //         //     rees.docs.map((a) => {
+            //         //         console.log("id", a.id);
+            //         //         console.log("data", a.data());
+            //         //     })
+            //         // );
+            //
+            //         console.log("res.docs", res.docs);
+            //         // res.docs[0].id
+            //         axios
+            //             .get("/api/service1", {
+            //                 params: {
+            //                     id: res.docs[0].id
+            //                 },
+            //                 headers: {
+            //                     // eslint-disable-next-line
+            //                     // @ts-ignore
+            //                     Authorization: `Bearer ${token.i}`
+            //                 }
+            //             })
+            //             .then((service1) => {
+            //                 console.log({ service1 });
+            //             })
+            //             .catch((err) => {
+            //                 console.log({ err });
+            //             });
+            //         // rees.docs.map
+            //         // rees.map((ds) => {
+            //         //     console.log("ds", ds.data());
+            //         // });
+            //     });
             axios
-                .get("/gateway/service1")
+                .get("/gateway/service1", {
+                    headers: {
+                        // eslint-disable-next-line
+                        // @ts-ignore
+                        Authorization: `Bearer ${token.i}`
+                    }
+                })
                 .then((service1) => {
                     console.log({ service1 });
                 })
@@ -103,7 +148,13 @@ const Login = () => {
                     console.log({ err });
                 });
             axios
-                .get("/gateway/service2")
+                .get("/gateway/service2", {
+                    headers: {
+                        // eslint-disable-next-line
+                        // @ts-ignore
+                        Authorization: `Bearer ${token.i}`
+                    }
+                })
                 .then((service2) => {
                     console.log({ service2 });
                 })
@@ -111,11 +162,11 @@ const Login = () => {
                     console.log({ err });
                 });
         }
-    }, [isSignedIn]);
+    }, [isSignedIn, token]);
 
     // const user = useUser();
-    console.log("user state", user); // eslint-disable-line
-    console.log("isSignedIn", isSignedIn); // eslint-disable-line
+    // console.log("user state", user); // eslint-disable-line
+    // console.log("isSignedIn", isSignedIn); // eslint-disable-line
     // const { data, mutate } = useSWR("/api/users", fetcher);
     // console.log("{ data, mutate }", { data, mutate }); // eslint-disable-line
     // const classes = loginStyles();
@@ -152,6 +203,35 @@ const Login = () => {
         []
     );
 
+    const [url, setUrl] = useState("");
+
+    const handleFileUpload = useCallback(
+        async (e) => {
+            const file = e.target.files[0];
+            // const [metadata] = await firebase
+            //     .storage()
+            //     .bucket("mussia8.appspot.com")
+            //     .getMetadata();
+
+            // console.log("metadata", metadata);
+            const ref = firebase.storage().ref(file.name);
+            // ref.getMetadata().then((meta) => {
+            //     console.log("meta", meta);
+            // });
+            ref.put(file).then(() => {
+                ref.getDownloadURL()
+                    .then((r) => {
+                        setUrl(r);
+                        console.log("r", r);
+                    })
+                    .catch((err) => {
+                        console.log("err", err);
+                    });
+            });
+        },
+        [token]
+    );
+
     return (
         <Grid
             container
@@ -161,6 +241,9 @@ const Login = () => {
             justify="center"
             alignItems="center"
         >
+            <Grid>
+                <img src={url} alt="" />
+            </Grid>
             <Grid item xs={12}>
                 <Hidden smDown>
                     <img src={logo} alt="logo" />
@@ -171,10 +254,22 @@ const Login = () => {
             </Grid>
             <h1>My App</h1>
             <p>Please sign-in:</p>
-            <StyledFirebaseAuth
-                uiConfig={uiConfig}
-                firebaseAuth={firebase.auth()}
-            />
+            {readyPets.map((pet) => (
+                <Grid container key={pet.id}>
+                    <Grid item xs={3}>
+                        {pet.id}
+                    </Grid>
+                </Grid>
+            ))}
+            <Grid xs={12} item>
+                <StyledFirebaseAuth
+                    uiConfig={uiConfig}
+                    firebaseAuth={firebase.auth()}
+                />
+            </Grid>
+            <Grid>
+                <input type="file" onChange={handleFileUpload} />
+            </Grid>
             <Grid
                 container
                 item

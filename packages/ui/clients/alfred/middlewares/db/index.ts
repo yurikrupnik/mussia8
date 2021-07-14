@@ -10,14 +10,13 @@ async function connectDb(
 ) {
     console.log("process.env.MONGODB_URIf", process.env.MONGODB_URI); // eslint-disable-line
     console.log("process.env.VERCEL_URL", process.env.VERCEL_URL); // eslint-disable-line
-    console.log("process.env.VERCEL_GIT_REPO_SLUG", process.env.VERCEL_GIT_REPO_SLUG); // eslint-disable-line
     if (connection.isConnected) {
         console.log("Using existing connection"); // eslint-disable-line
         return next();
     }
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const db = await mongoose.connect(process.env.MONGODB_URI, {
+    const db = await mongoose.connect(process.env.DB_URL, {
         useNewUrlParser: true
         // useCreateIndex: false,
         // useFindAndModify: false,

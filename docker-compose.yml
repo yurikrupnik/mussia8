@@ -80,8 +80,8 @@ services:
         container_name: service2
         environment:
             - PORT=5001
-            - DB_USER=yurikrupnik
-            - DB_PASSWORD=T4eXKj1RBI4VnszC
+#            - DB_USER=yurikrupnik
+#            - DB_PASSWORD=T4eXKj1RBI4VnszC
 #            - DB_URL=@cluster0.rdmew.mongodb.net/
             - DB_URL=mongodb://db/mussia8
         ports:
