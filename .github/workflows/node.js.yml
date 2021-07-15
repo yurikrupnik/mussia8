@@ -31,7 +31,6 @@ jobs:
 #          always-auth: true
           node-version: '14.x'
           registry-url: https://registry.npmjs.org/
-#          scope: '@perimeter81'
 
 #      - name: Cache node modules
 #        uses: actions/cache@v2
