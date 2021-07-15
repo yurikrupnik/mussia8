@@ -83,7 +83,7 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker
       - name: GCP deploy
-        run: docker-compose -f docker-compose-lerna.yml build
+        run: docker-compose -f docker-compose.lerna.yml build
 #        run: npm run deploy
 #        if: github.ref != 'refs/heads/main'
 #        env:
