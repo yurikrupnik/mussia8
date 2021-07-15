@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2021-07-15)
+
+**Note:** Version bump only for package batman
+
+
+
+
+
 ## [1.1.4-dev.0](https://github.com/yurikrupnik/mussia8/compare/batman@1.1.3...batman@1.1.4-dev.0) (2021-07-14)
 
 **Note:** Version bump only for package batman
