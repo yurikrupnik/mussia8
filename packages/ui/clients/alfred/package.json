@@ -40,7 +40,7 @@
     "bcrypt": "5.0.1",
     "contentful": "8.4.2",
     "cookie-parser": "1.4.5",
-    "firebase": "8.7.0",
+    "firebase": "8.7.1",
     "firebase-admin": "9.10.0",
     "formik": "2.2.9",
     "helmet": "4.6.0",
@@ -62,7 +62,7 @@
     "@testing-library/react": "12.0.0",
     "@types/bcrypt": "5.0.0",
     "@types/cookie-parser": "1.4.2",
-    "@types/morgan": "1.9.2",
+    "@types/morgan": "1.9.3",
     "rimraf": "3.0.2",
     "typescript": "4.3.4"
   },
