@@ -35,9 +35,5 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: GCP deploy
-        run: npm run deploy
-        if: github.ref != 'refs/heads/main'
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - run: docker-compose -f docker-compose.lerna.yml build
+      - run: docker push gcr.io/mussia8/lerna
