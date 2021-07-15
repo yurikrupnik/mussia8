@@ -1,8 +1,11 @@
 # This workflow checks lint and tsc on push and pr to main, also caching dependencies
 
-name: Node.js CI versions
+name: Node.js Versions
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build-versions:
@@ -45,5 +48,3 @@ jobs:
         run: npm run test
       - name: Build
         run: npm run build
-      - uses: nelonoel/branch-name@v1.0.1
-      - run: git status
