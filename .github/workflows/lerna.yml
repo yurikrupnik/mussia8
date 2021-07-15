@@ -7,7 +7,7 @@ on:
       - "package.json"
 
 jobs:
-  billing-check:
+  build-lerna-image:
     runs-on:
       ubuntu-latest
     env:
@@ -35,5 +35,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - run: ls -a
-      - run: echo create image and deploy to dcp
+      - name: GCP deploy
+        run: npm run deploy
+        if: github.ref != 'refs/heads/main'
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
