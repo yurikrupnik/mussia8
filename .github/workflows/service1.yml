@@ -25,23 +25,17 @@ jobs:
             - uses: actions/checkout@v2
               with:
                   fetch-depth: "0"
+            - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v2
+            - name: Set up Cloud SDK
+              uses: google-github-actions/setup-gcloud@master
               with:
-                  #          always-auth: true
-                  node-version: "14.x"
-                  registry-url: https://registry.npmjs.org/
-
-            - name: Cache node modules
-              uses: actions/cache@v2
+                  project_id: mussia8
+                  service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+            - run: |-
+                gcloud --quiet auth configure-docker
+            - name: GCP deploy
+              run: npm run deploy -- -- scope=service1
               env:
-                  cache-name: cache-node-modules
-              with:
-                  path: ~/.npm
-                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-build-${{ env.cache-name }}-
-                      ${{ runner.os }}-build-
-                      ${{ runner.os }}-
-            - run: ls -a
+                  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+                  NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

@@ -1,7 +1,7 @@
 {
   "name": "service1",
   "version": "2.0.3",
-  "description": "> TODO: description",
+  "description": "Service1 users db",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/service1#readme",
   "license": "ISC",
