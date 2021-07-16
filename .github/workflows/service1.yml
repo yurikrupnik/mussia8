@@ -29,8 +29,8 @@ jobs:
                   service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
             - run: |-
                 gcloud --quiet auth configure-docker
-            - name: GCP deploy
-              run: npm run deploy -- -- scope=service1
-              env:
-                  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-                  NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+#            - name: GCP deploy
+#              run: npm run deploy -- -- scope=service1
+#              env:
+#                  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+#                  NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
