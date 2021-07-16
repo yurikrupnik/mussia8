@@ -33,9 +33,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
-      - name: Lerna bootstrap
-        if: ${{ github.event.inputs.bootstrap }} == 'bootstrap'
-        run: npm run bootstrap
+#      - name: Lerna bootstrap
+#        if: ${{ github.event.inputs.bootstrap }} == 'bootstrap'
+#        run: npm run bootstrap
       - name: Tsc
         run: npm run tsc -- --${{ github.event.inputs.since }}
 
