@@ -16,12 +16,12 @@ docker push $gc_image
 
 #  --no-traffic \
 #  --tag=tag1 \
-#gcloud run deploy $npm_package_name \
-#  --image $gc_image \
-#  --platform managed \
-#  --allow-unauthenticated \
-#  --region europe-central2 \
-#  --port $npm_package_config_port
+gcloud run deploy $npm_package_name \
+  --image $gc_image \
+  --platform managed \
+  --allow-unauthenticated \
+  --region europe-central2 \
+  --port $npm_package_config_port
 
 #
 #gcloud run services update-traffic $npm_package_name --platform=managed --to-latest --region europe-central2
