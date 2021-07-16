@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4-devs.0](https://github.com/yurikrupnik/mussia8/compare/alfred@2.0.3...alfred@2.0.4-devs.0) (2021-07-16)
+
+**Note:** Version bump only for package alfred
+
+
+
+
+
 ## [2.0.3](https://github.com/yurikrupnik/mussia8/compare/alfred@2.0.2...alfred@2.0.3) (2021-07-15)
 
 **Note:** Version bump only for package alfred
