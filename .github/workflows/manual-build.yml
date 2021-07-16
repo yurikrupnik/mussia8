@@ -10,8 +10,10 @@ on:
         description: 'Lerna since flag'
         required: false
         default: ''
-#      tags:
-#        description: 'Test scenario tags'
+      bootstrap:
+        description: 'Add lerna bootstrap command'
+        required: false
+        default: ''
 
 jobs:
   manual-build:
@@ -31,6 +33,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
+      - name: Lerna bootstrap
+        if: ${{ github.event.inputs.bootstrap }} == 'bootstrap'
+        run: npm run bootstrap
       - name: Tsc
         run: npm run tsc -- --${{ github.event.inputs.since }}
 
@@ -41,38 +46,4 @@ jobs:
         run: npm run test -- --${{ github.event.inputs.since }}
       - name: Build
         run: npm run build -- --${{ github.event.inputs.since }}
-#        run: npm run npm-publish
-#        env:
-#          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-#          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
-#   publish-npm:
-#     needs: build
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/setup-node@v2
-#         with:
-#           node-version: 14
-#           registry-url: https://registry.npmjs.org/
-#       - run: npm ci
-#       - run: npm publish
-#         env:
-#           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-
-#   publish-gpr:
-#     needs: build
-#     runs-on: ubuntu-latest
-#     permissions:
-#       contents: read
-#       packages: write
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/setup-node@v2
-#         with:
-#           node-version: 14
-#           registry-url: https://npm.pkg.github.com/
-#       - run: npm ci
-#       - run: npm publish
-#         env:
-#           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

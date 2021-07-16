@@ -6,7 +6,7 @@ set -eo pipefail
 echo $TYPE
 echo stam
 
-if [[ "$BRANCH_NAME" = "main" ]];
+if [[ "$BRANCH_NAME" = "dev" ]];
 then
   npx lerna publish $TYPE --yes --no-push --conventional-commits
 else
