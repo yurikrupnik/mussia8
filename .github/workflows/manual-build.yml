@@ -21,26 +21,26 @@ jobs:
       NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      with:
-        fetch-depth: "0"
-    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-    - run: git config --global user.email krupnik.yuri@gmail.com && git config --global user.name yurikrupnik
-    - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
-    - name: Install dependencies
-      run: npm ci
-      env:
-        NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        with:
+          fetch-depth: "0"
+      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      - run: git config --global user.email krupnik.yuri@gmail.com && git config --global user.name yurikrupnik
+      - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
-    - name: Tsc
-      run: npm run tsc -- --${{ github.event.inputs.since }}
+      - name: Tsc
+        run: npm run tsc -- --${{ github.event.inputs.since }}
 
-    - name: Lint
-      run: npm run lint -- --${{ github.event.inputs.since }}
+      - name: Lint
+        run: npm run lint -- --${{ github.event.inputs.since }}
 
-    - name: Unit tests
-      run: npm run test -- --${{ github.event.inputs.since }}
-    - name: Build
-      run: npm run build -- --${{ github.event.inputs.since }}
+      - name: Unit tests
+        run: npm run test -- --${{ github.event.inputs.since }}
+      - name: Build
+        run: npm run build -- --${{ github.event.inputs.since }}
 #        run: npm run npm-publish
 #        env:
 #          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
