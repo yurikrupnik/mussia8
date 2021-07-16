@@ -1,7 +1,7 @@
 {
   "name": "mussia8",
   "version": "1.0.0",
-  "description": "Mussia8 base project monorepo poc for api gateway and more",
+  "description": "Mussia8 base project monorepo poc for api gateway and more!",
   "main": "index.js",
   "scripts": {
     "postinstall": "lerna exec --parallel -- npm i",

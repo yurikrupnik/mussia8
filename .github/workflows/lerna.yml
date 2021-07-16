@@ -35,5 +35,12 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: mussia8
+          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      - run: |-
+          gcloud --quiet auth configure-docker
       - run: docker-compose -f docker-compose.lerna.yml build
       - run: docker push gcr.io/mussia8/lerna
