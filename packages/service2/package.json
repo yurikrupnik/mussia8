@@ -1,6 +1,6 @@
 {
   "name": "service2",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Service2 change",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/service2#readme",
@@ -33,7 +33,7 @@
     "url": "https://github.com/yurikrupnik/mussia8/issues"
   },
   "dependencies": {
-    "@creativearis/models": "^3.1.0",
+    "@creativearis/models": "^3.1.1",
     "@creativearis/swagger": "^3.1.0",
     "bcrypt": "5.0.1",
     "body-parser": "1.19.0",
