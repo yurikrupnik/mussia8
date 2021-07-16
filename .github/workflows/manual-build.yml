@@ -1,0 +1,78 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+
+name: Manuall npm build
+
+on:
+  workflow_dispatch:
+    inputs:
+      since:
+        description: 'Lerna since flag'
+        required: false
+        default: ''
+#      tags:
+#        description: 'Test scenario tags'
+
+jobs:
+  manual-build:
+    runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      with:
+        fetch-depth: "0"
+    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+    - run: git config --global user.email krupnik.yuri@gmail.com && git config --global user.name yurikrupnik
+    - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+    - name: Install dependencies
+      run: npm ci
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+    - name: Tsc
+      run: npm run tsc -- --${{ github.event.inputs.since }}
+
+    - name: Lint
+      run: npm run lint -- --${{ github.event.inputs.since }}
+
+    - name: Unit tests
+      run: npm run test -- --${{ github.event.inputs.since }}
+    - name: Build
+      run: npm run build -- --${{ github.event.inputs.since }}
+#        run: npm run npm-publish
+#        env:
+#          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+#          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+#   publish-npm:
+#     needs: build
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: actions/setup-node@v2
+#         with:
+#           node-version: 14
+#           registry-url: https://registry.npmjs.org/
+#       - run: npm ci
+#       - run: npm publish
+#         env:
+#           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+
+#   publish-gpr:
+#     needs: build
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: read
+#       packages: write
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: actions/setup-node@v2
+#         with:
+#           node-version: 14
+#           registry-url: https://npm.pkg.github.com/
+#       - run: npm ci
+#       - run: npm publish
+#         env:
+#           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
