@@ -1,3 +1,4 @@
+# Deploys to gsc cloud run on change to service2
 name: Service2
 on:
     push:
@@ -5,43 +6,31 @@ on:
             - main
         paths:
             - "packages/service2/**"
-#            - "packages/ui/clients/**"
-#            - "packages/ui/components/**"
 
 jobs:
-    billing-check:
+    gcp-deploy:
         runs-on:
             ubuntu-latest
-
-            #    strategy:
-            #      matrix:
-            #        node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases
         env:
             NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-            #      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         steps:
             - uses: actions/checkout@v2
               with:
                   fetch-depth: "0"
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v2
+            - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+            - uses: actions/setup-node@v2
               with:
-                  #          always-auth: true
-                  node-version: "14.x"
-                  registry-url: https://registry.npmjs.org/
-
-            - name: Cache node modules
-              uses: actions/cache@v2
+                  node-version: 14
+            - name: Set up Cloud SDK
+              uses: google-github-actions/setup-gcloud@master
+              with:
+                  project_id: mussia8
+                  service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+            - run: |-
+                  gcloud --quiet auth configure-docker
+            - name: GCP deploy
+              run: npm run deploy -- -- scope=service2
               env:
-                  cache-name: cache-node-modules
-              with:
-                  path: ~/.npm
-                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-build-${{ env.cache-name }}-
-                      ${{ runner.os }}-build-
-                      ${{ runner.os }}-
-            - run: ls -a
+                  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+                  NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

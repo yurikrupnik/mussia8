@@ -27,7 +27,7 @@
     "build": "run-p build:code",
     "build:code": "webpack --config=../../webpack.config.server.js --color",
     "tsc": "tsc",
-    "deploys": "bash ../../scripts/deploy-to-cloud-run.sh"
+    "deploy": "bash ../../scripts/deploy-to-cloud-run.sh"
   },
   "bugs": {
     "url": "https://github.com/yurikrupnik/mussia8/issues"
