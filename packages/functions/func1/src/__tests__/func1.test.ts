@@ -2,9 +2,9 @@
 // // const sinon = require('sinon');
 // // const uuid = require('uuid');
 // import { Request, Response } from "express";
-import request from "supertest";
-// const { func2 } = require("../index");
-import { func1 } from "../index";
+// import request from "supertest";
+// // const { func2 } = require("../index");
+// import { func1 } from "../index";
 //
 it("should ", () => {
     expect(1).toBe(1);
@@ -12,30 +12,30 @@ it("should ", () => {
 // function chainObject(this: never) {
 //     return this;
 // }
-describe("GET /fun1", () => {
-    it("responds with json", (done) => {
-        request(func1)
-            .get("/fun1")
-            .set("Accept", "application/json")
-            .expect("Content-Type", /json/)
-            .expect(200)
-            .then((response) => {
-                console.log("response", response.body);
-                // assert(response.body.email, "foo@bar.com");
-                done();
-            });
-    });
-});
+// describe("GET /fun1", () => {
+//     it("responds with json", (done) => {
+//         request(func1)
+//             .get("/fun1")
+//             .set("Accept", "application/json")
+//             .expect("Content-Type", /json/)
+//             .expect(200)
+//             .then((response) => {
+//                 console.log("response", response.body);
+//                 // assert(response.body.email, "foo@bar.com");
+//                 done();
+//             });
+//     });
+// });
 
-describe("GET /dam", () => {
-    it("responds with json", (done) => {
-        request(func1)
-            .get("/dam")
-            .set("Accept", "application/json")
-            .expect("Content-Type", /json/)
-            .expect(200, done);
-    });
-});
+// describe("GET /dam", () => {
+//     it("responds with json", (done) => {
+//         request(func1)
+//             .get("/dam")
+//             .set("Accept", "application/json")
+//             .expect("Content-Type", /json/)
+//             .expect(200, done);
+//     });
+// });
 //
 // // todo fix - fails
 // // describe("GET /swagger", () => {
@@ -51,16 +51,16 @@ describe("GET /dam", () => {
 // //     });
 // // });
 //
-describe("GET /doc", () => {
-    it("responds with html", (done) => {
-        request(func1)
-            .get("/doc/")
-            .set("Accept", "text/html")
-            .expect("Content-Type", /html/)
-
-            .expect(200, done);
-    });
-});
+// describe("GET /doc", () => {
+//     it("responds with html", (done) => {
+//         request(func1)
+//             .get("/doc/")
+//             .set("Accept", "text/html")
+//             .expect("Content-Type", /html/)
+//
+//             .expect(200, done);
+//     });
+// });
 
 // it("func1 test", () => {
 //     //     // Mock ExpressJS 'req' and 'res' parameters
