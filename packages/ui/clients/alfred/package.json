@@ -1,6 +1,6 @@
 {
   "name": "alfred",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Generic application for inner user base on firebase auth",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/alfred#readme",
