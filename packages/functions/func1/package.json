@@ -40,7 +40,7 @@
     "url": "https://github.com/yurikrupnik/mussia8/issues"
   },
   "dependencies": {
-    "@google-cloud/tasks": "2.3.5",
+    "@google-cloud/tasks": "2.3.6",
     "axios": "0.21.1",
     "express": "4.17.1",
     "swagger-ui-express": "4.1.6"
