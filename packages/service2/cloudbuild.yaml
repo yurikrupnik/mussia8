@@ -33,7 +33,7 @@ substitutions:
     _GCR_HOSTNAME: eu.gcr.io
     _PLATFORM: managed
     _SERVICE_NAME: service2
-    _DEPLOY_REGION: europe-central2
+    _DEPLOY_REGION: europe-west6
 
 images:
     - "$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA"

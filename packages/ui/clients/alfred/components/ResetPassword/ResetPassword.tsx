@@ -77,7 +77,7 @@ const ResetPassword = () => {
             item
             xs={12}
             direction="row"
-            justify="center"
+            justifyContent="center"
             alignItems="center"
         >
             {/*{openInfo && <DialogPasswordInfo open={openInfo} data={infoDialogData} toggleOpen={setOpenInfo} />}*/}
@@ -89,7 +89,7 @@ const ResetPassword = () => {
                 item
                 xs={10}
                 direction="row"
-                justify="center"
+                justifyContent="center"
                 alignItems="center"
             >
                 Hello

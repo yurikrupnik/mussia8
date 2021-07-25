@@ -6,6 +6,7 @@ set -e
 gcloud functions deploy $npm_package_name \
   --runtime nodejs$npm_package_engines_node \
   --trigger-http \
+  --region europe-west6 \
   --allow-unauthenticated \
   --entry-point=$npm_package_name \
   --source=dist \

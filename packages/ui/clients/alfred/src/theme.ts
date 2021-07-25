@@ -1,4 +1,4 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 import createPalette from "@material-ui/core/styles/createPalette";
 import createSpacing from "@material-ui/core/styles/createSpacing";
 import createTypography from "@material-ui/core/styles/createTypography";
@@ -216,7 +216,7 @@ const containedSecondaryActive = {
     color: palette.info[600]
 };
 
-const theme = createMuiTheme({
+const theme = createTheme({
     typography,
     palette,
     spacing,

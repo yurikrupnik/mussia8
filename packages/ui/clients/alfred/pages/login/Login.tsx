@@ -238,7 +238,7 @@ const Login = () => {
             item
             xs={12}
             direction="row"
-            justify="center"
+            justifyContent="center"
             alignItems="center"
         >
             <Grid>
@@ -276,7 +276,7 @@ const Login = () => {
                 sm={10}
                 xs={12}
                 direction="row"
-                justify="center"
+                justifyContent="center"
                 alignItems="center"
             >
                 <Formik
@@ -298,7 +298,7 @@ const Login = () => {
                                 sm={8}
                                 xs={12}
                                 direction="row"
-                                justify="center"
+                                justifyContent="center"
                                 alignItems="center"
                             >
                                 <Form>
@@ -307,7 +307,7 @@ const Login = () => {
                                         item
                                         xs={12}
                                         direction="row"
-                                        justify="center"
+                                        justifyContent="center"
                                         alignItems="center"
                                     >
                                         <Grid item xs={12}>
@@ -354,7 +354,7 @@ const Login = () => {
                                             <Grid
                                                 container
                                                 direction="row"
-                                                justify="center"
+                                                justifyContent="center"
                                                 alignItems="center"
                                             >
                                                 <Grid item xs={5}>
@@ -408,7 +408,7 @@ const Login = () => {
                                                 sm={6}
                                                 xs={12}
                                                 container
-                                                justify="flex-end"
+                                                justifyContent="flex-end"
                                             >
                                                 <Button disabled={loading}>
                                                     Forgot Password

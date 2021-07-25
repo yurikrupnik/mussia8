@@ -87,3 +87,35 @@ services:
         ports:
             - 5001:5001
         command: npm run start
+
+    service3:
+        image: gcr.io/mussia8/service3
+        build:
+            context: packages/service3
+            dockerfile: Dockerfile
+            args:
+                - modulePath=/packages/service3
+        container_name: service3
+        environment:
+            - PORT=5002
+            #            - DB_USER=yurikrupnik
+            #            - DB_PASSWORD=T4eXKj1RBI4VnszC
+            #            - DB_URL=@cluster0.rdmew.mongodb.net/
+            - DB_URL=mongodb://db/mussia8
+        ports:
+            - 5002:5002
+        command: npm run start
+    lab-report:
+        image: gcr.io/mussia8/lab-report
+        build:
+            context: packages/lab-report
+            dockerfile: Dockerfile
+            args:
+                - modulePath=/packages/lab-report
+        container_name: lab-report
+        environment:
+            - PORT=5003
+            - DB_URL=mongodb://db/mussia8
+        ports:
+            - 5003:5003
+        command: npm run start
