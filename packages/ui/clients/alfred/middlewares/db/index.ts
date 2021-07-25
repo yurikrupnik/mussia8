@@ -8,7 +8,7 @@ async function connectDb(
     res: NextApiResponse,
     next: () => void
 ) {
-    console.log("process.env.MONGODB_URIf", process.env.MONGODB_URI); // eslint-disable-line
+    console.log("process.env.DB_URL", process.env.DB_URL); // eslint-disable-line
     console.log("process.env.VERCEL_URL", process.env.VERCEL_URL); // eslint-disable-line
     if (connection.isConnected) {
         console.log("Using existing connection"); // eslint-disable-line

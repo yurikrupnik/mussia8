@@ -1,9 +1,23 @@
 import nc from "next-connect";
 // import { NextApiRequest, NextApiResponse } from "next";
+import { PubSub } from "@google-cloud/pubsub";
+import { NextApiRequest, NextApiResponse } from "next";
 import { all } from "../../../middlewares";
 import { list } from "../../../utils/methods";
 
 import Model from "../../../models/User";
+
+const pubsub = new PubSub();
+
+async function publishPubSubMessage(topic: string, message: string) {
+    const buffer = Buffer.from(JSON.stringify(message));
+    try {
+        const ss = await pubsub.topic(topic).publish(buffer);
+    } catch (err) {
+        console.log("eer", err);
+    }
+    // console.log({ ss }); // eslint-disable-line
+}
 
 const handler = nc().use(all);
 
@@ -19,7 +33,18 @@ const handler = nc().use(all);
 //         });
 // }
 
-handler.get(list(Model));
+handler.get(async (req: NextApiRequest, res: NextApiResponse, next) => {
+    await publishPubSubMessage(
+        "requests-report",
+        JSON.stringify({
+            // query: req.query,
+            // params: {},
+            url: req.url,
+            method: req.method
+        })
+    );
+    return next;
+}, list(Model));
 
 // handler.get(list(Model));
 // handler.post(create(Model));

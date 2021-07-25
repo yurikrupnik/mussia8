@@ -7,7 +7,6 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-
 // todo check
 // import { Context as Auth } from "../../api/auth/context";
 import Divider from "@material-ui/core/Divider";
@@ -93,6 +92,9 @@ const Login = () => {
 
     useEffect(() => {
         if (isSignedIn && token) {
+            axios.get("/api/users").then((res) => {
+                console.log("users", res);
+            });
             // console.log("user", user);
             // console.log("token", token);
             // console.log("localToken", localToken);

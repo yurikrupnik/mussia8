@@ -4,7 +4,7 @@ import { PubSub } from "@google-cloud/pubsub";
 
 const pubsub = new PubSub();
 
-async function publishPubSubMessage(topic: string, message: any) {
+async function publishPubSubMessage(topic: string, message: string) {
     const buffer = Buffer.from(JSON.stringify(message));
     const ss = await pubsub.topic(topic).publish(buffer);
     console.log({ ss }); // eslint-disable-line
@@ -73,7 +73,8 @@ const route = Router();
  */
 route.post("/", async (req, res) => {
     console.log("req", req.body); // eslint-disable-line
-    await publishPubSubMessage("new-lab-report", req.body);
+    console.log("JSON.stringify(req.body)", JSON.stringify(req.body)); // eslint-disable-line
+    await publishPubSubMessage("new-lab-report", JSON.stringify(req.body));
     res.status(204).send();
 });
 
