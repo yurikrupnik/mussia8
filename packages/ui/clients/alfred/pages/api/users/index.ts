@@ -12,9 +12,9 @@ const pubsub = new PubSub();
 async function publishPubSubMessage(topic: string, message: string) {
     const buffer = Buffer.from(JSON.stringify(message));
     try {
-        const ss = await pubsub.topic(topic).publish(buffer);
+        await pubsub.topic(topic).publish(buffer);
     } catch (err) {
-        console.log("eer", err);
+        console.log("eer", err); // eslint-disable-line
     }
     // console.log({ ss }); // eslint-disable-line
 }
