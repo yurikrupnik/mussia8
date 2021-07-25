@@ -255,7 +255,7 @@ const Login = () => {
                 </Hidden>
             </Grid>
             <h1>My App</h1>
-            <p>Please sign-in:</p>
+            <p>Please sign-in </p>
             {readyPets.map((pet) => (
                 <Grid container key={pet.id}>
                     <Grid item xs={3}>
