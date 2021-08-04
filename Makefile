@@ -89,3 +89,6 @@ create-swagger-1:
 	npx openapi-typescript "openapi2-run.yaml" --output schemas.ts
 create-swagger-2:
 	npx swagger-typescript-api -p openapi2-run.yaml
+
+test:
+	npm run tsc && npm run lint && npm run test && npm run build
