@@ -72,7 +72,7 @@
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-styleguidist": "11.1.7",
-    "rollup": "2.55.1",
+    "rollup": "2.56.0",
     "rollup-plugin-copy": "3.4.0",
     "rollup-plugin-esbuild": "4.2.3",
     "rollup-plugin-postcss": "4.0.0",
