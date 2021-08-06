@@ -39,9 +39,9 @@
     "connect-mongo": "4.4.1",
     "express": "4.17.1",
     "express-session": "1.17.2",
-    "firebase": "8.8.1",
+    "firebase": "8.9.0",
     "firebase-admin": "9.11.0",
-    "mongoose": "5.13.4"
+    "mongoose": "5.13.5"
   },
   "devDependencies": {
     "@types/bcrypt": "5.0.0",
