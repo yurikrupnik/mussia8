@@ -9,7 +9,7 @@ async function publishPubSubMessage(topic: string, message: any) {
     await pubsub.topic(topic).publish(buffer);
 }
 
-const subscription = pubsub.subscription("new-lab-report-sub");
+const subscription = pubsub.subscription("new-lab-report");
 
 subscription.on("event", (message) => {
     console.log("---->>>>>> Received message:", message.data.toString());

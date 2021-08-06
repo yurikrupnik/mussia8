@@ -274,5 +274,8 @@ route.put("/", update(Model));
 //         message: "removed many"
 //     });
 // }); // remove many
-
+route.post("/buss", (req, res) => {
+    console.log("req", req.body);
+    res.status(200).json({ ok: "yes" });
+});
 export default route;

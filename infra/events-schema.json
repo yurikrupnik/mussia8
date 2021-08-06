@@ -1,0 +1,14 @@
+{
+  "type" : "record",
+  "name" : "Avro",
+  "fields" : [
+    {
+      "name" : "stringField",
+      "type" : "string"
+    },
+    {
+      "name" : "intField",
+      "type" : "int"
+    }
+  ]
+}

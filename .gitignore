@@ -103,5 +103,7 @@ dist
 # TernJS port file
 .tern-port
 
+infra/.terraform
+
 packages/ui/clients/**/.env.local
 packages/**/mussia8-firebase.json
