@@ -2,7 +2,7 @@
 
 set -e
 
-gc_image=gcr.io/mussia8/$npm_package_name
+gc_image=gcr.eu/mussia8/$npm_package_name
 
 docker build -t $gc_image . \
   --force-rm \
