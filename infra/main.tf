@@ -7,6 +7,10 @@ terraform {
       version = "3.78.0"
     }
   }
+//  backend "gcs" {
+//    credentials = "terraform-sa-key.json"
+//    bucket = "mussia8-terraform"
+//  }
 }
 
 provider "google" {
