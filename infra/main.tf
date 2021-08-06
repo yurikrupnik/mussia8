@@ -114,20 +114,22 @@ resource "google_storage_bucket" "cold-line" {
 resource "google_pubsub_schema" "events_schema1" {
   name = "events-schema"
   type = "AVRO"
-  definition = jsonencode({
-    "type" : "record",
-    "name" : "Avro",
-    "fields" : [
-      {
-        name : "stringField",
-        type : "string"
-      },
-      {
-        name : "intField",
-        type : "int"
-      }
-    ]
-  })
+  definition = file("./events-schema.json")
+//  definition = jsonencode(file("./events-schema.json"))
+//  definition = jsonencode({
+//    "type" : "record",
+//    "name" : "Avro",
+//    "fields" : [
+//      {
+//        name : "stringField",
+//        type : "string"
+//      },
+//      {
+//        name : "intField",
+//        type : "int"
+//      }
+//    ]
+//  })
 }
 
 resource "google_pubsub_topic" "be_logs" {
@@ -149,7 +151,7 @@ resource "google_pubsub_topic" "dl-be-logs" {
 }
 
 resource "google_pubsub_subscription" "be-logs-sub1" {
-  name  = "pb-storage"
+  name  = "stam-test-subscription"
   topic = google_pubsub_topic.be_logs.name
   labels = {
     type = "be-logs"
@@ -198,7 +200,7 @@ resource "google_dataflow_job" "pubsub_stream" {
   temp_gcs_location = "gs://${var.project}-${var.be-logs-bucket}/temp"
 //  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}"
   enable_streaming_engine = true
-  machine_type = "N1_standard-1"
+//  machine_type = "N1_standard-1" // fails
   parameters = {
     inputTopic="projects/mussia8/topics/be-logs"
     outputDirectory="gs://mussia8/mussia8-be-logs-raw-data/be-logs-avro"
