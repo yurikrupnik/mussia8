@@ -70,12 +70,17 @@ const route = Router();
  *       401:
  *         description: No auth token
  */
-route.post("/", async (req, res) => {
+route.post("/", (req, res) => {
     console.log("req", req.body); // eslint-disable-line
     console.log("JSON.stringify(req.body)", JSON.stringify(req.body)); // eslint-disable-line
-    await publishPubSubMessage("new-lab-report", req.body);
+    publishPubSubMessage("be_logs", req.body)
+        .then(() => {
+            res.status(204).send();
+        })
+        .catch((err) => {
+            res.status(500).send(err);
+        });
     // await publishPubSubMessage("new-lab-report", JSON.stringify(req.body));
-    res.status(204).send();
 });
 
 export default route;

@@ -4,11 +4,13 @@
   "fields" : [
     {
       "name" : "stringField",
-      "type" : "string"
+      "type" : "string",
+      "description": "Testing string field"
     },
     {
       "name" : "intField",
-      "type" : "int"
+      "type" : "int",
+      "description": "Testing int field"
     }
   ]
 }

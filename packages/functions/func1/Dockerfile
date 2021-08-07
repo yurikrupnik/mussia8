@@ -1,4 +1,4 @@
-FROM gcr.io/mussia8/lerna AS builder
+FROM eu.gcr.io/mussia8/lerna AS builder
 
 #ARG distFolder=src
 #ARG modulePath=.

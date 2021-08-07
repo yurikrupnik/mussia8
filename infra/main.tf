@@ -7,10 +7,10 @@ terraform {
       version = "3.78.0"
     }
   }
-//  backend "gcs" {
-//    credentials = "terraform-sa-key.json"
-//    bucket = "mussia8-terraform"
-//  }
+  //  backend "gcs" {
+  //    credentials = "terraform-sa-key.json"
+  //    bucket = "mussia8-terraform"
+  //  }
 }
 
 provider "google" {
@@ -46,136 +46,11 @@ resource "google_service_account" "storage" {
 //}
 
 // Storage start
-resource "google_storage_bucket" "web-site" {
-  name     = "mussia8-website"
-  location = var.location
-  website {
-    main_page_suffix = "index.html"
-    not_found_page   = "404.html"
-  }
-  versioning {
-    enabled = true
-  }
-  //  logging {
-  ////    log_bucket = google_storage_bucket.agent-logs-bucket.provisioner
-  //    log_bucket = "gs://test-shit/ds"
-  //    log_object_prefix = "front-end/"
-  //  }
-}
 
-resource "google_storage_bucket" "be_logs_bucket" {
-  name     = "${var.project}-${var.be-logs-bucket}"
-  location = var.location
-  //  storage_class = ""
-  force_destroy = true
-
-}
-resource "google_storage_bucket" "agent-logs-bucket" {
-  name          = "${var.project}-${var.agent-logs-bucket}"
-  force_destroy = true
-  location      = var.location
-  retention_policy {
-    retention_period = "6000"
-  }
-  //  lifecycle_rule {
-  //    condition {
-  //      age = 30
-  //    }
-  //    action {
-  //      type = "Delete"
-  //    }
-  //  }
-  lifecycle_rule {
-    condition {
-      age = 30
-    }
-    action {
-      type          = "SetStorageClass"
-      storage_class = "NEARLINE"
-    }
-  }
-}
-
-resource "google_storage_bucket" "near-line" {
-  name          = "mussia8-near-line"
-  location      = var.location
-  force_destroy = true
-  storage_class = "NEARLINE"
-}
-resource "google_storage_bucket" "cold-line" {
-  name          = "mussia8-cold-line"
-  location      = var.location
-  force_destroy = true
-  storage_class = "COLDLINE"
-}
 // Storage end
 
 // PubSub start
-resource "google_pubsub_schema" "events_schema1" {
-  name = "events-schema"
-  type = "AVRO"
-  definition = file("./events-schema.json")
-//  definition = jsonencode(file("./events-schema.json"))
-//  definition = jsonencode({
-//    "type" : "record",
-//    "name" : "Avro",
-//    "fields" : [
-//      {
-//        name : "stringField",
-//        type : "string"
-//      },
-//      {
-//        name : "intField",
-//        type : "int"
-//      }
-//    ]
-//  })
-}
 
-resource "google_pubsub_topic" "be_logs" {
-  name = "be-logs"
-  message_storage_policy {
-    allowed_persistence_regions = [
-      var.location,
-    ]
-  }
-  depends_on = [google_pubsub_schema.events_schema1]
-  schema_settings {
-    schema = google_pubsub_schema.events_schema1.id
-    encoding = "JSON"
-  }
-}
-
-resource "google_pubsub_topic" "dl-be-logs" {
-  name = "dl-be-logs"
-}
-
-resource "google_pubsub_subscription" "be-logs-sub1" {
-  name  = "stam-test-subscription"
-  topic = google_pubsub_topic.be_logs.name
-  labels = {
-    type = "be-logs"
-  }
-
-  # 20 minutes
-  message_retention_duration = "1200s"
-  retain_acked_messages      = true
-
-  ack_deadline_seconds = 20
-
-  expiration_policy {
-    ttl = "300000.5s"
-  }
-  retry_policy {
-    minimum_backoff = "10s"
-  }
-
-  enable_message_ordering    = false
-  dead_letter_policy {
-    dead_letter_topic = google_pubsub_topic.dl-be-logs.id
-    max_delivery_attempts = 10
-  }
-}
 // PubSub end
 
 // Dataflow start
@@ -193,23 +68,40 @@ resource "google_pubsub_subscription" "be-logs-sub1" {
 // gs://mussia8/mussia8-be-logs-raw-data/be-logs-avro
 // gcloud dataflow jobs run ps-to-avro-be-logs --gcs-location gs://dataflow-templates-us-central1/latest/Cloud_PubSub_to_Avro --region us-central1 --staging-location gs://mussia8/mussia8-be-logs-raw-data/temp --parameters inputTopic=projects/mussia8/topics/be-logs,outputDirectory=gs://mussia8/mussia8-be-logs-raw-data/be-logs-avro,avroTempDirectory=gs://mussia8/mussia8-be-logs-raw-data/temp
 resource "google_dataflow_job" "pubsub_stream" {
-  name = "tf-test-dataflow-job1"
-  template_gcs_path = "gs://dataflow-templates/latest/Cloud_PubSub_to_Avro"
-//  template_gcs_path = "./Cloud_PubSub_to_Avro"
-//  temp_gcs_location = "gs://mussia8-be-logs-raw-data"
-  temp_gcs_location = "gs://${var.project}-${var.be-logs-bucket}/temp"
-//  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}"
-  enable_streaming_engine = true
-//  machine_type = "N1_standard-1" // fails
+  name              = "ps-to-text-be-logs"
+  template_gcs_path = "gs://dataflow-templates/latest/Cloud_PubSub_to_GCS_Text"
+  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}/temp"
   parameters = {
-    inputTopic="projects/mussia8/topics/be-logs"
-    outputDirectory="gs://mussia8/mussia8-be-logs-raw-data/be-logs-avro"
-    avroTempDirectory="gs://mussia8/mussia8-be-logs-raw-data/temp"
+    inputTopic           = google_pubsub_topic.be_logs.id
+    outputDirectory      = "${google_storage_bucket.be_logs_bucket.url}/text"
+    outputFilenamePrefix = "ps-to-text-be-logs"
   }
-//  transform_name_mapping = {
-//    name = "test_job"
-//    env = "test"
-//  }
+  //  transform_name_mapping = {
+  //    name = "test_job"
+  //    env = "test"
+  //  }
+  on_delete = "cancel"
+}
+
+resource "google_dataflow_job" "pubsub_stream2" {
+  name              = "ps-to-avro-be-logs"
+  template_gcs_path = "gs://dataflow-templates/latest/Cloud_PubSub_to_Avro"
+  //  template_gcs_path = "./Cloud_PubSub_to_Avro"
+  //  temp_gcs_location = "gs://mussia8-be-logs-raw-data"
+//    temp_gcs_location = "gs://${var.project}-${var.be_logs_bucket}/temp"
+  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}/temp"
+  //  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}"
+  //  enable_streaming_engine = true
+  //  machine_type = "N1_standard-1" // fails
+  parameters = {
+    inputTopic        = google_pubsub_topic.be_logs.id
+    outputDirectory   = "${google_storage_bucket.be_logs_bucket.url}/avro"
+    avroTempDirectory = "${google_storage_bucket.be_logs_bucket.url}/temp"
+  }
+  //  transform_name_mapping = {
+  //    name = "test_job"
+  //    env = "test"
+  //  }
   on_delete = "cancel"
 }
 // Dataflow end

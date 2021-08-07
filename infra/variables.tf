@@ -9,10 +9,11 @@ variable "zone" {
   default = "europe-west1-c"
 }
 
-variable "be-logs-bucket" {
+variable "be_logs_bucket" {
   default = "be-logs-raw-data"
 }
-variable "agent-logs-bucket" {
+
+variable "agent_logs_bucket" {
   default = "agent-logs-raw-data"
 }
 

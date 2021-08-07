@@ -1,4 +1,4 @@
-FROM gcr.io/mussia8/lerna
+FROM eu.gcr.io/mussia8/lerna
 ARG port=8080
 ENV PORT=$port
 

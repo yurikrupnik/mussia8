@@ -43,4 +43,4 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker
       - run: docker-compose -f docker-compose.lerna.yml build
-      - run: docker push gcr.io/mussia8/lerna
+      - run: docker push eu.gcr.io/mussia8/lerna
