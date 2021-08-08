@@ -6,7 +6,15 @@ terraform {
       source  = "hashicorp/google"
       version = "3.78.0"
     }
+    null = {
+      source  = "hashicorp/null"
+      version = ">=2.1.2"
+    }
   }
+  //  random = {
+  //    source  = "hashicorp/random"
+  //    version = ">=2.2.1"
+  //  }
   //  backend "gcs" {
   //    credentials = "terraform-sa-key.json"
   //    bucket = "mussia8-terraform"
@@ -45,65 +53,42 @@ resource "google_service_account" "storage" {
 //  type = "BASIC"
 //}
 
-// Storage start
-
-// Storage end
-
-// PubSub start
-
-// PubSub end
-
-// Dataflow start
-//resource "google_dataflow_job" "wordcount" {
-//  name              = "wordcount"
-//  template_gcs_path = "gs://dataflow-templates/latest/Word_Count"
-//  temp_gcs_location = "gs://${var.project}-${var.be-logs-bucket}/temp"
+//resource "google_dataflow_job" "pubsub_stream" {
+//  name              = "ps-to-text-be-logs"
+//  template_gcs_path = "gs://dataflow-templates/latest/Cloud_PubSub_to_GCS_Text"
+//  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}/temp"
 //  parameters = {
-//    inputFile = "gs://dataflow-samples/shakespeare/kinglear.txt"
-//    output = "gs://${var.location}/wordcount/output"
-////    output = google_storage_bucket.be_logs_bucket.id
+//    inputTopic           = google_pubsub_topic.be_logs.id
+//    outputDirectory      = "${google_storage_bucket.be_logs_bucket.url}/text"
+//    outputFilenamePrefix = "ps-to-text-be-logs"
 //  }
+//  //  transform_name_mapping = {
+//  //    name = "test_job"
+//  //    env = "test"
+//  //  }
+//  on_delete = "cancel"
 //}
-
-// gs://mussia8/mussia8-be-logs-raw-data/be-logs-avro
-// gcloud dataflow jobs run ps-to-avro-be-logs --gcs-location gs://dataflow-templates-us-central1/latest/Cloud_PubSub_to_Avro --region us-central1 --staging-location gs://mussia8/mussia8-be-logs-raw-data/temp --parameters inputTopic=projects/mussia8/topics/be-logs,outputDirectory=gs://mussia8/mussia8-be-logs-raw-data/be-logs-avro,avroTempDirectory=gs://mussia8/mussia8-be-logs-raw-data/temp
-resource "google_dataflow_job" "pubsub_stream" {
-  name              = "ps-to-text-be-logs"
-  template_gcs_path = "gs://dataflow-templates/latest/Cloud_PubSub_to_GCS_Text"
-  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}/temp"
-  parameters = {
-    inputTopic           = google_pubsub_topic.be_logs.id
-    outputDirectory      = "${google_storage_bucket.be_logs_bucket.url}/text"
-    outputFilenamePrefix = "ps-to-text-be-logs"
-  }
-  //  transform_name_mapping = {
-  //    name = "test_job"
-  //    env = "test"
-  //  }
-  on_delete = "cancel"
-}
-
-resource "google_dataflow_job" "pubsub_stream2" {
-  name              = "ps-to-avro-be-logs"
-  template_gcs_path = "gs://dataflow-templates/latest/Cloud_PubSub_to_Avro"
-  //  template_gcs_path = "./Cloud_PubSub_to_Avro"
-  //  temp_gcs_location = "gs://mussia8-be-logs-raw-data"
-//    temp_gcs_location = "gs://${var.project}-${var.be_logs_bucket}/temp"
-  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}/temp"
-  //  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}"
-  //  enable_streaming_engine = true
-  //  machine_type = "N1_standard-1" // fails
-  parameters = {
-    inputTopic        = google_pubsub_topic.be_logs.id
-    outputDirectory   = "${google_storage_bucket.be_logs_bucket.url}/avro"
-    avroTempDirectory = "${google_storage_bucket.be_logs_bucket.url}/temp"
-  }
-  //  transform_name_mapping = {
-  //    name = "test_job"
-  //    env = "test"
-  //  }
-  on_delete = "cancel"
-}
+//
+//resource "google_dataflow_job" "pubsub_stream2" {
+//  name              = "ps-to-avro-be-logs"
+//  template_gcs_path = "gs://dataflow-templates/latest/Cloud_PubSub_to_Avro"
+//  //  template_gcs_path = "./Cloud_PubSub_to_Avro"
+//  //  temp_gcs_location = "gs://mussia8-be-logs-raw-data"
+////    temp_gcs_location = "gs://${var.project}-${var.be_logs_bucket}/temp"
+//  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}/temp"
+//  //  enable_streaming_engine = true
+//  //  machine_type = "N1_standard-1" // fails
+//  parameters = {
+//    inputTopic        = google_pubsub_topic.be_logs.id
+//    outputDirectory   = "${google_storage_bucket.be_logs_bucket.url}/avro"
+//    avroTempDirectory = "${google_storage_bucket.be_logs_bucket.url}/temp"
+//  }
+//  //  transform_name_mapping = {
+//  //    name = "test_job"
+//  //    env = "test"
+//  //  }
+//  on_delete = "cancel"
+//}
 // Dataflow end
 //resource "google_dataflow_job" "pubsub_stream" {
 //  name = "tf-test-dataflow-job1"
@@ -120,3 +105,116 @@ resource "google_dataflow_job" "pubsub_stream2" {
 //  }
 //  on_delete = "cancel"
 //}
+
+// functions start
+resource "null_resource" "build" {
+  triggers = {
+    always_run = "${timestamp()}"
+  }
+  provisioner "local-exec" {
+    command = <<-EOF
+      node -v \
+      cd .. \
+      npm i \
+      npm run build -- --scope=pubsub-be-logs --scope=storage-func
+    EOF
+
+    //    environment = var.environment_variables
+  }
+}
+
+data "archive_file" "source_zip" {
+  depends_on  = [null_resource.build]
+  type        = "zip"
+  source_dir  = "storage-func/dist"
+  output_path = "storage-func/dist/source.zip"
+}
+
+resource "google_storage_bucket" "bucket" {
+  name = "${var.project}-test-bucket"
+}
+
+resource "google_storage_bucket_object" "archive" {
+  name   = "source.zip"
+  bucket = google_storage_bucket.bucket.name
+  source = "./pubsub-be-logs/index.zip"
+}
+
+resource "google_storage_bucket_object" "archive1" {
+  name   = "index.zip"
+  bucket = google_storage_bucket.bucket.name
+  source = "./storage-func/index.zip"
+}
+
+//resource "google_cloudfunctions_function" "func2" {
+//  name        = "func2"
+//  description = "My http function"
+//  runtime     = "nodejs14"
+//
+//  depends_on  = [google_storage_bucket_object.archive, google_storage_bucket.bucket]
+//
+//  available_memory_mb = 128
+//  source_archive_bucket = google_storage_bucket.bucket.name
+//  source_archive_object = google_storage_bucket_object.archive1.name
+//  trigger_http = true
+//
+//  timeout     = 60
+//  entry_point = "http"
+//  labels = {
+//    my-label = "my-label-value"
+//  }
+//
+//  environment_variables = {
+//    MY_ENV_VAR = "my-env-var-value"
+//  }
+//}
+
+//resource "google_cloudfunctions_function" "storage-func" {
+//  name        = "storage-func"
+//  description = "My storage function"
+//  runtime     = "nodejs14"
+//
+//  available_memory_mb   = 128
+//  source_archive_bucket = google_storage_bucket.bucket.name
+//  source_archive_object = google_storage_bucket_object.archive.name
+////  trigger_http          = true
+//  event_trigger {
+//    event_type = "google.storage.object.finalize"
+//    resource = google_storage_bucket.be_logs_bucket.name
+////    failure_policy {
+////      retry = true
+////    }
+//  }
+//  timeout               = 60
+//  entry_point           = "storageFunc"
+//  labels = {
+//    my-label = "my-label-value1"
+//  }
+//
+//  environment_variables = {
+//    MY_ENV_VAR = "my-env-var-value"
+//  }
+//}
+//resource "google_cloudfunctions_function" "topic-func" {
+//  name        = "topic-func"
+//  description = "My topic function"
+//  runtime     = "nodejs14"
+//
+//  available_memory_mb   = 128
+//  source_archive_bucket = google_storage_bucket.bucket.name
+//  source_archive_object = google_storage_bucket_object.archive.name
+//  event_trigger {
+//    event_type = "google.pubsub.topic.publish"
+//    resource = google_pubsub_topic.be_logs.id
+//  }
+//  timeout               = 60
+//  entry_point           = "storagePubSub"
+//  labels = {
+//    my-label = "my-label-d"
+//  }
+//
+//  environment_variables = {
+//    MY_ENV_VAR = "my-env-var-ffd"
+//  }
+//}
+// functions end
