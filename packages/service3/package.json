@@ -1,6 +1,6 @@
 {
   "name": "service3",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "> TODO: description",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://yurikrupnik.github.io/mussia8/tree/main/packages/service3#readme",
@@ -32,7 +32,7 @@
     "url": "https://github.com/yurikrupnik/mussia8/issues"
   },
   "dependencies": {
-    "@creativearis/swagger": "^3.1.0",
+    "@creativearis/swagger": "^3.2.0",
     "body-parser": "1.19.0",
     "express": "4.17.1"
   },
