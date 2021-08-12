@@ -47,7 +47,7 @@
     "zip": "zip -r index.zip dist/",
     "build": "run-s build:code zip",
     "predeploy": "npm run build",
-    "deploy": "bash ../../scripts/deploy-to-cloud-functions-infra.sh"
+    "deploys": "bash ../../scripts/deploy-to-cloud-functions-infra.sh"
   },
   "bugs": {
     "url": "https://github.com/yurikrupnik/mussia8/issues"
