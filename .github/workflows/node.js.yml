@@ -65,14 +65,14 @@ jobs:
         run: npm run build -- --since
       - uses: nelonoel/branch-name@v1.0.1
       - run: git status
-#      - run: npx lerna changed
-#      - name: NPN Publish
-#        run: npm run npm-publish
-#        if: github.ref != 'refs/heads/release'
-#        env:
-#          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-#          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-#          TYPE: patch
+      - run: npx lerna changed
+      - name: NPN Publish
+        run: npm run npm-publish
+        if: github.ref != 'refs/heads/release'
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          TYPE: patch
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@master

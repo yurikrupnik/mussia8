@@ -1,4 +1,5 @@
 {
   "packages": ["infra/*","packages/*", "packages/ui/clients/*", "packages/ui/components/*", "packages/services/*", "packages/webclients/*", "packages/functions/*", "packages/models/*"],
-  "version": "independent"
+  "version": "independent",
+  "ignoreChanges": ["packages/*/package-lock.json", "packages/functions/*/package-lock.json", "packages/ui/clients/*/package-lock.json", "packages/ui/components/*/package-lock.json"]
 }

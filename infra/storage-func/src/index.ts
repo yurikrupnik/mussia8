@@ -18,7 +18,7 @@ const storageFunc = (event: any, context: any) => {
     console.log("context", context);
 };
 
-const helloAuth = (event: any, context: any) => {
+const helloAuth = (event: any, context: never) => {
     // The unique id of the user whose auth record changed
     console.log("event", event);
     console.log("context", context);

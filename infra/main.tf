@@ -15,10 +15,10 @@ terraform {
   //    source  = "hashicorp/random"
   //    version = ">=2.2.1"
   //  }
-  //  backend "gcs" {
-  //    credentials = "terraform-sa-key.json"
-  //    bucket = "mussia8-terraform"
-  //  }
+  backend "gcs" {
+    credentials = "terraform-sa-key.json"
+    bucket = "mussia8-terraform"
+  }
 }
 
 provider "google" {
@@ -107,55 +107,99 @@ resource "google_service_account" "storage" {
 //}
 
 // functions start
-resource "null_resource" "build" {
-  triggers = {
-    always_run = "${timestamp()}"
+//resource "null_resource" "build" {
+//  triggers = {
+//    always_run = "${timestamp()}"
+//  }
+//  provisioner "local-exec" {
+//    command = <<-EOF
+//      node -v
+//      cd ..
+//      npm i
+//      npm run build -- --scope=pubsub-be-logs --scope=storage-func
+//    EOF
+//
+//    //    environment = var.environment_variables
+//  }
+//}
+locals {
+  da = "${var.project}-aris"
+  null_data_source ={
+    wait_for_lambda_exporter = {
+      inputs = {
+        lambda_dependency_id = "${null_resource.lambda_dependencies.id}"
+        source_dir           = "${path.module}/storage-func/dist"
+      }
+    }
   }
+
+}
+resource "null_resource" "lambda_dependencies" {
   provisioner "local-exec" {
     command = <<-EOF
-      node -v \
-      cd .. \
-      npm i \
-      npm run build -- --scope=pubsub-be-logs --scope=storage-func
-    EOF
+          node -v
+          cd ..
+          npx lerna exec --parallel --scope=service1 --scope=storage-func -- npm i
+          npm run build -- --scope=pubsub-be-logs --scope=storage-func
+        EOF
+  }
 
-    //    environment = var.environment_variables
+  triggers = {
+//    index = sha256(file("${path.module}/index.js"))
+    package = sha256(file("pubsub-be-logs/package.json"))
+    lock = sha256(file("pubsub-be-logs/package-lock.json"))
+    node = sha256(join("",fileset(path.module, "pubsub-be-logs/**/*.ts")))
   }
 }
 
-data "archive_file" "source_zip" {
-  depends_on  = [null_resource.build]
-  type        = "zip"
-  source_dir  = "storage-func/dist"
-  output_path = "storage-func/dist/source.zip"
-}
+//data "null_data_source" "wait_for_lambda_exporter" {
+//  inputs = {
+//    lambda_dependency_id = "${null_resource.lambda_dependencies.id}"
+//    source_dir           = "${path.module}/storage-func/dist"
+//  }
+//}
+//
+//data "archive_file" "lambda" {
+//  output_path = "${path.module}/storage-func/function.zip"
+//  source_dir  = "${data.null_data_source.wait_for_lambda_exporter.outputs["source_dir"]}"
+//  type        = "zip"
+//}
+
+//data "archive_file" "source_zip" {
+//  depends_on  = [null_resource.lambda_dependencies]
+//  type        = "zip"
+//  source_dir  = "storage-func/dist"
+//  output_path = "storage-func/dist/source.zip"
+//}
 
 resource "google_storage_bucket" "bucket" {
-  name = "${var.project}-test-bucket"
+//  depends_on  = [null_resource.build]
+  name = "${var.project}-terraform"
 }
 
 resource "google_storage_bucket_object" "archive" {
   name   = "source.zip"
   bucket = google_storage_bucket.bucket.name
-  source = "./pubsub-be-logs/index.zip"
+  source = data.archive_file.lambda.output_path
 }
-
-resource "google_storage_bucket_object" "archive1" {
-  name   = "index.zip"
-  bucket = google_storage_bucket.bucket.name
-  source = "./storage-func/index.zip"
-}
-
-//resource "google_cloudfunctions_function" "func2" {
-//  name        = "func2"
+//
+//resource "google_storage_bucket_object" "archive1" {
+//  name   = "index.zip"
+//  bucket = google_storage_bucket.bucket.name
+//  source = "./storage-func/index.zip"
+//}
+//resource "google_cloudfunctions_function" "func3" {
+//  name        = "func3"
 //  description = "My http function"
 //  runtime     = "nodejs14"
 //
 //  depends_on  = [google_storage_bucket_object.archive, google_storage_bucket.bucket]
 //
 //  available_memory_mb = 128
-//  source_archive_bucket = google_storage_bucket.bucket.name
-//  source_archive_object = google_storage_bucket_object.archive1.name
+//  source_archive_bucket = data.archive_file.lambda.output_base64sha256
+////  source_archive_bucket = google_storage_bucket.bucket.name
+////  source_archive_object = google_storage_bucket_object.archive.name
+//  source_archive_object = data.archive_file.lambda.output_path
 //  trigger_http = true
 //
 //  timeout     = 60
@@ -168,6 +212,28 @@ resource "google_storage_bucket_object" "archive1" {
 //    MY_ENV_VAR = "my-env-var-value"
 //  }
 //}
+resource "google_cloudfunctions_function" "func2" {
+  name        = "func2"
+  description = "My http function"
+  runtime     = "nodejs14"
+
+  depends_on  = [google_storage_bucket_object.archive, google_storage_bucket.bucket]
+
+  available_memory_mb = 128
+  source_archive_bucket = google_storage_bucket.bucket.name
+  source_archive_object = google_storage_bucket_object.archive.name
+  trigger_http = true
+
+  timeout     = 60
+  entry_point = "http"
+  labels = {
+    my-label = "my-label-value"
+  }
+
+  environment_variables = {
+    MY_ENV_VAR = "my-env-var-value"
+  }
+}
 
 //resource "google_cloudfunctions_function" "storage-func" {
 //  name        = "storage-func"
