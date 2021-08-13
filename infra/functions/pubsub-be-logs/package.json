@@ -1,9 +1,9 @@
 {
-  "name": "storage-func",
+  "name": "pubsub-be-logs",
   "version": "1.1.1",
   "description": "> TODO: description",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
-  "homepage": "https://yurikrupnik.github.io/mussia8/tree/main/packages/storage-func#readme",
+  "homepage": "https://yurikrupnik.github.io/mussia8/tree/main/infra/pubsub-be-logs#readme",
   "license": "ISC",
   "main": "index.js",
   "engines": {
@@ -17,11 +17,10 @@
     "fucntion": "dist/*.js"
   },
   "config": {
-    "port": "3332",
-    "triggerType": "bucket",
-    "source": "storageFunc",
+    "port": "3334",
+    "triggerType": "topic",
+    "source": "pubsubBeLogs",
     "topic": "be_logs",
-    "bucket": "projects/mussia8/topics/be_logs",
     "trigger-event": "",
     "doit": [
       {
@@ -33,7 +32,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yurikrupnik/mussia8.git",
-    "directory": "infra/storage-func"
+    "directory": "infra/pubsub-be-logs"
   },
   "scripts": {
     "build:watch": "rollup --config=../../rollup.config.functions.ts -w",
@@ -47,7 +46,7 @@
     "zip": "zip -r index.zip dist/",
     "build": "run-s build:code zip",
     "predeploy": "npm run build",
-    "deploys": "bash ../../scripts/deploy-to-cloud-functions-infra.sh"
+    "deploys": "bash ../../../scripts/deploy-to-cloud-functions-infra.sh"
   },
   "bugs": {
     "url": "https://github.com/yurikrupnik/mussia8/issues"
