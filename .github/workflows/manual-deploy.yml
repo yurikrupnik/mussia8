@@ -5,8 +5,8 @@ name: Node.js Manual deploy
 on:
   workflow_dispatch:
     inputs:
-      since:
-        description: 'Deploy flag'
+      scope:
+        description: 'Deploy scope module'
         required: false
         default: ''
 #    branches:
@@ -48,7 +48,7 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker
       - name: GCP deploy
-        run: npm run deploy
+        run: npm run deploy -- --scope=${{ github.event.inputs.scope }}
         if: github.ref == 'refs/heads/main'
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
