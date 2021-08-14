@@ -34,7 +34,7 @@
     "test": "jest src --colors",
     "build": "rollup --config=../../../rollup.config.functions.ts",
     "predeploy": "npm run build",
-    "deploys": "bash ../../../scripts/deploy-to-cloud-functions.sh"
+    "deploy": "bash ../../../scripts/deploy-to-cloud-functions.sh"
   },
   "bugs": {
     "url": "https://github.com/yurikrupnik/mussia8/issues"
