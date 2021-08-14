@@ -73,16 +73,16 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
           TYPE: patch
 
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@master
-        with:
-          project_id: mussia8
-          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-      - run: |-
-          gcloud --quiet auth configure-docker
-      - name: GCP deploy
-        run: npm run deploy
-        if: github.ref == 'refs/heads/main'
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+#      - name: Set up Cloud SDK
+#        uses: google-github-actions/setup-gcloud@master
+#        with:
+#          project_id: mussia8
+#          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+#      - run: |-
+#          gcloud --quiet auth configure-docker
+#      - name: GCP deploy
+#        run: npm run deploy
+#        if: github.ref == 'refs/heads/main'
+#        env:
+#          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+#          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
