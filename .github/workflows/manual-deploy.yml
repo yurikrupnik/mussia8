@@ -1,0 +1,55 @@
+# This workflow checks lint and tsc on push and pr to main, also caching dependencies
+
+name: Node.js Manual deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      since:
+        description: 'Deploy flag'
+        required: false
+        default: ''
+#    branches:
+#      - "**"
+#  pull_request:
+#    branches: [dev]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+      #    strategy:
+      #      matrix:
+      #        node-version: [12.x, 14.x, 16.x]
+    # See supported Node.js release schedule at https://nodejs.org/en/about/releases
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: "0"
+      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          #          always-auth: true
+          node-version: '14.x'
+          registry-url: https://registry.npmjs.org/
+      - run: git config --global user.email krupnik.yuri@gmail.com && git config --global user.name yurikrupnik
+      - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+      - uses: nelonoel/branch-name@v1.0.1
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: mussia8
+          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      - run: |-
+          gcloud --quiet auth configure-docker
+      - name: GCP deploy
+        run: npm run deploy
+        if: github.ref == 'refs/heads/main'
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
