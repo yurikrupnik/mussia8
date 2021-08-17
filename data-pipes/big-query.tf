@@ -53,7 +53,7 @@ resource "google_bigquery_table" "agent_logs" {
   }
 }
 
-resource "google_bigquery_table" "be_logs" {
+resource "google_bigquery_table" "be_logs_table" {
   dataset_id          = google_bigquery_dataset.dataset.dataset_id
   table_id            = "bar"
   deletion_protection = false
@@ -63,23 +63,30 @@ resource "google_bigquery_table" "be_logs" {
   labels = {
     env = "default"
   }
-  schema = file("events-schema.json")
-//  schema = <<EOF
-//[
-//  {
-//    "name": "permalink",
-//    "type": "STRING",
-//    "mode": "NULLABLE",
-//    "description": "The Permalink"
-//  },
-//  {
-//    "name": "state",
-//    "type": "STRING",
-//    "mode": "NULLABLE",
-//    "description": "State where the head office is located"
-//  }
-//]
-//EOF
+//  schema = google_pubsub_schema.events_schema1.definition.fields
+//  schema = file("events-schema.json")
+  schema = <<EOF
+[
+  {
+      "name" : "stringField",
+       "type": "STRING",
+       "mode": "NULLABLE",
+      "description": "Testing string field"
+  },
+  {
+      "name" : "intField",
+      "type": "INTEGER",
+      "mode": "NULLABLE",
+      "description": "Testing int field"
+  },
+  {
+      "name" : "tenantId",
+      "type": "STRING",
+       "mode": "NULLABLE",
+      "description": "Tenant Id"
+  }
+]
+EOF
 
 }
 

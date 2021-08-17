@@ -26,10 +26,10 @@ provider "google" {
 
 }
 //
-resource "google_service_account" "storage" {
-  account_id   = "scv-my-app-storage"
-  display_name = "My app storage SA"
-}
+//resource "google_service_account" "storage" {
+//  account_id   = "scv-my-app-storage"
+//  display_name = "My app storage SA"
+//}
 //
 ////resource "google_project_iam_member" "storage" {
 ////  project = var.project
@@ -52,7 +52,7 @@ resource "google_service_account" "storage" {
 //
 ////resource "google_dataflow_job" "pubsub_stream" {
 ////  name              = "ps-to-text-be-logs"
-////  template_gcs_path = "gs://dataflow-templates/latest/Cloud_PubSub_to_GCS_Text"
+////  template_gcs_path = "gs://dataflow.tf-templates/latest/Cloud_PubSub_to_GCS_Text"
 ////  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}/temp"
 ////  parameters = {
 ////    inputTopic           = google_pubsub_topic.be_logs.id
@@ -68,7 +68,7 @@ resource "google_service_account" "storage" {
 ////
 ////resource "google_dataflow_job" "pubsub_stream2" {
 ////  name              = "ps-to-avro-be-logs"
-////  template_gcs_path = "gs://dataflow-templates/latest/Cloud_PubSub_to_Avro"
+////  template_gcs_path = "gs://dataflow.tf-templates/latest/Cloud_PubSub_to_Avro"
 ////  //  template_gcs_path = "./Cloud_PubSub_to_Avro"
 ////  //  temp_gcs_location = "gs://mussia8-be-logs-raw-data"
 //////    temp_gcs_location = "gs://${var.project}-${var.be_logs_bucket}/temp"
@@ -88,7 +88,7 @@ resource "google_service_account" "storage" {
 ////}
 //// Dataflow end
 ////resource "google_dataflow_job" "pubsub_stream" {
-////  name = "tf-test-dataflow-job1"
+////  name = "tf-test-dataflow.tf-job1"
 ////  template_gcs_path = "gs://my-bucket/templates/template_file"
 ////  temp_gcs_location = "gs://my-bucket/tmp_dir"
 ////  enable_streaming_engine = true

@@ -14,7 +14,7 @@
 //  //    log_object_prefix = "front-end/"
 //  //  }
 //}
-//
+
 //resource "google_storage_bucket" "be_logs_bucket" {
 //  name     = "${var.project}-${var.be_logs_bucket}"
 //  location = var.location
@@ -39,7 +39,7 @@
 //    }
 //  }
 //}
-//
+
 //resource "google_storage_bucket" "near-line" {
 //  name          = "${var.project}-near-line"
 //  location      = var.location
