@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.4-ariss.0](https://github.com/yurikrupnik/mussia8/compare/batman@2.2.3...batman@2.2.4-ariss.0) (2021-08-20)
+
+**Note:** Version bump only for package batman
+
+
+
+
+
 ## [2.2.3](https://github.com/yurikrupnik/mussia8/compare/batman@2.2.2...batman@2.2.3) (2021-08-14)
 
 **Note:** Version bump only for package batman

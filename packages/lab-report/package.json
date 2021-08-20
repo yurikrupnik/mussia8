@@ -1,6 +1,6 @@
 {
   "name": "lab-report",
-  "version": "1.1.1",
+  "version": "1.1.2-ariss.0",
   "description": "> TODO: description",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://yurikrupnik.github.io/mussia8/tree/main/packages/lab-report#readme",
@@ -32,7 +32,7 @@
     "url": "https://github.com/yurikrupnik/mussia8/issues"
   },
   "dependencies": {
-    "@creativearis/models": "^3.2.1",
+    "@creativearis/models": "^3.2.2-ariss.0",
     "@creativearis/swagger": "^3.2.1",
     "@google-cloud/pubsub": "2.16.3",
     "bcrypt": "5.0.1",
