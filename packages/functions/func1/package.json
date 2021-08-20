@@ -40,9 +40,11 @@
     "url": "https://github.com/yurikrupnik/mussia8/issues"
   },
   "dependencies": {
+    "@creativearis/models": "^3.2.1",
     "@google-cloud/tasks": "2.3.6",
     "axios": "0.21.1",
     "express": "4.17.1",
+    "mongoose": "^5.13.7",
     "swagger-ui-express": "4.1.6"
   },
   "devDependencies": {

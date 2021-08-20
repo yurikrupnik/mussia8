@@ -88,6 +88,17 @@ resource "google_dataflow_job" "bigquery-stream" {
   on_delete = "cancel"
 }
 
+
+//gcloud beta dataflow flex-template run
+//--template-file-gcs-location gs://dataflow-templates-us-central1/latest/flex/Cloud_PubSub_to_MongoDB --region us-central1
+//--parameters
+//inputSubscription=projects/mussia8/subscriptions/be_logs.subscription-13990484350705138604
+//mongoDBUri=mongodb+srv://yurikrupnik:T4eXKj1RBI4VnszC@cluster0.rdmew.mongodb.net/
+//database=test
+//collection=be-events
+//deadletterTable=mussia8:example_dataset.errors
+// 34.77.48.52:27017,104.155.115.194:27017,35.187.160.255:27017
+
 //// Dataflow end
 //resource "google_dataflow_job" "pubsub_stream" {
 //  name = "tf-test-dataflow-job1"

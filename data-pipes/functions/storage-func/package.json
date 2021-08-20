@@ -45,7 +45,7 @@
     "test": "jest src --colors",
     "build:code": "rollup --config=../../../rollup.config.functions.ts",
     "zip": "zip -r index.zip dist/",
-    "build": "run-s build:code zip",
+    "build": "run-s build:code",
     "predeploy": "npm run build",
     "deploys": "bash ../../../scripts/deploy-to-cloud-functions-infra.sh"
   },
@@ -53,8 +53,11 @@
     "url": "https://github.com/yurikrupnik/mussia8/issues"
   },
   "dependencies": {
+    "@creativearis/models": "^3.2.1",
     "axios": "0.21.1",
+    "co": "^4.6.0",
     "express": "4.17.1",
+    "mongoose": "^5.13.7",
     "swagger-ui-express": "4.1.6"
   },
   "devDependencies": {

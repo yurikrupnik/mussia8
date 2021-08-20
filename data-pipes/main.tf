@@ -97,6 +97,7 @@ resource "null_resource" "function_dependencies" {
           node -v
           cd ..
           npx lerna exec --parallel --scope=service1 --scope=storage-func -- npm i
+          npm run bootstrap
           npm run build -- --scope=pubsub-be-logs --scope=storage-func
         EOF
   }

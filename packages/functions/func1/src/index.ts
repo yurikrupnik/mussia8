@@ -1,8 +1,10 @@
 import express, { Request, Response, Router } from "express";
+import mongoose from "mongoose";
 import swaggerUi from "swagger-ui-express";
 import path from "path";
 import os from "os";
-import { createHttpTask, nequeue } from "./gcp-tasks";
+import { event } from "@creativearis/models";
+import { nequeue } from "./gcp-tasks"; //createHttpTask,
 
 const app = express();
 
@@ -14,6 +16,28 @@ const records = [
         name: "B"
     }
 ];
+
+const Model = event(mongoose);
+
+async function dbConnect() {
+    return mongoose.connect(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        "mongodb+srv://yurikrupnik:T4eXKj1RBI4VnszC@cluster0.rdmew.mongodb.net/",
+        // process.env.MONGODB_URI,
+        {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        }
+        // (err) => {
+        //     if (err) {
+        //         console.log(err);
+        //     } else {
+        //         console.log("DB Successfully connected");
+        //     }
+        // }
+    );
+}
 
 const api = () => {
     const route = Router();
@@ -30,9 +54,20 @@ const api = () => {
         });
     });
     route.get("/dam", async (req, res) => {
-        await createHttpTask("nane");
-        res.status(200).json({
-            data: "all dam"
+        // await createHttpTask("nane");
+        dbConnect().then(() => {
+            // console.log("something", something);
+            const ds = new Model({
+                tenantId: "1234567",
+                intField: 12356,
+                stringField: "ariss here"
+            });
+            ds.save().then((aa) => {
+                console.log("aa", aa);
+                res.status(200).json({
+                    data: "all dam"
+                });
+            });
         });
     });
     return route;

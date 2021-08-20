@@ -1,9 +1,39 @@
+import mongoose from "mongoose";
+// import db from "./db";
+//
+// const route = Router();
+
+// route.use(db);
+
+async function dbConnect() {
+    return mongoose.connect(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        "mongodb+srv://yurikrupnik:T4eXKj1RBI4VnszC@cluster0.rdmew.mongodb.net/",
+        // process.env.MONGODB_URI,
+        {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        },
+        (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("DB Successfully connected");
+            }
+        }
+    );
+}
+
 const pubsubBeLogs = (event: any, context: any) => {
-    const message = event.data
-        ? Buffer.from(event.data, "base64").toString()
-        : "Hello, World";
-    console.log("message", message); // eslint-disable-line
-    console.log("context", context); // eslint-disable-line
+    dbConnect().then((something) => {
+        console.log("something", something);
+        const message = event.data
+            ? Buffer.from(event.data, "base64").toString()
+            : "Hello, World";
+        console.log("message", message); // eslint-disable-line
+        console.log("context", context); // eslint-disable-line
+    });
 };
 
 const storageFunc = (event: any, context: any) => {

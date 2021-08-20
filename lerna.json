@@ -10,11 +10,5 @@
     "packages/functions/*",
     "packages/models/*"
   ],
-  "version": "independent",
-  "ignoreChanges": [
-    "packages/*/package-lock.json",
-    "packages/functions/*/package-lock.json",
-    "packages/ui/clients/*/package-lock.json",
-    "packages/ui/components/*/package-lock.json"
-  ]
+  "version": "independent"
 }
