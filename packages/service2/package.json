@@ -37,7 +37,7 @@
     "@creativearis/swagger": "^3.3.0",
     "bcrypt": "5.0.1",
     "body-parser": "1.19.0",
-    "connect-mongo": "4.4.1",
+    "connect-mongo": "4.5.0",
     "express": "4.17.1",
     "express-session": "1.17.2",
     "mongoose": "5.13.7",
@@ -47,6 +47,6 @@
     "@types/express": "4.17.13",
     "@types/express-session": "1.17.4",
     "@types/supertest": "2.0.11",
-    "supertest": "6.1.5"
+    "supertest": "6.1.6"
   }
 }
