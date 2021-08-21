@@ -1,0 +1,72 @@
+{
+  "name": "storage-func",
+  "version": "1.1.2-ariss.0",
+  "description": "> TODO: description",
+  "author": "yurikrupnik <krupnik.yuri@gmail.com>",
+  "homepage": "https://yurikrupnik.github.io/mussia8/tree/main/packages/storage-func#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "engines": {
+    "node": "14"
+  },
+  "private": true,
+  "files": [
+    "dist"
+  ],
+  "watch": {
+    "fucntion": "dist/*.js"
+  },
+  "config": {
+    "port": "3332",
+    "triggerType": "bucket",
+    "source": "storageFunc",
+    "topic": "be_logs",
+    "bucket": "projects/mussia8/topics/be_logs",
+    "trigger-event": "",
+    "doit": [
+      {
+        "trigger": "topic",
+        "source": "storageFunc"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yurikrupnik/mussia8.git",
+    "directory": "infra/storage-func"
+  },
+  "scripts": {
+    "build:watch": "rollup --config=../../../rollup.config.functions.ts -w",
+    "watch": "npm-watch fucntion",
+    "fucntion": "functions-framework --target=func1 --source=dist --port=$npm_package_config_port",
+    "dev": "run-p build:watch watch",
+    "prebuild": "rimraf dist",
+    "lint": "eslint src --ext .ts,.tsx --color",
+    "test": "jest src --colors",
+    "build:code": "rollup --config=../../../rollup.config.functions.ts",
+    "zip": "zip -r index.zip dist/",
+    "build": "run-s build:code",
+    "predeploy": "npm run build",
+    "deploys": "bash ../../../scripts/deploy-to-cloud-functions-infra.sh"
+  },
+  "bugs": {
+    "url": "https://github.com/yurikrupnik/mussia8/issues"
+  },
+  "dependencies": {
+    "@creativearis/models": "^3.2.2-ariss.0",
+    "axios": "0.21.1",
+    "co": "^4.6.0",
+    "express": "4.17.1",
+    "mongoose": "^5.13.7",
+    "swagger-ui-express": "4.1.6"
+  },
+  "devDependencies": {
+    "@google-cloud/functions-framework": "1.9.0",
+    "@types/express": "4.17.13",
+    "@types/supertest": "2.0.11",
+    "@types/swagger-ui-express": "4.1.2",
+    "npm-run-all": "4.1.5",
+    "npm-watch": "0.11.0",
+    "supertest": "6.1.5"
+  }
+}

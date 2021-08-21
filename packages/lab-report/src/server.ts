@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import swaggerUI from "@creativearis/swagger"; // fails
+import swaggerUI from "@creativearis/swagger";
 import api from "./api";
 
 const app = express();

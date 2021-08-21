@@ -1,6 +1,6 @@
 {
   "name": "service1",
-  "version": "3.2.0",
+  "version": "3.2.2-ariss.0",
   "description": "Service1 users db and firebase",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/service1#readme",
@@ -32,8 +32,8 @@
     "url": "https://github.com/yurikrupnik/mussia8/issues"
   },
   "dependencies": {
-    "@creativearis/models": "^3.2.0",
-    "@creativearis/swagger": "^3.2.0",
+    "@creativearis/models": "^3.2.2-ariss.0",
+    "@creativearis/swagger": "^3.2.1",
     "bcrypt": "5.0.1",
     "body-parser": "1.19.0",
     "connect-mongo": "4.4.1",
