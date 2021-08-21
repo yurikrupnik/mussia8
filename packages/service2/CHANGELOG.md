@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.3.0 (2021-08-21)
+
+**Note:** Version bump only for package service2
+
+
+
+
+
 ## [3.2.2-ariss.0](https://github.com/yurikrupnik/mussia8/compare/service2@3.2.1...service2@3.2.2-ariss.0) (2021-08-20)
 
 **Note:** Version bump only for package service2

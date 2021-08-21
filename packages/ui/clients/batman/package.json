@@ -1,6 +1,6 @@
 {
   "name": "batman",
-  "version": "2.2.4-ariss.0",
+  "version": "2.3.0",
   "description": "Main applicatons for clients base on auth0",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/batman#readme",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "1.5.0",
-    "@creativearis/button": "^2.1.0",
+    "@creativearis/button": "^2.2.0",
     "@material-ui/core": "4.12.3",
     "@material-ui/icons": "4.11.2",
     "@sentry/react": "6.11.0",

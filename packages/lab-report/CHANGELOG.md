@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2021-08-21)
+
+**Note:** Version bump only for package lab-report
+
+
+
+
+
 ## [1.1.2-ariss.0](https://github.com/yurikrupnik/mussia8/compare/lab-report@1.1.1...lab-report@1.1.2-ariss.0) (2021-08-20)
 
 **Note:** Version bump only for package lab-report

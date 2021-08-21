@@ -1,6 +1,6 @@
 {
   "name": "func1",
-  "version": "1.1.8-ariss.0",
+  "version": "1.2.0",
   "description": "> TODO: description",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://yurikrupnik.github.io/mussia8/tree/main/packages/func1#readme",
@@ -40,7 +40,7 @@
     "url": "https://github.com/yurikrupnik/mussia8/issues"
   },
   "dependencies": {
-    "@creativearis/models": "^3.2.2-ariss.0",
+    "@creativearis/models": "^3.3.0",
     "@google-cloud/tasks": "2.3.6",
     "axios": "0.21.1",
     "express": "4.17.1",
