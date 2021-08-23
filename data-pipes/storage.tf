@@ -1,4 +1,11 @@
 
+resource "google_storage_bucket" "temp_folder" {
+  name     = "${var.project}-temp-bucket"
+  location = var.location
+  //  storage_class = ""
+  force_destroy = true
+}
+
 resource "google_storage_bucket" "functions" {
   name     = "${var.project}-functions"
   location = var.location

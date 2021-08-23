@@ -17,9 +17,10 @@
     "fucntion": "dist/*.js"
   },
   "config": {
-    "port": "3332",
+    "port": "3335",
     "triggerType": "bucket",
     "source": "storageFunc",
+    "fusi": "event",
     "topic": "be_logs",
     "bucket": "projects/mussia8/topics/be_logs",
     "trigger-event": "",
@@ -38,7 +39,7 @@
   "scripts": {
     "build:watch": "rollup --config=../../../rollup.config.functions.ts -w",
     "watch": "npm-watch fucntion",
-    "fucntion": "functions-framework --target=func1 --source=dist --port=$npm_package_config_port",
+    "fucntion": "functions-framework --target=storagePubSub --source=dist --port=$npm_package_config_port --signature-type=$npm_package_config_fusi",
     "dev": "run-p build:watch watch",
     "prebuild": "rimraf dist",
     "lint": "eslint src --ext .ts,.tsx --color",
@@ -53,11 +54,14 @@
     "url": "https://github.com/yurikrupnik/mussia8/issues"
   },
   "dependencies": {
-    "@creativearis/models": "3.4.0",
+    "@creativearis/models": "4.0.0",
+    "@google-cloud/storage": "^5.13.1",
     "axios": "0.21.1",
-    "co": "^4.6.0",
+    "bcrypt": "^5.0.1",
+    "co": "4.6.0",
     "express": "4.17.1",
     "mongoose": "^5.13.7",
+    "pusher": "^5.0.0",
     "swagger-ui-express": "4.1.6"
   },
   "devDependencies": {

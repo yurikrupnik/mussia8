@@ -50,7 +50,7 @@ const list =
 
 // changed from express params to query - next way for dynamic routes
 const find =
-    (Model: mongoose.Model<Document>) =>
+    <T extends mongoose.Model<any>>(Model: T) =>
     (req: NextApiRequest, res: NextApiResponse) => {
         Model.findOne({ _id: req.query.id })
             .then(respondWithResult(res))

@@ -65,7 +65,8 @@ const api = () => {
             ds.save().then((aa) => {
                 console.log("aa", aa);
                 res.status(200).json({
-                    data: "all dam"
+                    data: "all dam",
+                    obj: aa
                 });
             });
         });

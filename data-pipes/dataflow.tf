@@ -29,7 +29,7 @@
 resource "google_dataflow_job" "pubsub_stream" {
   name              = "ps-to-text-be-logs"
   template_gcs_path = "gs://dataflow-templates/latest/Cloud_PubSub_to_GCS_Text"
-  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}/temp"
+  temp_gcs_location = "${google_storage_bucket.temp_folder.url}/temp"
   parameters = {
     inputTopic           = google_pubsub_topic.be_logs.id
     outputDirectory      = "${google_storage_bucket.be_logs_bucket.url}/text"
@@ -47,7 +47,7 @@ resource "google_dataflow_job" "pubsub_stream" {
 resource "google_dataflow_job" "pubsub_stream2" {
   name              = "ps-to-avro-be-logs"
   template_gcs_path = "gs://dataflow-templates/latest/Cloud_PubSub_to_Avro"
-  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}/temp"
+  temp_gcs_location = "${google_storage_bucket.temp_folder.url}/temp"
   parameters = {
     inputTopic        = google_pubsub_topic.be_logs.id
     outputDirectory   = "${google_storage_bucket.be_logs_bucket.url}/avro"
@@ -71,7 +71,7 @@ output "pubsub_topic" {
 resource "google_dataflow_job" "bigquery-stream" {
   name              = "ps-to-bq-be-logs"
   template_gcs_path = "gs://dataflow-templates-europe-north1/latest/PubSub_to_BigQuery"
-  temp_gcs_location = "${google_storage_bucket.be_logs_bucket.url}/temp"
+  temp_gcs_location = "${google_storage_bucket.temp_folder.url}/temp"
   parameters = {
 //    inputTopic = google_pubsub_topic.be_logs.name
     inputTopic="projects/mussia8/topics/be_logs"

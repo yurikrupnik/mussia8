@@ -1,61 +1,92 @@
 import mongoose from "mongoose";
+import Pusher from "pusher";
+import { Storage } from "@google-cloud/storage";
 import { event as ev } from "@creativearis/models";
+
+const storage = new Storage();
 
 const Model = ev(mongoose);
 
 const http = (req: any, res: any) => {
     res.status(200).send({ ok: "yes" });
 };
-async function dbConnect() {
-    return mongoose.connect(
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        "mongodb+srv://yurikrupnik:T4eXKj1RBI4VnszC@cluster0.rdmew.mongodb.net/", // todo remove
-        // process.env.MONGODB_URI,
-        {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        },
-        (err: any) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log("DB Successfully connected");
+function dbConnect() {
+    return mongoose
+        .connect(
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            "mongodb+srv://yurikrupnik:T4eXKj1RBI4VnszC@cluster0.rdmew.mongodb.net/", // todo remove
+            // process.env.MONGODB_URI,
+            {
+                useNewUrlParser: true,
+                useUnifiedTopology: true
             }
-        }
-    );
+        )
+        .catch((err) => {
+            console.log("Connecting Mongo failed with: ", err);
+        });
 }
-const storagePubSub = (event: any) => {
-    dbConnect().then(() => {
-        const message = event.data
-            ? Buffer.from(event.data, "base64").toString()
-            : "Hello, World";
 
-        console.log("message", message);
-        console.log("buffer", Buffer.from(event.data, "base64"));
-        const ds = new Model({
-            tenantId: "1234567",
-            intField: 12356,
-            stringField: "ariss here"
+const storagePubSub = (event: any) => {
+    dbConnect()
+        .then(() => {
+            const message = event.data
+                ? Buffer.from(event.data, "base64").toString()
+                : "";
+
+            console.log("message", message); // eslint-disable-line
+
+            const newEvent = new Model(JSON.parse(message));
+
+            newEvent
+                .save()
+                .then((item) => {
+                    console.log("Added new item: ", item); // eslint-disable-line
+                    const pusher = new Pusher({
+                        appId: "1253889",
+                        key: "d7880526d3965e004014",
+                        secret: "340b5283bedf5bc81888",
+                        cluster: "eu",
+                        useTLS: true
+                    });
+
+                    pusher.trigger("my-channel", "my-event", {
+                        logId: item._id
+                    });
+                })
+                .catch((err) => {
+                    console.log("Error saving new event", err);
+                });
+        })
+        .catch((err) => {
+            console.log("err", err);
         });
-        ds.save().then((aa: any) => {
-            console.log("aa", aa);
-        });
-    });
-    dbConnect().then(() => {
-        const message = event.data
-            ? Buffer.from(event.data, "base64").toString()
-            : "Hello, World";
-        // console.log("event", event);
-        console.log("message", message);
-        // console.log("context", context);
-    });
 };
 
 const storageFunc = (event: any) => {
-    const gcsEvent = event;
-    console.log(`Processing file: ${gcsEvent.name}`);
-    console.log("event", event);
+    if (!event.name.includes(".temp-beam") && !event.name.includes("avro")) {
+        const bucketName: string = event.bucket;
+        const bucket = storage.bucket(bucketName);
+        const remoteFile = bucket.file(event.name);
+        console.log("Reading File");
+        const archivo = remoteFile.createReadStream();
+
+        console.log("Concat Data");
+        let buf = "";
+        archivo
+            .on("data", (d) => {
+                console.log("data", d);
+                const jsob = Buffer.from(d, "base64");
+                // const jsob1 = Buffer.from(JSON.parse(d), "base64");
+                console.log("jsob", jsob);
+                // console.log("jsob1", jsob1);
+                buf += d;
+            })
+            .on("end", () => {
+                console.log(buf);
+                console.log("End");
+            });
+    }
     // console.log("context", context);
 };
 
