@@ -4,8 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import type { Event } from "@creativearis/models";
 
-type FrontEndEvent = Event & { _id: string };
-
 Pusher.logToConsole = false;
 
 const pusher = new Pusher("d7880526d3965e004014", {
@@ -13,7 +11,7 @@ const pusher = new Pusher("d7880526d3965e004014", {
 });
 
 function getEvents() {
-    return axios.get("/api/logs").then((res): Array<FrontEndEvent> => {
+    return axios.get("/api/logs").then((res): Array<Event> => {
         console.log("res", res.data);
         return res.data;
     });
@@ -26,7 +24,7 @@ function getById(id: string) {
 }
 
 const ActivityLog = () => {
-    const [events, setEvents] = useState<Array<FrontEndEvent>>([]);
+    const [events, setEvents] = useState<Array<Event>>([]);
     useEffect(() => {
         getEvents().then(setEvents);
     }, []);

@@ -250,3 +250,53 @@ resource "google_cloudfunctions_function" "topic-func" {
   depends_on = [google_pubsub_topic.be_logs]
 }
 //// functions end
+
+// workflows functions
+
+resource "google_cloudfunctions_function" "save_to_db" {
+  name        = "save-to-db"
+  description = "Saving to mongodb collection per document and returns new item"
+  runtime     = "nodejs14"
+
+  available_memory_mb   = 256
+  source_archive_bucket = google_storage_bucket.functions.name
+  source_archive_object = google_storage_bucket_object.archive.name
+  trigger_http          = true
+  timeout               = 60
+  entry_point           = "saveToDb"
+  ingress_settings      = "ALLOW_ALL"
+}
+
+resource "google_cloudfunctions_function_iam_member" "invoker1" {
+  project        = google_cloudfunctions_function.save_to_db.project
+  region         = google_cloudfunctions_function.save_to_db.region
+  cloud_function = google_cloudfunctions_function.save_to_db.name
+
+  role   = "roles/cloudfunctions.invoker"
+  member = "allUsers"
+}
+
+
+resource "google_cloudfunctions_function" "publish_to_client" {
+  name        = "publish-to-client"
+  description = "Saving to mongodb collection per document and returns new item"
+  runtime     = "nodejs14"
+
+  available_memory_mb   = 256
+  source_archive_bucket = google_storage_bucket.functions.name
+  source_archive_object = google_storage_bucket_object.archive.name
+  trigger_http          = true
+  timeout               = 60
+  entry_point           = "publishToClient"
+
+  ingress_settings      = "ALLOW_ALL"
+}
+
+resource "google_cloudfunctions_function_iam_member" "invoker" {
+  project        = google_cloudfunctions_function.publish_to_client.project
+  region         = google_cloudfunctions_function.publish_to_client.region
+  cloud_function = google_cloudfunctions_function.publish_to_client.name
+
+  role   = "roles/cloudfunctions.invoker"
+  member = "allUsers"
+}

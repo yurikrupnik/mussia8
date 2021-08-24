@@ -9,19 +9,10 @@ import {
 /**
  * @swagger
  * definitions:
- *      Provider:
- *          type: string
- *          default: local
- *          enum:
- *             - local
- *             - google
- *      Role:
- *          type: string
- *          enum: [editor, finance, admin, crm]
- *          default: admin
- *
  *      Event:
  *        properties:
+ *          _id:
+ *              type: string
  *          stringField:
  *              type: string
  *          tenantId:
@@ -32,16 +23,20 @@ import {
  */
 
 type Event = {
+    _id: string;
     stringField: string;
     tenantId: string;
-    intField?: number;
+    intField: number;
 };
 
 // type UserGroup = UserGroupFront;
 
 type EventDocument = Event & Document;
 
-const userGroupSchemaObj: Record<keyof Event, SchemaTypeOptions<any>> = {
+const userGroupSchemaObj: Record<
+    keyof Omit<Event, "_id">,
+    SchemaTypeOptions<any>
+> = {
     stringField: {
         type: String
     },

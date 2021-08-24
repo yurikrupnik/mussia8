@@ -65,6 +65,7 @@ jobs:
         run: npm run build -- --since
       - uses: nelonoel/branch-name@v1.0.1
       - run: git status
+      - run: git add -u
       - name: NPN Publish
         run: npm run npm-publish
         if: github.ref != 'refs/heads/release'

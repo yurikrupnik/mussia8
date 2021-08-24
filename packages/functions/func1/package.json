@@ -40,7 +40,7 @@
     "url": "https://github.com/yurikrupnik/mussia8/issues"
   },
   "dependencies": {
-    "@creativearis/models": "3.4.0",
+    "@creativearis/models": "4.0.0",
     "@google-cloud/tasks": "2.3.6",
     "axios": "0.21.1",
     "bcrypt": "5.0.1",
