@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.4.3-snyk-fix-f720b0c82b853ac69cb2c5f404509e88.0 (2021-09-01)
+
+
+### Bug Fixes
+
+* packages/ui/clients/batman/Dockerfile to reduce vulnerabilities ([71c370e](https://github.com/yurikrupnik/mussia8/commit/71c370e5947a20ff6500e062e365711a908fbec0))
+
+
+
+
+
 ## [2.4.2](https://github.com/yurikrupnik/mussia8/compare/batman@2.4.1...batman@2.4.2) (2021-08-24)
 
 **Note:** Version bump only for package batman
