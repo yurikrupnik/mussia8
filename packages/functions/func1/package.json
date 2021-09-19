@@ -43,7 +43,7 @@
     "@creativearis/models": "^4.0.1",
     "@google-cloud/tasks": "2.3.6",
     "@google-cloud/workflows": "^1.3.0",
-    "axios": "0.21.1",
+    "axios": "0.21.2",
     "bcrypt": "5.0.1",
     "express": "4.17.1",
     "mongoose": "5.13.7",
