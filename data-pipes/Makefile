@@ -42,3 +42,6 @@ ta:
 	terraform apply -auto-approve
 tv:
 	terraform validate
+
+db-ip:
+	nslookup cluster0-shard-00-00.rdmew.mongodb.net

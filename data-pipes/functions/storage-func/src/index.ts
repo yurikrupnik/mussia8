@@ -2,15 +2,35 @@ import mongoose from "mongoose";
 import Pusher from "pusher";
 import { Request, Response } from "express";
 import { Storage } from "@google-cloud/storage";
+import { ExecutionsClient } from "@google-cloud/workflows";
 import { event as ev } from "@creativearis/models";
+import { PubSub } from "@google-cloud/pubsub";
+
+const pubsub = new PubSub();
+
+type events = "be-1" | "agent-1" | "fe-1" | "gw-1" | "be_logs";
+
+function publishPubSubMessage(topic: events, message: any) {
+    const buffer = Buffer.from(JSON.stringify(message));
+    return pubsub.topic(topic).publish(buffer);
+}
 
 const storage = new Storage();
 
 const Model = ev(mongoose);
 
-const http = (req: any, res: any) => {
-    res.status(200).send({ ok: "yes" });
+const callPubSub = (req: Request, res: Response) => {
+    const { topic } = req.body;
+    delete req.body.topic;
+    publishPubSubMessage(topic, req.body)
+        .then(() => {
+            res.status(204).send();
+        })
+        .catch((err) => {
+            console.log("Failed send PubSub topic", err); // eslint-disable-line
+        });
 };
+
 function dbConnect() {
     return mongoose
         .connect(
@@ -77,8 +97,9 @@ const storageFunc = (event: any) => {
         archivo
             .on("data", (d) => {
                 console.log("data", d);
-                const jsob = Buffer.from(d, "base64");
+                const jsob = Buffer.from(d, "base64").toString();
                 // const jsob1 = Buffer.from(JSON.parse(d), "base64");
+                // eslint-disable-next-line no-console
                 console.log("jsob", jsob);
                 // console.log("jsob1", jsob1);
                 buf += d;
@@ -126,25 +147,35 @@ const publishToClient = (req: Request, res: Response) => {
     res.status(204).send();
 };
 
-// async function main() {
-//     // [START workflows_create_execution]
-//     /**
-//      * TODO(developer): Uncomment these variables before running the sample.
-//      */
-//     const projectId = "mussia8";
-//     const location = "us-central1";
-//     const name = "my-test-workflow";
-//     const { ExecutionsClient } = require("@google-cloud/workflows");
-//     const client = new ExecutionsClient();
-//     async function createExecution() {
-//         const [resp] = await client.createExecution({
-//             parent: client.workflowPath(projectId, location, name)
-//         });
-//         console.info(`name: ${resp.name}`);
-//     }
-//     createExecution();
-//     // [END workflows_create_execution]
-// }
+const runWorkflow = (event: any) => {
+    const message = event.data
+        ? Buffer.from(event.data, "base64").toString()
+        : "";
+
+    console.log("message", message);
+    createExecution(
+        "mussia8",
+        "europe-west4",
+        "update-mongo-and-clients",
+        message
+    );
+};
+
+const client = new ExecutionsClient();
+
+function createExecution(
+    project: string,
+    location: string,
+    name: string,
+    data: string
+) {
+    client.createExecution({
+        parent: client.workflowPath(project, location, name),
+        execution: {
+            argument: data
+        }
+    });
+}
 
 const helloAuth = (event: any, context: never) => {
     // The unique id of the user whose auth record changed
@@ -161,7 +192,8 @@ export {
     storagePubSub,
     storageFunc,
     helloAuth,
-    http,
     saveToDb,
-    publishToClient
+    publishToClient,
+    runWorkflow,
+    callPubSub
 };

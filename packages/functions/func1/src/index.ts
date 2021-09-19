@@ -1,9 +1,9 @@
 import express, { Request, Response, Router } from "express";
-import mongoose from "mongoose";
 import swaggerUi from "swagger-ui-express";
+// import { Event } from "@creativearis/models";
+import { ExecutionsClient } from "@google-cloud/workflows";
 import path from "path";
 import os from "os";
-import { event } from "@creativearis/models";
 import { nequeue } from "./gcp-tasks"; //createHttpTask,
 
 const app = express();
@@ -17,26 +17,20 @@ const records = [
     }
 ];
 
-const Model = event(mongoose);
+const client = new ExecutionsClient();
 
-async function dbConnect() {
-    return mongoose.connect(
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        "mongodb+srv://yurikrupnik:T4eXKj1RBI4VnszC@cluster0.rdmew.mongodb.net/",
-        // process.env.MONGODB_URI,
-        {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
+function createExecution(
+    project: string,
+    location: string,
+    name: string,
+    data: any
+) {
+    return client.createExecution({
+        parent: client.workflowPath(project, location, name),
+        execution: {
+            argument: JSON.stringify(data)
         }
-        // (err) => {
-        //     if (err) {
-        //         console.log(err);
-        //     } else {
-        //         console.log("DB Successfully connected");
-        //     }
-        // }
-    );
+    });
 }
 
 const api = () => {
@@ -55,21 +49,17 @@ const api = () => {
     });
     route.get("/dam", async (req, res) => {
         // await createHttpTask("nane");
-        dbConnect().then(() => {
-            // console.log("something", something);
-            const ds = new Model({
-                tenantId: "1234567",
-                intField: 12356,
-                stringField: "ariss here"
+        createExecution("mussia8", "europe-west4", "workflow-1", {
+            firstname: "aris",
+            lastname: "rk"
+        })
+            .then(([s]) => {
+                console.log("s", s);
+                res.status(204).json(s);
+            })
+            .catch((err) => {
+                console.log(err);
             });
-            ds.save().then((aa) => {
-                console.log("aa", aa);
-                res.status(200).json({
-                    data: "all dam",
-                    obj: aa
-                });
-            });
-        });
     });
     return route;
 };
