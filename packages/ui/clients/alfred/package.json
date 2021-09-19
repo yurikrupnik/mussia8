@@ -1,6 +1,6 @@
 {
   "name": "alfred",
-  "version": "2.4.4",
+  "version": "2.4.5-snyk-fix-049c52b84b8bb69a9c4541a71c0db0c0.0",
   "description": "Generic application for inner user base on firebase auth",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/alfred#readme",
@@ -37,7 +37,7 @@
     "@material-ui/icons": "4.11.2",
     "@sentry/react": "6.11.0",
     "@sentry/tracing": "6.11.0",
-    "axios": "0.21.1",
+    "axios": "0.21.3",
     "bcrypt": "5.0.1",
     "contentful": "8.5.0",
     "cookie-parser": "1.4.5",
