@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.4.5-snyk-fix-ff4c152501a1a96cf8a7a12cb662dde9.0 (2021-11-01)
+
+
+### Bug Fixes
+
+* packages/ui/clients/alfred/package.json & packages/ui/clients/alfred/package-lock.json to reduce vulnerabilities ([4ea1941](https://github.com/yurikrupnik/mussia8/commit/4ea1941d9d69fee96072aa19f0ed722a2dac3eb1))
+
+
+
+
+
 ## [2.4.4](https://github.com/yurikrupnik/mussia8/compare/alfred@2.4.3...alfred@2.4.4) (2021-08-24)
 
 **Note:** Version bump only for package alfred
