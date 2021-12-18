@@ -1,6 +1,6 @@
 {
   "name": "alfred",
-  "version": "2.4.4",
+  "version": "2.4.5-snyk-fix-913fa30b9793ff4e288cf1d96165df3b.0",
   "description": "Generic application for inner user base on firebase auth",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/alfred#readme",
@@ -29,7 +29,7 @@
     "url": "https://github.com/yurikrupnik/mussia8/issues"
   },
   "dependencies": {
-    "@auth0/nextjs-auth0": "1.5.0",
+    "@auth0/nextjs-auth0": "1.6.2",
     "@creativearis/button": "^2.2.0",
     "@creativearis/models": "^4.0.1",
     "@google-cloud/pubsub": "2.16.6",
