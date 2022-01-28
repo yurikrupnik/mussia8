@@ -41,7 +41,7 @@
     "bcrypt": "5.0.1",
     "contentful": "8.5.0",
     "cookie-parser": "1.4.5",
-    "firebase": "8.10.0",
+    "firebase": "9.6.5",
     "firebase-admin": "9.11.1",
     "formik": "2.2.9",
     "helmet": "4.6.0",
