@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.4.4-snyk-fix-71d364476bdae6cf3098967449cbb398.0 (2022-12-23)
+
+
+### Bug Fixes
+
+* packages/service1/package.json & packages/service1/package-lock.json to reduce vulnerabilities ([3809bb9](https://github.com/yurikrupnik/mussia8/commit/3809bb9f4ce5bf32636fdb4432174c658ba4d2e7))
+
+
+
+
+
 ## [3.4.3](https://github.com/yurikrupnik/mussia8/compare/service1@3.4.2...service1@3.4.3) (2021-08-24)
 
 **Note:** Version bump only for package service1
