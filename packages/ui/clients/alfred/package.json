@@ -1,6 +1,6 @@
 {
   "name": "alfred",
-  "version": "2.4.4",
+  "version": "2.4.5-snyk-fix-256fb980ed34f4075af344bbfd7414f0.0",
   "description": "Generic application for inner user base on firebase auth",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/alfred#readme",
@@ -42,7 +42,7 @@
     "contentful": "8.5.0",
     "cookie-parser": "1.4.5",
     "firebase": "8.10.0",
-    "firebase-admin": "9.11.1",
+    "firebase-admin": "11.4.1",
     "formik": "2.2.9",
     "helmet": "4.6.0",
     "lodash": "4.17.21",
