@@ -79,7 +79,7 @@
     "rollup-plugin-swagger-jsdoc": "1.0.1",
     "sass-loader": "12.1.0",
     "style-loader": "3.2.1",
-    "stylelint": "13.13.1",
+    "stylelint": "15.10.1",
     "stylelint-config-standard": "22.0.0",
     "swagger-jsdoc-webpack-plugin": "1.0.0",
     "typedoc": "0.21.6",
