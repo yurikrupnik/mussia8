@@ -1,6 +1,6 @@
 {
   "name": "alfred",
-  "version": "2.4.4",
+  "version": "2.4.5-snyk-fix-80e6e28afc16bea10935cc46d5cf7dc4.0",
   "description": "Generic application for inner user base on firebase auth",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/alfred#readme",
@@ -46,7 +46,7 @@
     "formik": "2.2.9",
     "helmet": "4.6.0",
     "lodash": "4.17.21",
-    "mongoose": "5.13.7",
+    "mongoose": "5.13.20",
     "morgan": "1.10.0",
     "next": "11.1.0",
     "next-connect": "0.10.2",
