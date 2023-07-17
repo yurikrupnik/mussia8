@@ -40,7 +40,7 @@
     "connect-mongo": "4.5.0",
     "express": "4.17.1",
     "express-session": "1.17.2",
-    "mongoose": "5.13.7",
+    "mongoose": "5.13.20",
     "swagger-ui-express": "4.1.6"
   },
   "devDependencies": {
