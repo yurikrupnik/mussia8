@@ -1,6 +1,6 @@
 {
   "name": "alfred",
-  "version": "2.4.4",
+  "version": "2.4.5-snyk-fix-80e6e28afc16bea10935cc46d5cf7dc4.0",
   "description": "Generic application for inner user base on firebase auth",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/alfred#readme",
