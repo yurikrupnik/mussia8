@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.4.3-snyk-fix-abe900c0bda0a3f40b0e9c7ca2fa18d3.0 (2023-07-18)
+
+
+### Bug Fixes
+
+* packages/ui/clients/batman/package.json & packages/ui/clients/batman/package-lock.json to reduce vulnerabilities ([8b8b1bd](https://github.com/yurikrupnik/mussia8/commit/8b8b1bd19d3148c30d6c105b284998bd2030ccff))
+
+
+
+
+
 ## [2.4.2](https://github.com/yurikrupnik/mussia8/compare/batman@2.4.1...batman@2.4.2) (2021-08-24)
 
 **Note:** Version bump only for package batman
