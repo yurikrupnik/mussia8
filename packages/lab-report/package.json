@@ -42,7 +42,7 @@
     "express-session": "1.17.2",
     "firebase": "8.10.0",
     "firebase-admin": "9.11.1",
-    "mongoose": "5.13.7"
+    "mongoose": "5.13.20"
   },
   "devDependencies": {
     "@types/bcrypt": "5.0.0",
