@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.4.2-snyk-fix-dbc06b959056483a2fb832b5eca90b36.0 (2023-11-15)
+
+
+### Bug Fixes
+
+* packages/swagger/package.json & packages/swagger/package-lock.json to reduce vulnerabilities ([4ce8680](https://github.com/yurikrupnik/mussia8/commit/4ce86808f19e7bfb66c5bfbaf79c6c7ac96d6cb0))
+
+
+
+
+
 ## [3.4.1](https://github.com/yurikrupnik/mussia8/compare/@creativearis/swagger@3.4.0...@creativearis/swagger@3.4.1) (2021-08-21)
 
 **Note:** Version bump only for package @creativearis/swagger
