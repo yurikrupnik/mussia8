@@ -1,6 +1,6 @@
 {
   "name": "service2",
-  "version": "3.4.3",
+  "version": "3.4.4-snyk-fix-3cee0309695bfb76233d61ac40c6835e.0",
   "description": "Service2 change",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/service2#readme",
@@ -41,7 +41,7 @@
     "express": "4.17.1",
     "express-session": "1.17.2",
     "mongoose": "5.13.7",
-    "swagger-ui-express": "4.1.6"
+    "swagger-ui-express": "4.2.0"
   },
   "devDependencies": {
     "@types/express": "4.17.13",
