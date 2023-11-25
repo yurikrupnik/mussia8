@@ -42,7 +42,7 @@
     "contentful": "8.5.0",
     "cookie-parser": "1.4.5",
     "firebase": "8.10.0",
-    "firebase-admin": "9.11.1",
+    "firebase-admin": "10.3.0",
     "formik": "2.2.9",
     "helmet": "4.6.0",
     "lodash": "4.17.21",
