@@ -1,6 +1,6 @@
 {
   "name": "batman",
-  "version": "2.4.2",
+  "version": "2.4.3-renovate/npm-axios-vulnerability.0",
   "description": "Main applicatons for clients base on auth0",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/batman#readme",
