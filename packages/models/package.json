@@ -1,6 +1,6 @@
 {
   "name": "@creativearis/models",
-  "version": "4.0.1",
+  "version": "4.0.2-renovate/npm-express-vulnerability.0",
   "description": "db models",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://yurikrupnik.github.io/mussia8/tree/main/packages/models#readme",
