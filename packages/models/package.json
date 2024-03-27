@@ -1,6 +1,6 @@
 {
   "name": "@creativearis/models",
-  "version": "4.0.1",
+  "version": "4.0.2-renovate/npm-express-vulnerability.0",
   "description": "db models",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://yurikrupnik.github.io/mussia8/tree/main/packages/models#readme",
@@ -36,12 +36,12 @@
     "@types/bcrypt": "5.0.0",
     "@types/express": "4.17.13",
     "bcrypt": "5.0.1",
-    "express": "4.17.1",
+    "express": "4.19.2",
     "mongoose": "5.13.7"
   },
   "peerDependencies": {
     "bcrypt": "5.0.1",
-    "express": "4.17.1",
+    "express": "4.19.2",
     "mongoose": "5.13.7"
   }
 }
