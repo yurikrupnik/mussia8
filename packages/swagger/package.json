@@ -36,7 +36,7 @@
     "express": "4.x"
   },
   "dependencies": {
-    "swagger-ui-express": "4.1.6"
+    "swagger-ui-express": "4.3.0"
   },
   "devDependencies": {
     "@types/supertest": "2.0.11",
