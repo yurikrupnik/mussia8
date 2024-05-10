@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.3.4-snyk-fix-65b41bc7566a1adc364b211dc02ffc18.0 (2024-05-10)
+
+**Note:** Version bump only for package lab-report
+
+
+
+
+
 ## [1.3.3](https://github.com/yurikrupnik/mussia8/compare/lab-report@1.3.2...lab-report@1.3.3) (2021-08-24)
 
 **Note:** Version bump only for package lab-report
