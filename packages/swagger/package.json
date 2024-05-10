@@ -1,6 +1,6 @@
 {
   "name": "@creativearis/swagger",
-  "version": "3.4.1",
+  "version": "3.4.2-snyk-fix-65b41bc7566a1adc364b211dc02ffc18.0",
   "description": "Swagger express routes",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/swagger#readme",
@@ -36,7 +36,7 @@
     "express": "4.x"
   },
   "dependencies": {
-    "swagger-ui-express": "4.1.6"
+    "swagger-ui-express": "4.3.0"
   },
   "devDependencies": {
     "@types/supertest": "2.0.11",
