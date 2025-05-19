@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.4.5-snyk-fix-b7950610053db2dec464f93b241b59a4.0 (2025-05-19)
+
+
+### Bug Fixes
+
+* packages/ui/clients/alfred/Dockerfile to reduce vulnerabilities ([e6a93b7](https://github.com/yurikrupnik/mussia8/commit/e6a93b7bb0e6f430a664f8f71c1f732bff15f000))
+
+
+
+
+
 ## [2.4.4](https://github.com/yurikrupnik/mussia8/compare/alfred@2.4.3...alfred@2.4.4) (2021-08-24)
 
 **Note:** Version bump only for package alfred
