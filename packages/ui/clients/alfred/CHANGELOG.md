@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.4.5-snyk-fix-02853dfd5d72bc0071309589dbddd114.0 (2025-06-16)
+
+**Note:** Version bump only for package alfred
+
+
+
+
+
 ## [2.4.4](https://github.com/yurikrupnik/mussia8/compare/alfred@2.4.3...alfred@2.4.4) (2021-08-24)
 
 **Note:** Version bump only for package alfred

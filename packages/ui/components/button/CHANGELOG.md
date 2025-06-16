@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.1-snyk-fix-02853dfd5d72bc0071309589dbddd114.0 (2025-06-16)
+
+
+### Bug Fixes
+
+* packages/ui/components/button/package.json & packages/ui/components/button/package-lock.json to reduce vulnerabilities ([78a4845](https://github.com/yurikrupnik/mussia8/commit/78a4845e32431e70886e9ff42eaec33b25d20bef))
+
+
+
+
+
 # 2.2.0 (2021-08-21)
 
 **Note:** Version bump only for package @creativearis/button
