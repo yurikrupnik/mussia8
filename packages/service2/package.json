@@ -1,6 +1,6 @@
 {
   "name": "service2",
-  "version": "3.4.3",
+  "version": "3.4.4-renovate/npm-body-parser-vulnerability.0",
   "description": "Service2 change",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/service2#readme",
@@ -36,7 +36,7 @@
     "@creativearis/models": "3.4.0",
     "@creativearis/swagger": "^3.4.1",
     "bcrypt": "5.0.1",
-    "body-parser": "1.19.0",
+    "body-parser": "1.20.3",
     "connect-mongo": "4.5.0",
     "express": "4.17.1",
     "express-session": "1.17.2",
