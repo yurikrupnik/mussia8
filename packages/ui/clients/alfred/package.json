@@ -1,6 +1,6 @@
 {
   "name": "alfred",
-  "version": "2.4.4",
+  "version": "2.4.5-renovate/npm-lodash-vulnerability.0",
   "description": "Generic application for inner user base on firebase auth",
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia8/tree/main/packages/alfred#readme",
@@ -45,7 +45,7 @@
     "firebase-admin": "9.11.1",
     "formik": "2.2.9",
     "helmet": "4.6.0",
-    "lodash": "4.17.21",
+    "lodash": "4.18.1",
     "mongoose": "5.13.7",
     "morgan": "1.10.0",
     "next": "11.1.0",
